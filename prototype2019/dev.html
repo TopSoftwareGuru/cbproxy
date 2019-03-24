@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>XYZ Dev</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+
+<div class="col-sm-6">
+
+<br >
+<div class="text-center">
+	<a href="./dev.html">Dev</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./openid_connect.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>
+</div>
+<br>
+
+
+
+
+<h2>Notes for the developers</h2> 
+
+<br >
+
+<h4>Roman ToDO</h4>
+<ul>
+  <li>Create stats page</li>
+  <li>Deploy on webserver so that I can try it on mobile phone</li>
+  <li>two pane mode: toggle between 
+	<ol>
+	   <li>one-pane / two-pane / three-pane view </li>
+	   <li>Bank XYZ customer view / Bank ABC customer view </li>
+	   <li>Bank XYZ customer view / Bank XYZ bank view </li>
+           <li>Bank XYZ customer view / developer notes, principles, comments</li>
+        </ol>
+  <li>mock up of one two three pane demo</li>
+  <li>mode eng vs uat vs prod</li>
+  <li>Change wording of create account to "new account is almost ready" and "link funding account to finalise account setup". </li>
+  <li>Add link to immediately files bug reports / improvement requests</li>
+  <li>Think about tx signing with Trezor </li>
+  <li>Think about SIX SDX tokenized CHF - what does it mean for Bank XYZ? Can it be used? Does it make Bank XYZ redundant?</li>
+</ul>
+
+<br >
+
+<h4>Some guiding Principles</h4>
+<ol>
+  <li>KISS: keep it simple and small. Simplicity is the ultimate sophistication. </li>
+  <li><a href="http://wiki.c2.com/?YouArentGonnaNeedIt">YAGNI - you ain't gonna need it.</a> Always implement things when you actually need them, never when you just foresee that you need them. Even if you're totally, totally, totally sure that you'll need a feature later on, don't implement it now. Hint: sometimes I deviate from it myself. Please notify me about that.</li>
+</ol>
+<br >
+
+<h4>User Interface Protoype</h4>
+<ol>
+  <li>Two to three pane view configurable for demo of GUI and its impact</li>
+  <li>For the user interfaces prototype three types of users are needed: Bank XYZ, customer, Bank ABC customer, admin</li>
+  <li>Multi-Language support EN, DE, FR</li>
+  <li>Indication in GUI: connected to ENG / UAT / PROD</li>
+  <li>Indication in GUI: Bank XYZ vs Bank ABC vs CB Bank. It should be easy to change those placeholder names later on with real names.</li>
+  <li>Simulation of RTGS, Bank XYZ, Bank ABC and CB Bank needed</li> 
+  <li>for admin user: Kibana or Grafana inspired page for situation at different banks needed</li>
+</ol>
+
+<br >
+
+<h4>Backend Simulator</h4>
+<ol>
+  <li>Have Configuration page or configuration file with the needed reference data for the involved parties </li>
+  <li>Event Sourcing with commands</li>
+  <li>Each transfer gets a hash value (similar as in Bitcoin) and gets hashed into a merkkle tree</li>
+  <li>Simulation of RTGS, Bank XYZ, Bank ABC and CB Bank needed</li> 
+</ol>
+
+<br >
+<br >
+
+<!-- see SwissID Logon example on this web page: https://account.post.ch/idp/?login&app=portal-delivery&service=klp&targetURL=https%3a%2f%2fwww.post.ch%2fde%2fkundencenter&abortURL=https%3a%2f%2fwww.post.ch%2fde&lang=de -->
+
+
+</div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>XYZ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+
+<div class="container">
+
+
+<div class="col-sm-6">
+
+<br >
+<div class="text-center">
+	<a href="./dev.html">Dev</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./create_account.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>
+</div>
+<br>
+
+
+ <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="home.html">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="transfer_in.html">CHF in</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="transfer_out.html">CHF out</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="account_owner.html">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="user_activities.html">Activities</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="./landing_page_loggedout.html">Logout</a>
+  </li>
+</ul> 
+
+
+
+
+<div class="alert alert-success alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  SwissiD Logon successful!<strong> Hello, Joe Doe </strong>(SwissID 23432423)
+</div>
+<div class="alert alert-warning">
+  <strong>Warning!</strong> No account yet. <strong><a href="create_account.html"> Please create an XYZ account</a></strong>
+</div>
+
+<h3> Overview</h3> 
+
+
+
+
+
+
+
+
+<br >
+
+
+
+<br >
+
+<h3>The reason why</h3>
+<p>Add some marketing material - a reminder for our users.</p>
+<br >
+
+
+
+ </div>
+
+
+<div class="col-sm-6">
+<br >
+
+<h4>Some comments for the implementation</h4>
+
+<ol>
+  <li>At the very beginning there exists no XYZ bank account yet. The user needs to create one.</li>
+  <li>Without a XYZ bank account and without any previous transactions a.k.a. transfers, there is no balance..</li>
+  <li><srong>YAGNI!</strong> (initially) do the absolute minimum. Therefore the user can create only one single account</li>
+  <li>If this customer (SwissID user number) is on the sanctions list (see config page), then he cannot create/link an account and cannot do a transfer. Neither inbound (receive) nor outbound (send, withdraw).</li>
+</ol>
+
+
+</div>
+
+
+</div>
+
+</body>
+</html>
+

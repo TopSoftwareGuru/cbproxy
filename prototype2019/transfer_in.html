@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>XYZ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+
+<div class="col-sm-6">
+
+<br >
+<div class="text-center">
+	<a href="./dev.html">Dev</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./home_withdrawn.html">Prev</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./home.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>
+</div>
+<br>
+
+ <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="home.html">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="transfer_in.html">CHF in</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="transfer_out.html">CHF out</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="account_owner.html">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="user_activities.html">Activities</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="./landing_page_loggedout.html">Logout</a>
+  </li>
+</ul> 
+
+
+
+
+<br >
+  <h3>Initiate credit transfer from bank to XYZ</h3>
+
+<p>Your XYZ account: <strong>IBAN CH99 2222 4415 5036 7150 5</strong></p>
+
+
+<div class="media">
+  <div class="media-left">
+    <img src="./img/qr_code.png" class="media-object" style="width:60px">
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">Amount [CHF]:</h4>
+    <input type="number" value="7800.00">
+  </div>
+</div>   
+<br >
+<p> Scan this QR Code with your bank's mobile app </p>
+<br >
+
+
+<strong><a href="./home.html">Go back to overview</a></strong>
+
+
+ </div>
+
+
+<div class="col-sm-6">
+<br >
+
+<h4>Some comments for the implementation</h4>
+
+<ol>
+  <li>The QR code is only for convenience. It makes it easier for the account holder (user) to transfer money to his/her XYZ account.</li>
+  <li><a href="https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf">Swiss eBill QR Code</a> (chapter 2.4) onwards. It is based on ISO 18004 QR Code.</li>
+  <li><strong>to be decided:</strong>Is eBill a reasonable approch for a credit transfer or is it the wrong approach?</li>
+</ol>
+
+
+</div>
+
+
+</div>
+
+</body>
+</html>
+

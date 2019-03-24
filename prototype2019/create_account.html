@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>XYZ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+
+<div class="col-sm-6">
+
+<br >
+
+<div class="text-center">
+	<a href="./dev.html">Dev</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./account_owner.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>
+</div>
+<br>
+
+
+
+ <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="home.html">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="transfer_in.html">CHF in</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="transfer_out.html">CHF out</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="account_owner.html">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="user_activities.html">Activities</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="./landing_page_loggedout.html">Logout</a>
+  </li>
+</ul> 
+
+
+<h3> Create CHF Account</h3> 
+
+ <form>
+   
+    <div class="form-group">
+      <label for="bic">BIC (Bank Identifier Code)</label>
+      <input type="text" class="form-control" id="bic" value="XYZCH89" readonly>
+    </div>
+
+
+    <div class="form-group">
+      <label for="iban">IBAN</label>
+      <input type="text" class="form-control" id="iban" value="CH33 0078 1015 5036 7150 3" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="currency">Currency</label>
+      <input type="text" class="form-control" id="currency" value="CHF" readonly>
+    </div>
+
+
+    <div class="form-group">
+      <label for="offering">Product and cost</label>
+      <input type="text" class="form-control" id="offering" value="XYZ basic account | CHF 10 per month + additional fee per CHF stored" readonly>
+    </div>
+
+
+   <div class="form-group">
+     <label for="other_iban">Alias:</label>
+     <input type="text" class="form-control" id="my ABC bank account" value="my ABC account">
+   </div>
+
+
+ <div class="form-group">
+  <label for="sel1">Your funding account is at:</label>
+  <select class="form-control" id="sel1">
+    <option>ABC (Schweiz) AG</option>
+    <option>Credit Suisse</option>
+    <option>Raiffeisenbank</option>
+    <option>Z&uuml;rcherkantonalbank</option>
+    <option>Postfinance</option>
+  </select>
+</div> 
+
+
+   <div class="form-group">
+     <label for="other_iban">IBAN of funding account [CHF] at other bank:</label>
+     <input type="text" class="form-control" id="other_iban" value="CH33 0078 1015 5036 7150 3">
+   </div>
+
+<strong><a href="./home_balance0.html">Create XYZ account</a></strong>
+<br >
+<br >
+
+  </form>
+
+
+
+ </div>
+
+
+<div class="col-sm-6">
+<br >
+<br >
+<br >
+<h4>Some comments for the implementation</h4>
+
+<ol>
+  <li>At the beginning, we do the absolute minimum.</li>
+  <li>The <a href="https://en.wikipedia.org/wiki/International_Bank_Account_Number">IBAN (Internation Bank Account Number)</a> needs to be generated specifically for each new bank account. Use this format <a href="http://www.swissiban.com/">CH99 00230 00A109822346</a></li>. The part "CH99 00230" is fixed, for the rest use an ascending number starting at 1000.</li>
+  <li>By purpose we limit that the user can fund his/her new account only from one single whitelisted other bank account.</li>
+  <li>By purpose we limit that the user can withdraw money only to his/her whitelisted other bank account.</li>
+</ol>
+
+
+</div>
+
+
+</div>
+
+</body>
+</html>
+

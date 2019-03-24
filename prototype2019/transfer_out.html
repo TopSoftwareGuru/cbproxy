@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>XYZ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+
+<div class="col-sm-6">
+
+<br >
+<div class="text-center">
+	<a href="./dev.html">Dev</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./home_withdrawn.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>
+</div>
+<br>
+
+
+
+ <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="home.html">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="transfer_in.html">CHF in</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="transfer_out.html">CHF out</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="account_owner.html">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="user_activities.html">Activities</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="./landing_page_loggedout.html">Logout</a>
+  </li>
+</ul> 
+
+
+
+<br >
+
+
+  <h3>Initiate credit transfer from XYZ to other bank</h3>
+
+
+ <form>
+    <div class="form-group">
+      <label for="amount">Amount [CHF]</label>
+      <input type="number" class="form-control" id="amount" value="2000">
+    </div>
+
+ <div class="form-group">
+  <label for="comment">Additional Info (max. 140 characters):</label>
+  <textarea class="form-control" rows="2" id="comment"></textarea>
+</div> 
+
+<div class="form-group">
+  <label for="usr">Transfer to this bank account:</label>
+  <input type="text" class="form-control" id="usr" value="ABC (Schweiz) AG | IBAN = CH 54 78 23 23 29 23 23 099" readonly>
+</div>
+
+
+
+    <div class="form-group">
+      <label for="when">Transfer funds:</label>
+      <input type="text" class="form-control" id="when" value="as soon as possible" readonly>
+    </div>
+
+
+<strong><a href="./home_withdrawn.html">Submit Transfer</a></strong>
+
+  </form>
+
+
+
+ </div>
+
+
+<div class="col-sm-6">
+<br >
+
+<h4>Some comments for the implementation</h4>
+
+<ol>
+  <li>AFAIK, It should finally result in a <a href="https://www.iso20022.org/sites/default/files/documents/messages/pain/schemas/pain.001.001.09.zip">ISO pain.001.001.09</a>message</li>
+</ol>
+
+</div>
+
+</div>
+
+</body>
+</html>
+

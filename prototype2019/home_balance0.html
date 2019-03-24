@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>XYZ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+
+<div class="container">
+
+
+<div class="col-sm-6">
+
+<br >
+<div class="text-center">
+	<a href="./dev.html">Dev</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./transfer_in.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>
+</div>
+<br>
+
+
+
+
+ <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="home.html">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="transfer_in.html">CHF in</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="transfer_out.html">CHF out</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="account_owner.html">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="user_activities.html">Activities</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="./landing_page_loggedout.html">Logout</a>
+  </li>
+</ul> 
+
+
+<h3> Overview</h3> 
+
+
+
+
+
+
+<p>Your balance at XYZ:</p>
+<h3> <strong>CHF 0.00 </strong></h3>
+
+<br >
+<strong><a href="./transfer_in.html">Your account is empty. Send money to your XYZ account.</a></strong>
+<br >
+
+<h3>The reason why</h3>
+<p>Add some marketing material - a reminder for our users.</p>
+<br >
+
+<h3>Most recent transfers</h3>
+
+<div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="" checked>Incoming (fundings)
+  </label>
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="" checked>Outgoing (withdrawels)
+  </label>
+</div>
+
+
+ <ul class="list-group">
+
+</ul> 
+
+<br >
+
+<h3>For corporate clients: ISO 20022 message history</h3>
+ <ul class="list-group">
+</ul> 
+
+<br>
+<h3>Balance History</h3>
+
+ <table class="table">
+    <thead>
+      <tr>
+        <th>When</th>
+        <th>IN </th>
+        <th>OUT </th>
+        <th>IN CHF</th>
+        <th>OUT CHF</th>
+        <th>CHF Balance</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+
+<br >
+
+<h3>XYZ Fees</h3>
+
+
+ <table class="table">
+    <thead>
+      <tr>
+        <th>Fee</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Account fees per month:</td>
+        <td>CHF 10.00</td>
+      </tr>
+      <tr>
+        <td>interest rate fee:</td>
+        <td>CHF 34.24</td>
+      </tr>
+      <tr>
+        <td>fee per transfer:</td>
+        <td>CHF 0.20</td>
+      </tr>
+      <tr>
+        <td><strong>Total fees year-to-date:</strong></td>
+        <td><strong>CHF 46.84</strong></td>
+      </tr>
+    </tbody>
+ </table>
+
+ </div>
+
+
+<div class="col-sm-6">
+<br >
+<br >
+<br >
+<h4>Some comments for the implementation</h4>
+
+<ol>
+  <li>Once the user has an XYZ bank account, it makes sense to show the account balance.</li>
+  <li>This page shows account statement and transaction history.</li>
+  <li>Maybe Kibana or Grafana inspired representation of information (statistics) would make sense.</li>
+</ol>
+
+
+</div>
+
+</div>
+
+</body>
+</html>
+
