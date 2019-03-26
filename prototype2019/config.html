@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
 </head>
 <body>
 
@@ -48,6 +49,45 @@
 <br >
 
 <h3>Application Reference Data</h3>
+
+<div id="onclickdiv" onclick="setCookie("two pane view", "no")"><strong>use two pane view</strong></div>
+
+
+<script>
+
+
+function setCookie(name,value) {
+    var expires = "";
+    alert("before: " + name + " = " + value);
+    document.cookie = name + "="  + value + "; path=/";
+    alert("after: " + name + " = " + value);
+    ocument.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+
+</script>
+
+<br >
+<h4> Demo Config</h4>
+
+ <div class="form-group">
+  <label for="sel1">user interface mode::</label>
+  <select class="form-control" id="sel1">
+    <option>demo compact, one-pane, no nav links</option>
+    <option>demo one-page with nav links</option>
+    <option>demo two-pane view with nav links</option>
+  </select>
+</div> 
+
+
+ <div class="form-group">
+  <label for="sel1">message alerts:</label>
+  <select class="form-control" id="sel1">
+    <option>on</option>
+    <option>off</option>
+  </select>
+</div> 
+
 
 <br >
 <h4> Our New FinTech or Bank </h4>
@@ -176,9 +216,11 @@
   <li>Assets under Management (AuM)  </li>
   <li>Eigenkapital (DE), xxx (EN) </li>
   <li>Eigenkapitalrendite (DE), xxx (EN) </li>
+  <li>Risikogewichtete Eigenmittelquote</li>
   <li>Bilanzsumme (DE), xxx (EN)</li>
   <li>Guthaben auf SNB Girokonto (DE), xxx (EN)</li>
   <li>xxx (DE), Leverage Ratio (EN)  </li>
+  <li>Cost Income Ratio</li>
   <li>Aktive (DE), Assets (EN)</li>
   <li>Passive (DE), liabilities (EN) </li>
   <li>IFRS 15: True/False</li>
@@ -187,7 +229,11 @@
 <br >
 
 
+<button onclick="">Save changes</button>
+
 </div>
+
+
 
 
 <div class="col-sm-6">
