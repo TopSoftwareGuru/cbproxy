@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script type='text/javascript' src='./js/demo.js'></script>
+
 </head>
 <body>
 
@@ -50,7 +53,6 @@
 </ul> 
 
 
-<h3> Overview</h3> 
 
 
 
@@ -59,9 +61,10 @@
   <strong>Success!</strong> Transfer CHF +7'800.00 from your ABC account CH received.
 </div>
 
+<h3> Your Balance at Bank XYZ:</h3> 
 
 
-<p>Your balance at XYZ:</p>
+
 <h3> <strong>CHF 7'800.00 </strong></h3>
 
 
@@ -69,115 +72,18 @@
 
 <h3>The reason why</h3>
 <p>Add some marketing material - a reminder for our users.</p>
-<br >
-
-<h3>Most recent transfers</h3>
-
-<div class="form-check-inline">
-  <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="" checked>Incoming (fundings)
-  </label>
-  <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="" checked>Outgoing (withdrawels)
-  </label>
+<br>
+<p> <a href="">Transfer History</a>&nbsp;|&nbsp; <a href="">Balance History</a> &nbsp;|&nbsp; <a href="">Fees</a></p>
 </div>
 
 
- <ul class="list-group">
-  <li class="list-group-item">yesterday:       Tx-1: XYZ account: --> XYZ account CHF +7'800.00</li>
-</ul> 
-
-<br >
-
-<h3>For corporate clients: ISO 20022 message history</h3>
- <ul class="list-group">
-  <li class="list-group-item">dd.mm.yyy at hh:mm:ss  &nbsp;received&nbsp; <a href="">pain.001.001</a> (payment instruction) received</li>
-  <li class="list-group-item">dd.mm.yyy at hh:mm:ss  &nbsp;sent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">pacs.008</a> (interbank payment) submitted</li>
-</ul> 
-
-<br>
-<h3>Balance History</h3>
-
- <table class="table">
-    <thead>
-      <tr>
-        <th>When</th>
-        <th>IN </th>
-        <th>OUT </th>
-        <th>IN CHF</th>
-        <th>OUT CHF</th>
-        <th>CHF Balance</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Today</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
-        <td>0</td>
-        <td>7'800</td>
-      </tr>
-      <tr>
-        <td>Yesterday</td>
-        <td>1</td>
-        <td>0</td>
-        <td>7'800</td>
-        <td>0'000</td>
-        <td>7'800</td>
-      </tr>
-       <tr>
-        <td>January</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-<br >
-
-<h3>XYZ Fees</h3>
-
-
- <table class="table">
-    <thead>
-      <tr>
-        <th>Fee</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Account fees per month:</td>
-        <td>CHF 10.00</td>
-      </tr>
-      <tr>
-        <td>interest rate fee:</td>
-        <td>CHF 34.24</td>
-      </tr>
-      <tr>
-        <td>fee per transfer:</td>
-        <td>CHF 0.20</td>
-      </tr>
-      <tr>
-        <td><strong>Total fees year-to-date:</strong></td>
-        <td><strong>CHF 46.84</strong></td>
-      </tr>
-    </tbody>
- </table>
-
- </div>
-
-
-<div class="col-sm-6">
+<div id="right_pane" class="col-sm-6">
 <br >
 <br >
 <br >
-<h4>Some comments for the implementation</h4>
+<br >
+<br >
+<h3>Comments for the implementation</h3>
 
 <ol>
   <li>Once the user has an XYZ bank account, it makes sense to show the account balance.</li>

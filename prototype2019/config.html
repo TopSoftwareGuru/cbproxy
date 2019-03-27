@@ -7,7 +7,40 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>     -->
+     
+<!--<script type='text/javascript' src='./js/demo.js'></script> -->
+
+
+<script>
+
+$(document).ready(function(){
+
+  $("#ui_mode_select").change(function (){
+
+    var uiMode = $('#ui_mode_select option:selected').text();
+      console.log("uiMode = " + uiMode);
+      console.log("typeof(uiMode) = " + typeof(uiMode));
+    switch (uiMode) {
+      case "normalmode":
+        console.log("in case normalmode");
+      case "normal mode":
+        console.log("strange");
+      default:
+        alert("very strange, uiMode = " + uiMode);$
+        $("#right_pane").hide();
+    }
+
+
+  // 1 = True = Yes    
+  $.cookie("show_two_panes", 1);
+});
+
+});
+
+</script>
+
 </head>
 <body>
 
@@ -16,7 +49,7 @@
 <div class="container">
 
 
-<div class="col-sm-6">
+<div id="left_pane" class="col-sm-6">
 
 <br >
 <div class="text-center">
@@ -71,22 +104,14 @@ function setCookie(name,value) {
 <h4> Demo Config</h4>
 
  <div class="form-group">
-  <label for="sel1">user interface mode::</label>
-  <select class="form-control" id="sel1">
-    <option>demo compact, one-pane, no nav links</option>
-    <option>demo one-page with nav links</option>
-    <option>demo two-pane view with nav links</option>
+  <label for="ui_mode_select">user interface mode::</label>
+  <select class="form-control" id="ui_mode_select">
+    <option value="demomode">demomode</option>
+    <option value="normalmode"> normalmode</option>
   </select>
 </div> 
 
 
- <div class="form-group">
-  <label for="sel1">message alerts:</label>
-  <select class="form-control" id="sel1">
-    <option>on</option>
-    <option>off</option>
-  </select>
-</div> 
 
 
 <br >
@@ -236,8 +261,17 @@ function setCookie(name,value) {
 
 
 
-<div class="col-sm-6">
-<p> In violation of YAGNI: it might be convenient if the config was stored maybe stored as a JSON document and that there was a history of configurations. It's not a must have.</p>
+<div id="right_pane" class="col-sm-6">
+<br >
+<br >
+<br >
+<br >
+<br >
+<h3>Comments for the implementation</h3>
+
+<ol> 
+  <li>In violation of YAGNI: it might be convenient if the config was stored maybe stored as a JSON document and that there was a history of configurations. It's not a must have.</li>
+</ol>
 </div>
 
 

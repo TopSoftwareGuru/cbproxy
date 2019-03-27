@@ -26,24 +26,43 @@
 
 
 
-<h3> Welcome to the minimalistic XYZ bank</h3> 
+<h3> Grössere Geldbeträge (CHF, EUR) bei einer Schweizer Bank parkieren.</h3> 
 
 <br >
 <br >
 
 <!-- see SwissID Logon example on this web page: https://account.post.ch/idp/?login&app=portal-delivery&service=klp&targetURL=https%3a%2f%2fwww.post.ch%2fde%2fkundencenter&abortURL=https%3a%2f%2fwww.post.ch%2fde&lang=de -->
 
-
-
 <a href="./openid_connect.html"> Logon with SwissID </a>
 
-<br >
-<h3>Why XYZ bank</h3>
-<p>Here marketing material will be added.</p>
+ <form>
+    <div class="form-group">
+      <label for="amount">Amount [CHF]</label>
+      <input type="number" class="form-control" id="amount" value="2000">
+      <label for="date_from">From:</label>
+      <input type="date" class="form-control" id="xxx" value="">
+      <label for="date_until">Until:</label>
+      <input type="date" class="form-control" id="xxx" value="">
+    </div>
 
-<h3>Product Offerings</h3>
-<p>Product Basic for individuals. <a href="">Price plan</a></p>
-<p>Product Pro for companies. <a href="">Price plan</a></p>
+ <div class="checkbox">
+  <label><input type="checkbox" value="">UBS (Schweiz) AG</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="">Credit Suisse</label>
+</div>
+<div class="checkbox disabled">
+  <label><input type="checkbox" value="" >ZKB</label>
+</div> 
+<div class="checkbox disabled">
+  <label><input type="checkbox" value="" >Raiffeisenbank</label>
+</div> 
+
+ </form>
+
+
+<button onclick="">send Request for Quote (RFQ)</button>
+<a href="crypto2.html">click</a>
 
 </div>
 
