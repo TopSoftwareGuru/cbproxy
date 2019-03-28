@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  
   <!-- <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>     -->
      
 <!--<script type='text/javascript' src='./js/demo.js'></script> -->
@@ -17,6 +18,8 @@
 
 $(document).ready(function(){
 
+  var cookieValue = $.cookie("");
+  if (cookieValue == "show_two_panes=1") {console.log("yes, show 2 panes")};
   $("#ui_mode_select").change(function (){
 
     var uiMode = $('#ui_mode_select option:selected').text();
@@ -53,10 +56,10 @@ $(document).ready(function(){
 
 <br >
 <div class="text-center">
-		<a href="./dev.html">Dev</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-<strong><a href="./openid_connect.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
-		<a href="./config.html">Config</a>
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./home.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./dev.html">Dev</a>
 </div>
 <br>
 
@@ -89,14 +92,6 @@ $(document).ready(function(){
 <script>
 
 
-function setCookie(name,value) {
-    var expires = "";
-    alert("before: " + name + " = " + value);
-    document.cookie = name + "="  + value + "; path=/";
-    alert("after: " + name + " = " + value);
-    ocument.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
-
 
 </script>
 
@@ -109,6 +104,13 @@ function setCookie(name,value) {
     <option value="demomode">demomode</option>
     <option value="normalmode"> normalmode</option>
   </select>
+
+  <label for="ui_mode_select">user interface mode::</label>
+  <select class="form-control" id="right_pane_content">
+    <option value="dev_notes">dev_notes</option>
+    <option value="bank_view"> bank_view</option>
+  </select>
+
 </div> 
 
 
