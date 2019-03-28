@@ -7,42 +7,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-  
-  <!-- <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>     -->
-     
-<!--<script type='text/javascript' src='./js/demo.js'></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script type='text/javascript' src='./js/demo.js'></script> 
 
 
-<script>
-
-$(document).ready(function(){
-
-  var cookieValue = $.cookie("");
-  if (cookieValue == "show_two_panes=1") {console.log("yes, show 2 panes")};
-  $("#ui_mode_select").change(function (){
-
-    var uiMode = $('#ui_mode_select option:selected').text();
-      console.log("uiMode = " + uiMode);
-      console.log("typeof(uiMode) = " + typeof(uiMode));
-    switch (uiMode) {
-      case "normalmode":
-        console.log("in case normalmode");
-      case "normal mode":
-        console.log("strange");
-      default:
-        alert("very strange, uiMode = " + uiMode);$
-        $("#right_pane").hide();
-    }
-
-
-  // 1 = True = Yes    
-  $.cookie("show_two_panes", 1);
-});
-
-});
-
-</script>
 
 </head>
 <body>
