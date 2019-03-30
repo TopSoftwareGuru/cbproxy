@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>XYZ</title>
+  <title>Bank XYZ - Transfer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -42,9 +42,9 @@
 <br >
 
 
-  <h3>Initiate credit transfer from XYZ to other bank</h3>
+  <h3>Send from Bank XYZ to Bank ABC</h3>
 
-
+<br >
  <form>
     <div class="form-group">
       <label for="amount">Amount [CHF]</label>
@@ -57,10 +57,13 @@
 </div> 
 
 <div class="form-group">
-  <label for="usr">Transfer to this bank account:</label>
-  <input type="text" class="form-control" id="usr" value="ABC (Schweiz) AG | IBAN = CH 54 78 23 23 29 23 23 099" readonly>
+  <label for="usr">Transfer from this bank account:</label>
+  <input type="text" class="form-control" id="usr" value="Bank ABC | IBAN = CH99 2222 4415 5036 7150 5 " readonly>
 </div>
-
+<div class="form-group">
+  <label for="usr">Transfer to this bank account:</label>
+  <input type="text" class="form-control" id="usr" value="Bank XYZ | IBAN = CH54 7823 2329 2323 099"" readonly>
+</div>
 
 
     <div class="form-group">
