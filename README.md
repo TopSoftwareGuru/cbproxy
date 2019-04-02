@@ -1,3 +1,3 @@
 # cbproxy
 
-[sdfa yudsdkk 2323](./prototype2019/landing_page.html)
+[landing page](./prototype2019/landing_page.html)
