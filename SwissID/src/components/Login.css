@@ -1,0 +1,25 @@
+.lang-select {
+  border: 0;
+  background-color: #ffffff;
+}
+.lang-select:focus {
+  font-weight: bold;
+}
+.App {
+  font-family: "SwissSignCircularWeb", sans-serif;
+  text-align: center;
+}
+
+.top-bar {
+  color: #337ab7;
+}
+.login {
+  margin-top: 10%;
+}
+.swissID {
+  font-weight: 500;
+  font-size: 40px;
+}
+.lang {
+  padding-top: 20px;
+}

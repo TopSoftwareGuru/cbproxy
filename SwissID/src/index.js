@@ -1,10 +1,6 @@
-var http = require("http");
-var express = require("express");
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
-//create a server object:
-http
-  .createServer(function(req, res) {
-    res.write("Hello World!"); //write a response to the client
-    res.end(); //end the response
-  })
-  .listen(8080); //the server object listens on port 8080
+import App from "./components/App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
