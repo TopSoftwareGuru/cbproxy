@@ -17,9 +17,9 @@ class Config extends Component {
     return ( 
       <div className="container">
         <div className="row">
-          <div className="col-md-6 config-leftpane">
+          <div className="col-md-6 config-leftpane my-4">
             <div className="text-center mb-3">
-              <Link to="." className="top-bar">
+              <Link to="/" className="top-bar">
                 Start
               </Link>
               &nbsp;&nbsp;|&nbsp;&nbsp;
@@ -113,7 +113,7 @@ class Config extends Component {
                     <input
                       type="text"
                       className="form-control"
-                      value="SPROCH44955"
+                      value="SPROCh54955"
                       onChange={this.handleChange}
                     />
                 </div>
@@ -281,7 +281,7 @@ class Config extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <h3>Sanctions Blacklist</h3>
+                <h5>Sanctions Blacklist</h5>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
                     <span
@@ -305,7 +305,7 @@ class Config extends Component {
                 </div>
               </div>
             </form>
-            <h4>Key Performance Indicators (KPIs) and other financial figures</h4>
+            <h5>Key Performance Indicators (KPIs) and other financial figures</h5>
             <ul>
               <li>Assets under Management (AuM)  </li>
               <li>Eigenkapital (DE), xxx (EN) </li>

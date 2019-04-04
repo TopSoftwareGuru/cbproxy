@@ -6,6 +6,8 @@ import Login from "./Login";
 import Dev from "./Dev";
 import Crypto from "./Crypto";
 import Config from './Config/Config';
+import Home from './Config/Home';
+import CreateXYZAccount from './Config/CreateXYZAccount';
 
 class App extends Component {
   render() {
@@ -13,10 +15,12 @@ class App extends Component {
       <Router>
         <Switch>
           <Route path="/" exact component={Landing} />
-          <Route path="/login" exact component={Login} />
+          <Route path="/openid_connect" exact component={Login} />
           <Route path="/dev" exact component={Dev} />
           <Route path="/crypto" exact component={ Crypto } />
-          <Route path="/config" exact component={Config} />
+          <Route path="/config" exact component={ Config } />
+          <Route path="/home" exact component={ Home } />
+          <Route path="/new" exact component={ CreateXYZAccount } />
         </Switch>
       </Router>
     );

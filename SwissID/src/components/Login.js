@@ -58,7 +58,7 @@ class Login extends Component {
         <div className="row">
           <div className="col-md-6 my-4">
             <div className="text-center mb-3">
-              <Link to="." className="top-bar">
+              <Link to="/" className="top-bar">
                 Start
               </Link>
               &nbsp;&nbsp;|&nbsp;&nbsp;

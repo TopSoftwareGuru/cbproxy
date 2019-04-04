@@ -16,7 +16,7 @@ class Landing extends Component {
                   Start
                 </Link>
                 &nbsp;&nbsp;|&nbsp;&nbsp;
-                <Link to="/login" className="top-bar">
+                <Link to="/openid_connect" className="top-bar">
                   <strong>Next</strong>
                 </Link>
                 &nbsp;&nbsp;|&nbsp;&nbsp;

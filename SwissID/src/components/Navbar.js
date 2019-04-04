@@ -11,11 +11,11 @@ class Navbar extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <Link to="#">
+        <Link to="/home">
           Home
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="#">
+        <Link to="/new">
           New
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
