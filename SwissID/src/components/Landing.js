@@ -8,47 +8,63 @@ class Landing extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row my-4">
-          <div className="col-sm-6">
-            <div className="text-center">
-              <a href="#" className="top-bar">
-                Start
-              </a>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="#" className="top-bar">
-                <strong>Next</strong>
-              </a>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="#" className="top-bar">
-                Dev
-              </a>
+        <div className="row">
+          <div className="col-md-6">
+            <div className="col-md-12 my-4">
+              <div className="text-center">
+                <Link to="/" className="top-bar">
+                  Start
+                </Link>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <Link to="/login" className="top-bar">
+                  <strong>Next</strong>
+                </Link>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <Link to="/dev" className="top-bar">
+                  Dev
+                </Link>
+              </div>
+            </div>
+            <div className="row my-3">
+              <div className="col-md-12">
+                <h4>Welcome to the minimalistic XYZ bank</h4>
+              </div>
+            </div>
+            <div className="row mb-3 my-4">
+              <div className="col-md-12">
+                <Link to="/login" className="top-bar">
+                  Logon with SwissID
+                </Link>
+              </div>
+            </div>
+            <div className="row my-1">
+              <div className="col-md-12">
+                <h4>Why XYZ bank</h4>
+                <p>Here marketing material will be added.</p>
+                <p>Diff vs traditional banks (UBS, CS, KBs, Raiffeisen, ...)</p>
+                <p>
+                  Diff vs challenger banks (N26, Revolut, Neon, Oyoba, MtPelerin,
+                  ...)
+                </p>
+                <h4>Product Offerings</h4>
+                <p>Product Basic for individuals.</p>
+                <p>Product Pro for companies.</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="row my-3">
-          <div className="col-md-6">
-            <h4>Welcome to the minimalistic XYZ bank</h4>
-          </div>
-        </div>
-        <div className="row mb-3 my-4">
-          <div className="col-md-6">
-            <Link to="/login" className="top-bar">
-              Logon with SwissID
-            </Link>
-          </div>
-        </div>
-        <div className="row my-1">
-          <div className="col-md-6">
-            <h4>Why XYZ bank</h4>
-            <p>Here marketing material will be added.</p>
-            <p>Diff vs traditional banks (UBS, CS, KBs, Raiffeisen, ...)</p>
-            <p>
-              Diff vs challenger banks (N26, Revolut, Neon, Oyoba, MtPelerin,
-              ...)
-            </p>
-            <h4>Product Offerings</h4>
-            <p>Product Basic for individuals.</p>
-            <p>Product Pro for companies.</p>
+          <div className="col-md-6 landing-comment">
+            <h3>Comments for the implementation</h3>
+            <ol>
+              <li>
+                The landing page will be a normal landing page website with rather static information.
+              </li>
+              <li>
+                The Swiss Post Website uses such a SwissID Logon.
+              </li>
+              <li>
+                It would be nice if there was an easy editiable simple (bootstrap based?) web page so that I could change its content without having to re-compile some code or so. Nevertheless it should also somehow be part of the initial application.
+              </li>
+            </ol>
           </div>
         </div>
       </div>

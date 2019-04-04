@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button";
 import Typhography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
-import "./Login.css";
 import { FormControl } from "@material-ui/core";
 
 const muiStyles = theme => ({
@@ -57,8 +56,25 @@ class Login extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-6 login">
-            <div className="row">
+          <div className="col-md-6 my-4">
+            <div className="text-center mb-3">
+              <Link to="." className="top-bar">
+                Start
+              </Link>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <Link to="#" className="top-bar">
+                <strong>Next</strong>
+              </Link>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <Link to="/config" className="top-bar">
+                Config
+              </Link>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <Link to="/dev" className="top-bar">
+                Dev
+              </Link>
+            </div>
+            <div className="row login">
               <div className="col-md-6">
                 <span className="swissID">SwissID</span>
               </div>
@@ -125,6 +141,30 @@ class Login extends Component {
             >
               Create New SwissID Account
             </Button>
+          </div>
+          <div className="col-md-6 login-comment">
+            <h3>Comments for the implementation</h3>
+            <ol>
+              <li>
+                <a href="https://www.swissid.ch/en/">
+                  SwissID&nbsp;
+                </a>
+                 is a single-sign-on (SSO) solution based on the 
+                <a href="https://openid.net/connect/">
+                  &nbsp;OpenID connect &nbsp;
+                </a>
+                protocol, similar to Google OpenID and Facebook OpenID
+              </li>
+              <li>
+                XYZ needs to be a so called 'Relying Party' to SwissID
+              </li>
+              <li>
+                SwissID is quite new. Business connections are needed to obtain credentials to their test environment.
+              </li>
+              <li>
+                Maybe <strong>HTTPS</strong> is mandatory for SwissID. Probably you cannot use SwissID with a non-HTTPS web application.
+              </li>
+            </ol>
           </div>
         </div>
       </div>

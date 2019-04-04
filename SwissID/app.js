@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", (req, res) => {
-  res.send("Hello My sdfsdfsdfsdf!");
+  res.status(200).send();
 });
 app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));

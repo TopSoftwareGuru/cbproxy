@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
   constructor(props) {
@@ -8,8 +9,39 @@ class Navbar extends Component {
     };
   }
   render() {
-    return <div className="container" />;
+    return (
+      <div className="container-fluid">
+        <Link to="#">
+          Home
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="#">
+          New
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="#">
+          Profile
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="#">
+          TxIN
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="#">
+          TxOut
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="#">
+          Activities
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="#">
+          Logout
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+      </div>
+    );
+    }
   }
-}
-
-export default Navbar;
+  
+  export default Navbar;

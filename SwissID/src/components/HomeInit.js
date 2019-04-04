@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
-class Dev extends Component {
+class HomeInit extends Component {
   constructor(props) {
     super(props);
     this.state = {  }
   }
   render() { 
-    return (
+    return ( 
       <div>
-        Hello. Div
+        Hello homeInit
       </div>
-    );
+     );
   }
 }
  
-export default Dev;
+export default HomeInit;

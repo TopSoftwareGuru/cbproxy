@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "yarn build && nodemon index.js",
-    "build": "webpack"
+    "start": "npm run build && nodemon index.js",
+    "dev": "webpack-dev-server --open"
   },
   "dependencies": {
     "@material-ui/core": "3.9.3",
@@ -34,7 +34,8 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   },
   "keywords": []
 }
