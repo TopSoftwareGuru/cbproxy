@@ -6,14 +6,15 @@ class CHReceive extends Component {
     this.state = {  }
   }
   render() { 
+    const { description } = this.props;
     return ( 
-      <div className="alert alert-success alert-dismissible fade show my-4" role="alert">
+      <div className="alert alert-success alert-dismissible fade show my-4 success-alert" role="alert">
         <strong>
           Success!
           </strong>
-        &nbsp;Transfer CHF +7'800.00 from your ABC account CH received.
+        &nbsp;{description}
         <button type="button" className="close" data-dismiss="alert">
-          <span aria-hidden="true">&times;</span>
+          <span>&times;</span>
         </button>
       </div>
      );

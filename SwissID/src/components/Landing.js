@@ -32,9 +32,14 @@ class Landing extends Component {
             </div>
             <div className="row mb-3 my-4">
               <div className="col-md-12">
-                <Link to="/login" className="top-bar">
+                {/* <Link to="/openid_connect" className="top-bar">
                   Logon with SwissID
-                </Link>
+                </Link> */}
+                <a
+                  href="https://dev-ul1d4kde.auth0.com/authorize/?response_type=code&scope=openid%20profile&client_id=pXbXo_0BPEjWEoExpCZ5Wv82MwViCijy&connection=SwissID&redirect_uri=https://manage.auth0.com/tester/callback?connection=SwissID"
+                >
+                  Logon with SwissID
+                </a>
               </div>
             </div>
             <div className="row my-1">

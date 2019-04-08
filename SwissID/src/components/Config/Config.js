@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Navbar from '../Navbar';
 import AdminUser from '../alerts/AdminUser';
+import NavbarTop from '../NavbarTop';
 
 class Config extends Component {
   constructor(props) {
@@ -18,23 +19,7 @@ class Config extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6 config-leftpane my-4">
-            <div className="text-center mb-3">
-              <Link to="/" className="top-bar">
-                Start
-              </Link>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="#" className="top-bar">
-                <strong>Next</strong>
-              </Link>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="/config" className="top-bar">
-                Config
-              </Link>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="/dev" className="top-bar">
-                Dev
-              </Link>
-            </div>
+            <NavbarTop />
             <Navbar />
             <AdminUser />
             <form className="App-reference">

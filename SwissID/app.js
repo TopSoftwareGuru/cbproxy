@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", (req, res) => {
+app.use("/api", (req, res) => {
   res.status(200).send();
 });
 app.use("*", (req, res) => {

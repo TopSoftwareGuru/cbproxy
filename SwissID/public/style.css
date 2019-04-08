@@ -22,3 +22,23 @@
 .app-reference {
   margin-top: 5%; }
 
+.transfer-in .media .media-left {
+  width: 100%; }
+  .transfer-in .media .media-left .qrbill {
+    width: 100px;
+    height: 100px; }
+
+.profile .account-details .close-account {
+  font-size: 14px; }
+
+.profile .account-details .account-cancel {
+  border: 1px gray solid; }
+
+.profile .account-details .account-save-changes {
+  border: 1px gray solid; }
+
+.success-alert {
+  font-size: 14px;
+  background-color: #dff0d8;
+  color: #3c763d; }
+

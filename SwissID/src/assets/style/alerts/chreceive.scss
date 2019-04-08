@@ -1,0 +1,8 @@
+$color_character_success: #3c763d;
+$color_background_success: #dff0d8;
+
+.success-alert{
+  font-size: 14px;
+  background-color: $color_background_success;
+  color: $color_character_success;
+}

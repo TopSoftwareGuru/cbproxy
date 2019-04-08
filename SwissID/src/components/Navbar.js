@@ -19,26 +19,25 @@ class Navbar extends Component {
           New
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="#">
+        <Link to="/profile">
           Profile
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="#">
+        <Link to="/transfer_in">
           TxIN
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="#">
+        <Link to="/transfer_out">
           TxOut
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="#">
+        <Link to="/activities">
           Activities
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="#">
           Logout
         </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
       </div>
     );
     }
