@@ -32,6 +32,7 @@ class TransferOut extends Component {
     }
   }
   handleChange(event) {
+    console.log('start');
     this.setState({
       [event.target.name]: event.target.value,
     })
@@ -52,7 +53,7 @@ class TransferOut extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6 transfer-in my-4">
+          <div className="col-md-6 transfer-out my-4">
             <h3>Send from Bank XYZ To Bank ABC</h3>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
@@ -60,8 +61,8 @@ class TransferOut extends Component {
                 <input
                   type="number"
                   className="form-control"
-                  value="2000"
-                  name="amount_chf"
+                  pattern='[0-9]{0, 5}'
+                  name="amount"
                   onChange={this.handleChange}
                 />
               </div>
@@ -111,14 +112,14 @@ class TransferOut extends Component {
               <strong>
                 <button
                   type="submit"
-                  className="btn btn-default"
+                  className="btn btn-default transout-submit"
                 >
                   Submit Transfer
                 </button>
               </strong>
             </form>
           </div>
-          <div className="col-md-6">
+          {/* <div className="col-md-6">
             <h3>Comments for the implementation</h3>
             <ol>
               <li>
@@ -129,7 +130,7 @@ class TransferOut extends Component {
                 &nbsp;message
               </li>
             </ol>
-          </div>
+          </div> */}
         </div>
       </div>
      );

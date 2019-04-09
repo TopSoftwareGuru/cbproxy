@@ -221,7 +221,7 @@ class UserProfile extends Component {
               </div>
             </form>
             <p className="close-account">Want to suspend or terminate this account?&nbsp;
-              <a href="#">
+              <a href="#"  className="link-color">
                 Click here
               </a>
               &nbsp;

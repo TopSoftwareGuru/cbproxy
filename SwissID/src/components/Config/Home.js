@@ -15,19 +15,19 @@ class Home extends Component {
         <div className="row">
           <div className="col-md-6 my-4">
             <div className="text-center mb-3">
-              <Link to="." className="top-bar">
+              <Link to="."  className="link-color">
                 Start
               </Link>
               &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="#" className="top-bar">
+              <Link to="#"  className="link-color">
                 <strong>Next</strong>
               </Link>
               &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="/config" className="top-bar">
+              <Link to="/config"  className="link-color">
                 Config
               </Link>
               &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="/dev" className="top-bar">
+              <Link to="/dev"  className="link-color">
                 Dev
               </Link>
             </div>
@@ -38,15 +38,15 @@ class Home extends Component {
             />
             <h4>Your Balance at Bank XYZ:</h4>
             <h3>CHF 7'800.00</h3>
-            <Link to="#">
+            <Link to="#" className="link-color">
               Transfer History
             </Link>
             &nbsp;|&nbsp;&nbsp;
-            <Link to="#">
+            <Link to="#" className="link-color">
               Balance History
             </Link>
             &nbsp;|&nbsp;&nbsp;
-            <Link to="#">
+            <Link to="#" className="link-color">
               Fees
             </Link>
             &nbsp;|&nbsp;&nbsp;

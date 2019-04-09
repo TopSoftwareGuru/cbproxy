@@ -12,7 +12,7 @@ class Dev extends Component {
         <div className="row">
           <div className="col-md-12 my-4">
             <Menubar />
-            <div className="col-md-6 offset-md-6 my-5">
+            {/* <div className="col-md-6 offset-md-6 my-5">
               <h3>Comments for the implementation</h3>
               <div className="mb-4" />
               <h5>Roman ToDo</h5>
@@ -100,7 +100,7 @@ class Dev extends Component {
                 Simulation of RTGS, Bank XYZ, Bank ABC and CB Bank needed
                 </li>
               </ol>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

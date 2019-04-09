@@ -37,6 +37,7 @@ class Landing extends Component {
                 </Link> */}
                 <a
                   href="https://dev-ul1d4kde.auth0.com/authorize/?response_type=code&scope=openid%20profile&client_id=pXbXo_0BPEjWEoExpCZ5Wv82MwViCijy&connection=SwissID&redirect_uri=https://manage.auth0.com/tester/callback?connection=SwissID"
+                  className="link-color"
                 >
                   Logon with SwissID
                 </a>
@@ -57,7 +58,7 @@ class Landing extends Component {
               </div>
             </div>
           </div>
-          <div className="col-md-6 landing-comment">
+          {/* <div className="col-md-6 landing-comment">
             <h3>Comments for the implementation</h3>
             <ol>
               <li>
@@ -70,7 +71,7 @@ class Landing extends Component {
                 It would be nice if there was an easy editiable simple (bootstrap based?) web page so that I could change its content without having to re-compile some code or so. Nevertheless it should also somehow be part of the initial application.
               </li>
             </ol>
-          </div>
+          </div> */}
         </div>
       </div>
     );

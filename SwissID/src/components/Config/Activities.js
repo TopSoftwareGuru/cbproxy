@@ -29,9 +29,9 @@ class Activities extends Component {
             <h4>Data Export</h4>
             <div>
               <p>You can always export you data in either
-                <a href="#">&nbsp;Microsoft&nbsp;Excel(.xlsx)&nbsp;</a>
+                <a href="#" className="link-color">&nbsp;Microsoft&nbsp;Excel(.xlsx)&nbsp;</a>
                 format,&nbsp;or in&nbsp;
-                <a href="#">PDF/A format.</a>
+                <a href="#" className="link-color">PDF/A format.</a>
               </p>
             </div>
             <h3>Recent Activities</h3>
@@ -77,31 +77,31 @@ class Activities extends Component {
               <ul className="list-group">
                 <li className="list-group-item">
                   dd.mm.yyy hh:mm:ss -- Logon from 12.123.23.123&nbsp;
-                  <a href="#">details</a>
+                  <a href="#" className="link-color">details</a>
                 </li>
                 <li className="list-group-item">
                   dd.mm.yyy hh:mm:ss -- Account IBAN CH99 2222 4415 5036 7150 5 created&nbsp;
-                  <a href="#">details</a>
+                  <a href="#" className="link-color">details</a>
                 </li>
                 <li className="list-group-item">
                   dd.mm.yyy hh:mm:ss -- Inbound credit transfer received (pacs.008)&nbsp;
-                  <a href="#">details</a>
+                  <a href="#" className="link-color">details</a>
                 </li>
                 <li className="list-group-item">
                   dd.mm.yyy hh:mm:ss -- Notification failed - EMail address rejected&nbsp;
-                  <a href="#">details</a>
+                  <a href="#" className="link-color">details</a>
                 </li>
               </ul>
             </div>
           </div>
-          <div className="col-md-6">
+          {/* <div className="col-md-6">
             <h3>Comments for the implementation</h3>
             <ol>
               <li>
                 This is a bit like a logfile or an audit log. It shows all events that are somehow relevant for this user.
               </li>
             </ol>
-          </div>
+          </div> */}
         </div>
       </div>
      );

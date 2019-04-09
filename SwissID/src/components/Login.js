@@ -142,7 +142,7 @@ class Login extends Component {
               Create New SwissID Account
             </Button>
           </div>
-          <div className="col-md-6 login-comment">
+          {/* <div className="col-md-6 login-comment">
             <h3>Comments for the implementation</h3>
             <ol>
               <li>
@@ -165,7 +165,7 @@ class Login extends Component {
                 Maybe <strong>HTTPS</strong> is mandatory for SwissID. Probably you cannot use SwissID with a non-HTTPS web application.
               </li>
             </ol>
-          </div>
+          </div> */}
         </div>
       </div>
     );

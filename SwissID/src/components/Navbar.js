@@ -15,27 +15,27 @@ class Navbar extends Component {
           Home
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="/new">
+        <Link to="/new" className="link-color">
           New
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="/profile">
+        <Link to="/profile" className="link-color">
           Profile
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="/transfer_in">
+        <Link to="/transfer_in" className="link-color">
           TxIN
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="/transfer_out">
+        <Link to="/transfer_out" className="link-color">
           TxOut
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="/activities">
+        <Link to="/activities" className="link-color">
           Activities
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="#">
+        <Link to="#" className="link-color">
           Logout
         </Link>
       </div>

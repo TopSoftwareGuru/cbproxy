@@ -42,3 +42,15 @@
   background-color: #dff0d8;
   color: #3c763d; }
 
+.transfer-out .transout-submit {
+  border: 1px #333 solid;
+  color: #337ab7;
+  background-color: #e6e6e6;
+  font-weight: bold; }
+
+.transfer-out .transout-submit:hover {
+  background-color: #cccccc; }
+
+.top-bar {
+  color: #337ab7; }
+

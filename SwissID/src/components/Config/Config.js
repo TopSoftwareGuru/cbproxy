@@ -133,7 +133,7 @@ class Config extends Component {
                     />
                 </div>
                 <p>
-                  <a href="https://www.xe.com/ibancalculator/sample/?ibancountry=switzerland">
+                  <a href="https://www.xe.com/ibancalculator/sample/?ibancountry=switzerland" className="link-color">
                       Explaination
                   </a>
                 </p>
@@ -305,7 +305,7 @@ class Config extends Component {
               <li>IFRS 15: True/False</li>
             </ul>
           </div>
-          <div className="col-md-6 config-comment">
+          {/* <div className="col-md-6 config-comment">
             <h3>
               Comments for the implementation
             </h3>
@@ -314,7 +314,7 @@ class Config extends Component {
                 In violation of YAGNI: it might be convenient if the config was stored maybe stored as a JSON document and that there was a history of configurations. It's not a must have.
               </li>
             </ol>
-          </div>
+          </div> */}
         </div>
       </div>
      );

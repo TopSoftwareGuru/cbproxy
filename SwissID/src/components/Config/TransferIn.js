@@ -97,13 +97,13 @@ class TransferIn extends Component {
               </div>
               <p>Scan this QR Code with your bank's mobile app</p>
               <strong>
-                <a href="#">
+                <a href="#" className="link-color">
                   I've used Bank ABC's user interface to do this
                 </a>
               </strong>
             </form>
           </div>
-          <div className="col-md-6">
+          {/* <div className="col-md-6">
             <h3>Comments for the implementation</h3>
             <ol>
               <li>
@@ -114,7 +114,7 @@ class TransferIn extends Component {
                 &nbsp;message
               </li>
             </ol>
-          </div>
+          </div> */}
         </div>
       </div>
     );

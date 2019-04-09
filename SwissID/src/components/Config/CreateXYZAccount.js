@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from '@material-ui/core';
+import NavbarTop from '../NavbarTop';
+import Navbar from '../Navbar';
 
 class CreateXYZAccount extends Component {
   constructor(props) {
@@ -14,6 +16,12 @@ class CreateXYZAccount extends Component {
   render() { 
     return ( 
       <div className="container">
+        <div className="row my-4">
+          <div className="col-md-6">
+            <NavbarTop />
+            <Navbar />
+          </div>
+        </div>
         <div className="row">
           <div className="col-md-6 createxyz">
             <h3>Create CHF Account</h3>
@@ -119,7 +127,7 @@ class CreateXYZAccount extends Component {
                 />
               </div>
             </form>
-            <Link to="#">
+            <Link to="#" className="link-color">
               Create XYZ account
             </Link>
           </div>
