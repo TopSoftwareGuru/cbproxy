@@ -27,7 +27,10 @@ class UserProfile extends Component {
           <div className="col-md-6">
             <NavbarTop />
             <Navbar />
-            <CHReceive description="XYZ Account with IBAN CH99 2222 4415 5036 7150 5 created."/>
+            <CHReceive
+              description="XYZ Account with IBAN CH99 2222 4415 5036 7150 5 created."
+              mode={0}
+            />
             <strong>
               <a href="#">Transfer CHF to your new XYZ account</a>
             </strong>

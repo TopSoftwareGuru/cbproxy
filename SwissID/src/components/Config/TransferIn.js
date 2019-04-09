@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+
 import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
 import QRBill from '../../assets/image/qrbill.png';
@@ -117,4 +121,23 @@ class TransferIn extends Component {
   }
 }
 
-export default TransferIn;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    // transOut: state.firestore.ordered.TransferOut
+    transOutInfo: state.transOutInfo,
+  }
+};
+
+/**
+ * @see https://stackoverflow.com/questions/53656082/react-redux-firebase-error-using-firestoreconnect-typeerror-undefined-is-not-a
+ * firestoreConnect is not compatible with react-redux 6.0.1
+ * 
+ */
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'TransferOut' }
+  ])
+)(TransferIn);
+// export default connect(mapStateToProps)(TransferIn);

@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Navbar from '../Navbar';
 import NavbarTop from '../NavbarTop';
+import { transOut } from '../store/actions/actions';
 
 class TransferOut extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      amount: 2000,
+      additional_info: "",
+      abc_acc: "Bank ABC | IBAN = CH99 2222 4415 5036 7150 5",
+      xyz_acc: "Bank XYZ | IBAN = CH54 7823 2329 2323 099", 
+
+    };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   };
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     })
+  };
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.transOut(this.state);
   }
   render() { 
     return ( 
@@ -26,7 +40,7 @@ class TransferOut extends Component {
         <div className="row">
           <div className="col-md-6 transfer-in my-4">
             <h3>Send from Bank XYZ To Bank ABC</h3>
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label>Amount [CHF]</label>
                 <input
@@ -81,9 +95,12 @@ class TransferOut extends Component {
                 />
               </div>
               <strong>
-                <a href="#">
+                <button
+                  type="submit"
+                  className="btn btn-default"
+                >
                   Submit Transfer
-                </a>
+                </button>
               </strong>
             </form>
           </div>
@@ -103,6 +120,12 @@ class TransferOut extends Component {
       </div>
      );
   }
+};
+
+const maptDispatchToProps = (dispatch) => {
+  return {
+     transOut: (transoutInfo) => dispatch(transOut(transoutInfo)),
+  }
 }
  
-export default TransferOut;
+export default connect(null, maptDispatchToProps)(TransferOut);

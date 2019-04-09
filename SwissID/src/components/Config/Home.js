@@ -32,7 +32,10 @@ class Home extends Component {
               </Link>
             </div>
             <Navbar />
-            <CHReceive description="Transfer CHF +7'800.00 from your ABC account CH received."/>
+            <CHReceive
+              description="Transfer CHF +7'800.00 from your ABC account CH received."
+              mode={0}
+            />
             <h4>Your Balance at Bank XYZ:</h4>
             <h3>CHF 7'800.00</h3>
             <Link to="#">
