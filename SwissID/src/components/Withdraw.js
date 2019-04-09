@@ -19,8 +19,10 @@ class Withdraw extends Component {
           </div>
         </div>
         <div className="row">
-          Your balance at XYZ
-          <h3>CHF 5'8000</h3>
+          <div className="col-md-6">
+            <p>Your balance at XYZ</p>
+            <h3>CHF 5'8000</h3>
+          </div>
         </div>
       </div>
      );

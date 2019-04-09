@@ -124,8 +124,7 @@ class TransferIn extends Component {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    // transOut: state.firestore.ordered.TransferOut
-    transOutInfo: state.transOutInfo,
+    transOutInfo: state.firestore.ordered.TransferOut,
   }
 };
 
@@ -140,4 +139,3 @@ export default compose(
     { collection: 'TransferOut' }
   ])
 )(TransferIn);
-// export default connect(mapStateToProps)(TransferIn);

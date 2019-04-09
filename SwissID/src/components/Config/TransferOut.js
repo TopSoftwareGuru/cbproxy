@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 import Navbar from '../Navbar';
 import NavbarTop from '../NavbarTop';
 import { transOut } from '../store/actions/actions';
@@ -9,15 +11,26 @@ class TransferOut extends Component {
     super(props);
     this.state = {
       amount: 2000,
-      additional_info: "",
-      abc_acc: "Bank ABC | IBAN = CH99 2222 4415 5036 7150 5",
-      xyz_acc: "Bank XYZ | IBAN = CH54 7823 2329 2323 099", 
+      add_info: "",
+      abc_acc: "CH99 2222 4415 5036 7150 5",
+      xyz_acc: "CH54 7823 2329 2323 099", 
 
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.transOutInfo !== this.props.transOutInfo
+    )
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.transOutInfo !== this.props.transOutInfo) {
+      // this.props.history.push("/");
+    }
+  }
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -27,7 +40,8 @@ class TransferOut extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.transOut(this.state);
-  }
+    this.props.history.push("/withdraw");
+  };
   render() { 
     return ( 
       <div className="container">
@@ -122,10 +136,21 @@ class TransferOut extends Component {
   }
 };
 
+const maptStateToProps = (state) => {
+  return {
+    transOutInfo: state.firestore.data,
+  }
+}
+
 const maptDispatchToProps = (dispatch) => {
   return {
      transOut: (transoutInfo) => dispatch(transOut(transoutInfo)),
   }
 }
  
-export default connect(null, maptDispatchToProps)(TransferOut);
+export default compose(
+  connect(maptStateToProps, maptDispatchToProps),
+  firestoreConnect([
+    { collection: 'TransferOut' }
+  ])
+) (TransferOut);
