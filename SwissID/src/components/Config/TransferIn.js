@@ -17,13 +17,15 @@ class TransferIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      amount: 0,
     }
     this.handleChange = this.handleChange.bind(this);
   };
 
   handleChange(event) {
-
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
   }
   render() {
     return (
@@ -43,7 +45,8 @@ class TransferIn extends Component {
                 <input
                   type="number"
                   className="form-control"
-                  value="2000"
+                  pattern='[0-9]{0, 5}'
+                  name="amount"
                   onChange={this.handleChange}
                 />
               </div>
@@ -95,12 +98,20 @@ class TransferIn extends Component {
                   />
                 </div>
               </div>
-              <p>Scan this QR Code with your bank's mobile app</p>
-              <strong>
-                <a href="#" className="link-color">
-                  I've used Bank ABC's user interface to do this
-                </a>
-              </strong>
+              <div>
+                <p>Scan this QR Code with your bank's mobile app</p>
+                <strong>
+                  <a href="#" className="link-color">
+                    I've used Bank ABC's user interface to do this
+                  </a>
+                </strong>
+              </div>
+              <button
+                  type="submit"
+                  className="btn btn-default transin-submit my-4"
+                >
+                  Done
+              </button>
             </form>
           </div>
           {/* <div className="col-md-6">
@@ -122,7 +133,6 @@ class TransferIn extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     transOutInfo: state.firestore.ordered.TransferOut,
   }

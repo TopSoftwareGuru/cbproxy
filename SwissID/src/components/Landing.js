@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+
 class Landing extends Component {
   constructor(props) {
     super(props);
@@ -18,10 +19,6 @@ class Landing extends Component {
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                 <Link to="/openid_connect" className="top-bar">
                   <strong>Next</strong>
-                </Link>
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-                <Link to="/dev" className="top-bar">
-                  Dev
                 </Link>
               </div>
             </div>

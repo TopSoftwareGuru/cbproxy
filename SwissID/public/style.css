@@ -4,6 +4,9 @@
 .landing-navbar {
   margin-top: 40px; }
 
+.top-bar {
+  color: #337ab7; }
+
 .login-comment {
   margin-top: 10%; }
 
@@ -28,6 +31,15 @@
     width: 100px;
     height: 100px; }
 
+.transfer-in .transin-submit {
+  border: 1px #333 solid;
+  color: #337ab7;
+  background-color: #e6e6e6;
+  font-weight: bold; }
+
+.transfer-in .transin-submit:hover {
+  background-color: #cccccc; }
+
 .profile .account-details .close-account {
   font-size: 14px; }
 
@@ -42,6 +54,11 @@
   background-color: #dff0d8;
   color: #3c763d; }
 
+.warning-alert {
+  font-size: 14px;
+  background-color: #fcf8e3;
+  color: #8a6d3b; }
+
 .transfer-out .transout-submit {
   border: 1px #333 solid;
   color: #337ab7;
@@ -51,6 +68,15 @@
 .transfer-out .transout-submit:hover {
   background-color: #cccccc; }
 
-.top-bar {
+.createxyz .createxyz-submit {
+  border: 1px #333 solid;
+  color: #337ab7;
+  background-color: #e6e6e6;
+  font-weight: bold; }
+
+.createxyz .createxyz-submit:hover {
+  background-color: #cccccc; }
+
+.navbar-top .link-color {
   color: #337ab7; }
 

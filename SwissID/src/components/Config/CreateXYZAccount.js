@@ -126,10 +126,13 @@ class CreateXYZAccount extends Component {
                   onChange={this.handleChange}
                 />
               </div>
+              <button
+                  type="submit"
+                  className="btn btn-default createxyz-submit my-4"
+                >
+                  Create XYZ account
+              </button>
             </form>
-            <Link to="#" className="link-color">
-              Create XYZ account
-            </Link>
           </div>
         </div>
       </div>

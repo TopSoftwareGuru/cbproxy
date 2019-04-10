@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../Navbar';
 import AdminUser from '../alerts/AdminUser';
 import NavbarTop from '../NavbarTop';
+import CHReceive from '../alerts/CHReceive';
 
 class Config extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Config extends Component {
           <div className="col-md-6 config-leftpane my-4">
             <NavbarTop />
             <Navbar />
-            <AdminUser />
+            <CHReceive mode={1} description={`Logged on as admin user proceed with caution.`} />
             <form className="App-reference">
               <h3>Application Reference Data</h3>
               <div className="form-group">
@@ -291,7 +292,7 @@ class Config extends Component {
               </div>
             </form>
             <h5>Key Performance Indicators (KPIs) and other financial figures</h5>
-            <ul>
+            {/* <ul>
               <li>Assets under Management (AuM)  </li>
               <li>Eigenkapital (DE), xxx (EN) </li>
               <li>Eigenkapitalrendite (DE), xxx (EN) </li>
@@ -303,7 +304,7 @@ class Config extends Component {
               <li>Aktive (DE), Assets (EN)</li>
               <li>Passive (DE), liabilities (EN) </li>
               <li>IFRS 15: True/False</li>
-            </ul>
+            </ul> */}
           </div>
           {/* <div className="col-md-6 config-comment">
             <h3>

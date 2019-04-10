@@ -10,17 +10,13 @@ class Navbar extends Component {
   }
   render() {
     return (
-      <div className="container-fluid">
-        <Link to="/home">
+      <div className="container-fluid text-center navbar-top">
+        <Link to="/home" className="link-color">
           Home
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="/new" className="link-color">
           New
-        </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="/profile" className="link-color">
-          Profile
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="/transfer_in" className="link-color">

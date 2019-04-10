@@ -1,8 +1,16 @@
 $color_character_success: #3c763d;
 $color_background_success: #dff0d8;
+$color_background_warning: #fcf8e3;
+$color_character_warning: #8a6d3b;;
+$font-size: 14px;
 
 .success-alert{
-  font-size: 14px;
+  font-size: $font-size;
   background-color: $color_background_success;
   color: $color_character_success;
+}
+.warning-alert{
+  font-size: $font-size;
+  background-color: $color_background_warning;
+  color: $color_character_warning;
 }

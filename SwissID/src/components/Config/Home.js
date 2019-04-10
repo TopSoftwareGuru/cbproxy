@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import Navbar from '../Navbar';
+import NavbarTop from '../NavbarTop';
 import CHReceive from '../alerts/CHReceive';
 
 class Home extends Component {
@@ -13,29 +14,17 @@ class Home extends Component {
     return ( 
       <div className="container">
         <div className="row">
-          <div className="col-md-6 my-4">
-            <div className="text-center mb-3">
-              <Link to="."  className="link-color">
-                Start
-              </Link>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="#"  className="link-color">
-                <strong>Next</strong>
-              </Link>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="/config"  className="link-color">
-                Config
-              </Link>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="/dev"  className="link-color">
-                Dev
-              </Link>
-            </div>
+          <div className="col-md-6 text-center my-4">
+            <NavbarTop />
             <Navbar />
             <CHReceive
               description="Transfer CHF +7'800.00 from your ABC account CH received."
               mode={0}
             />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-6 my-4">
             <h4>Your Balance at Bank XYZ:</h4>
             <h3>CHF 7'800.00</h3>
             <Link to="#" className="link-color">
@@ -49,7 +38,6 @@ class Home extends Component {
             <Link to="#" className="link-color">
               Fees
             </Link>
-            &nbsp;|&nbsp;&nbsp;
           </div>
         </div>
       </div>

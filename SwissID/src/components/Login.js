@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import classNames from "classnames";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Typhography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
-
 import { FormControl } from "@material-ui/core";
+
+import NavbarTop from './NavbarTop';
 
 const muiStyles = theme => ({
   root: {
@@ -58,21 +57,7 @@ class Login extends Component {
         <div className="row">
           <div className="col-md-6 my-4">
             <div className="text-center mb-3">
-              <Link to="/" className="top-bar">
-                Start
-              </Link>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="#" className="top-bar">
-                <strong>Next</strong>
-              </Link>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="/config" className="top-bar">
-                Config
-              </Link>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <Link to="/dev" className="top-bar">
-                Dev
-              </Link>
+              <NavbarTop />
             </div>
             <div className="row login">
               <div className="col-md-6">

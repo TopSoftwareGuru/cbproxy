@@ -7,6 +7,7 @@ class CHReceive extends Component {
       description: "",
       mode: 0,
       alertBrand: "",
+      alertGap:0
      }
   };
 
@@ -21,15 +22,27 @@ class CHReceive extends Component {
   render() { 
     const { description, mode } = this.state;
     const alertBrand = mode === 0 ? "Success!" : "";
+    const succesClassName = "alert alert-success alert-dismissible fade-in show my-4 success-alert";
+    const warningClassName = "alert alert-warning alert-dismissible fade-in show my-4 warning-alert";
     return ( 
-      <div className="alert alert-success alert-dismissible fade show my-4 success-alert" role="alert">
-        <strong>
-          {alertBrand}
-          </strong>
-        &nbsp;{description}
-        <button type="button" className="close" data-dismiss="alert">
-          <span>&times;</span>
-        </button>
+      <div className={this.state.alertGap === 1 ? "my-5": ""}>
+        <div
+          className={this.state.mode === 0 ? succesClassName: warningClassName}
+          role="alert"
+        >
+          <strong>
+            {alertBrand}
+            </strong>
+          &nbsp;{description}
+          <button
+            type="button"
+            className="close"
+            data-dismiss="alert"
+            onClick={()=> {this.setState({alertGap: 1})}}
+          >
+            <span>&times;</span>
+          </button>
+        </div>
       </div>
      );
   }

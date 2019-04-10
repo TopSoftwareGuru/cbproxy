@@ -6,28 +6,26 @@ class NavbarTop extends Component {
     super(props);
     this.state = { 
 
-     }
+    }
   }
   render() { 
     return ( 
-      <div className="container">
-        <div className="text-center mb-3">
-          <Link to="/" className="link-color">
-            Start
-          </Link>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-          <Link to="#" className="link-color">
-            <strong>Next</strong>
-          </Link>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-          <Link to="/config" className="link-color">
-            Config
-          </Link>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-          <Link to="/dev" className="link-color">
-            Dev
-          </Link>
-        </div>
+      <div className="container text-center mb-3 navbar-top">
+        <Link to="/" className="link-color">
+          Start
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="#" className="link-color">
+          <strong>Next</strong>
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="/config" className="link-color">
+          Config
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="/profile" className="link-color">
+          Profile
+        </Link>
       </div>
      );
   }

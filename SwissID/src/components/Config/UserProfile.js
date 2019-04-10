@@ -31,9 +31,6 @@ class UserProfile extends Component {
               description="XYZ Account with IBAN CH99 2222 4415 5036 7150 5 created."
               mode={0}
             />
-            <strong>
-              <a href="#">Transfer CHF to your new XYZ account</a>
-            </strong>
           </div>
         </div>
         <div className="row profile">
