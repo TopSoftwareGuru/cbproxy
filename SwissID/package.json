@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run build && nodemon index.js",
     "dev": "webpack-dev-server --open",
-    "build": "webpack"
+    "build": "webpack",
+    "back": "webpack --config webpack-back.config.js"
   },
   "dependencies": {
     "@material-ui/core": "3.9.3",
@@ -17,7 +18,7 @@
     "firebase": "^5.9.3",
     "http": "0.0.0",
     "http-errors": "^1.7.2",
-    "path": "0.12.7",
+    "path": "^0.12.7",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-redux": "^5.1.1",
@@ -44,7 +45,8 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.2.1",
+    "webpack-node-externals": "^1.7.2"
   },
   "keywords": []
 }
