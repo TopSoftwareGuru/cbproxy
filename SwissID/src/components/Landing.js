@@ -1,10 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import auth0 from 'auth0-js';
 
 
 class Landing extends Component {
   constructor(props) {
     super(props);
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleLogin() {
+    const webAuth = new auth0.WebAuth({
+      domain: 'dev-ul1d4kde.auth0.com',
+      clientID: 'PZ7AdJ1vLuVhqqtJ6Jy2wSosor75rPeA',
+      redirectUri: 'https://swissid-c228f.firebaseapp.com',
+      responseType: 'code',
+      scope: 'openid email profil phone',
+    });
+    webAuth.authorize();
   }
   render() {
     return (
@@ -32,12 +45,18 @@ class Landing extends Component {
                 {/* <Link to="/openid_connect" className="top-bar">
                   Logon with SwissID
                 </Link> */}
-                <a
+                {/* <a
                   href="https://dev-ul1d4kde.auth0.com/authorize/?response_type=code&scope=openid%20profile&client_id=pXbXo_0BPEjWEoExpCZ5Wv82MwViCijy&connection=SwissID&redirect_uri=https://manage.auth0.com/tester/callback?connection=SwissID"
                   className="link-color"
                 >
                   Logon with SwissID
-                </a>
+                </a> */}
+                <button
+                  type="button"
+                  onClick={this.handleLogin}
+                >
+                Logon with SwissID
+                </button>
               </div>
             </div>
             <div className="row my-1">
