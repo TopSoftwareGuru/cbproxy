@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { GoogleLogin } from 'react-google-login';
 // import auth0 from 'auth0-js';
 
 
@@ -30,7 +31,7 @@ class Landing extends Component {
                   Start
                 </Link>
                 &nbsp;&nbsp;|&nbsp;&nbsp;
-                <Link to="/openid_connect" className="top-bar">
+                <Link to="#" className="top-bar">
                   <strong>Next</strong>
                 </Link>
               </div>
@@ -42,18 +43,27 @@ class Landing extends Component {
             </div>
             <div className="row mb-3 my-4">
               <div className="col-md-12">
-                <a
+                {/* <a
                   href="https://login.int.swissid.ch/idp/oauth2/authorize?response_type=code&client_id=2d19f-1580c-8f5a2-954c8&scope=openid%20profile&redirect_uri=https%3A%2F%2Fswissid-c228f.firebaseapp.com%2F&nonce=n-0S6_WzA2Mj&state=Q4OrwqgbnR&acr_values=loa-1&ui_locales=en"
                   className="link-color"
                 >
                   Logon with SwissID
-                </a>
+                </a> */}
                 <button
                   type="button"
                   onClick={this.handleLogin}
                 >
                 Logon with SwissID
                 </button>
+                <GoogleLogin
+                  clientId="1092212372305-nph9r306vn0dfv10h8ttcrclttgn8hjg.apps.googleusercontent.com"
+                  buttonText="Login with Google"
+                  onSuccess={ (res) => { console.log(res) } }
+                  onFailure={ res => { console.log(res) } }
+                  cookiePolicy={ "single_host_origin" }
+                  responseType="code"
+                  scope="profile"
+                />
               </div>
             </div>
             <div className="row my-1">

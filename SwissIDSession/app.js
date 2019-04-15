@@ -19,9 +19,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", (req, res) => {
   res.status(200).send();
 });
-
+console.log(__dirname);
 app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
 app.use((req, res, next) => {
