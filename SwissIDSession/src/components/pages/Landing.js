@@ -1,24 +1,35 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { GoogleLogin } from 'react-google-login';
+import { connect } from 'react-redux';
+import { mapStateToProps, mapDispatchToProps } from '../../store/actions/action';
 // import auth0 from 'auth0-js';
 
 
 class Landing extends Component {
   constructor(props) {
     super(props);
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
+    this.handleGoogleLoginFailure = this.handleGoogleLoginFailure.bind(this);
   }
 
-  handleLogin() {
-    // const webAuth = new auth0.WebAuth({
-    //   domain: 'dev-ul1d4kde.auth0.com',
-    //   clientID: 'PZ7AdJ1vLuVhqqtJ6Jy2wSosor75rPeA',
-    //   redirectUri: 'https://swissid-c228f.firebaseapp.com',
-    //   responseType: 'code',
-    //   scope: 'openid email profil phone',
-    // });
-    // webAuth.authorize();
+  handleGoogleLogin(res) {
+    const { email, familyName, givenName, name } = res.profileObj;
+    this.props.loginWatcher({
+      email,
+      familyName,
+      givenName,
+      name,
+    });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    // return (
+    //   nextProps.
+    // )
+  }
+  handleGoogleLoginFailure(res) {
+
   }
   render() {
     return (
@@ -58,11 +69,10 @@ class Landing extends Component {
                 <GoogleLogin
                   clientId="1092212372305-nph9r306vn0dfv10h8ttcrclttgn8hjg.apps.googleusercontent.com"
                   buttonText="Login with Google"
-                  onSuccess={ (res) => { console.log(res) } }
-                  onFailure={ res => { console.log(res) } }
+                  onSuccess={ this.handleGoogleLogin }
+                  onFailure={ this.handleGoogleLoginFailure }
                   cookiePolicy={ "single_host_origin" }
-                  responseType="code"
-                  scope="profile"
+                  scope="profile openid email"
                 />
               </div>
             </div>
@@ -87,4 +97,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+export default connect(mapStateToProps, mapDispatchToProps)(Landing);
