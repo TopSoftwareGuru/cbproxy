@@ -21,12 +21,13 @@ class Landing extends Component {
       givenName,
       name,
     });
+    this.props.history.push("/new");
+  }
+  shouldComponentUpdate(nextProps, nextState) {
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    // return (
-    //   nextProps.
-    // )
+  componentDidUpdate(prevProps) {
+
   }
   handleGoogleLoginFailure(res) {
 
