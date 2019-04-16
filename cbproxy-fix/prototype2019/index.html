@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>XYZ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src='./js/demo.js'></script> 
+</head>
+<body>
+
+<div class="container">
+
+
+<div class="col-sm-6">
+
+<br >
+<div class="text-center">
+	<a href="./dev.html">Dev</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./openid_connect.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>
+</div>
+<br>
+
+
+
+<h3> Grössere Geldbeträge (CHF, EUR) bei einer Schweizer Bank parkieren.</h3> 
+
+<br >
+<br >
+
+<!-- see SwissID Logon example on this web page: https://account.post.ch/idp/?login&app=portal-delivery&service=klp&targetURL=https%3a%2f%2fwww.post.ch%2fde%2fkundencenter&abortURL=https%3a%2f%2fwww.post.ch%2fde&lang=de -->
+
+<a href="./openid_connect.html"> Logon with SwissID </a>
+
+ <form>
+    <div class="form-group">
+      <label for="amount">Amount [CHF]</label>
+      <input type="number" class="form-control" id="amount" value="2000">
+      <label for="date_from">From:</label>
+      <input type="date" class="form-control" id="xxx" value="">
+      <label for="date_until">Until:</label>
+      <input type="date" class="form-control" id="xxx" value="">
+    </div>
+
+ <div class="checkbox">
+  <label><input type="checkbox" value="">UBS (Schweiz) AG</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="">Credit Suisse</label>
+</div>
+<div class="checkbox disabled">
+  <label><input type="checkbox" value="" >ZKB</label>
+</div> 
+<div class="checkbox disabled">
+  <label><input type="checkbox" value="" >Raiffeisenbank</label>
+</div> 
+
+ </form>
+
+
+<button onclick="">send Request for Quote (RFQ)</button>
+<a href="crypto2.html">click</a>
+
+</div>
+
+<div class="col-sm-6">
+<br >
+
+<h4>Some comments for the implementation</h4>
+
+<ol>
+  <li>The landing page will be a normal landing page website with rather static information.</li>
+  <li> <a href="https://account.post.ch/idp/?login&app=portal-delivery&service=klp&targetURL=https%3a%2f%2fwww.post.ch%2fde%2fkundencenter&abortURL=https%3a%2f%2fwww.post.ch%2fde&lang=de">The Swiss Post&nbsp;</a>Website uses such a SwissID Logon.</li>
+  <li>It would be nice if there was an easy editiable simple (bootstrap based?) web page so that I could change its content without having to re-compile some code or so. Nevertheless it should also somehow be part of the initial application.</li>
+</ol>
+
+
+</div>
+</div>
+
+</body>
+</html>
+

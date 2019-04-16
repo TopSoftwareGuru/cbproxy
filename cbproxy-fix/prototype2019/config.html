@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bank XYZ - config</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script type='text/javascript' src='./js/demo.js'></script> 
+
+
+
+</head>
+<body>
+
+
+
+<div class="container">
+
+
+<div id="left_pane" class="col-sm-6">
+
+<br >
+<div class="text-center">
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./home.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./dev.html">Dev</a>
+</div>
+<br>
+
+
+<div id="nav_links" class="text-center">
+	<a href="./home.html">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./create_account.html">New</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./account_owner.html">Profile</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./transfer_in.html">Tx IN</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./transfer_out.html">Tx OUT</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./user_activities.html">Activities</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./landing_page.html">logout</a>
+</div>
+<br >
+<br >
+
+<div class="alert alert-warning alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  Logged on as <strong>admin user</strong> proceed with caution.
+</div>
+
+
+<br >
+
+<h3>Application Reference Data</h3>
+
+
+
+<script>
+
+
+
+</script>
+
+<br >
+
+ <div class="form-group">
+  <label for="ui_mode_select">Set <u></u>Set user interface mode::</label>
+  <select class="form-control" id="ui_mode_select">
+    <option value="demomode">demo mode</option>
+    <option value="normalmode"> normal mode</option>
+  </select>
+
+  <label for="ui_mode_select">Select content for right-pane:</label>
+  <select class="form-control" id="right_pane_content">
+    <option value="dev_notes">dev_notes</option>
+    <option value="bank_view"> bank_view</option>
+  </select>
+
+</div> 
+
+
+
+
+<br >
+<h4> Our New FinTech or Bank </h4>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Company Name</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="Bank XYZ">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">DNS Domain</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="BankXYZ.ccom">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">IID (Institute IDdentification):</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="44955">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">SWIFT BIC:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="SPROCH44955">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">SIC ID:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="449553">
+</div>
+
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">SNB Giro Account:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="89911.00027">
+  <a href="https://www.xe.com/ibancalculator/sample/?ibancountry=switzerland">Explanation</a>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">SNB Giro Account initial balane:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="CHF 20'000'000.00">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">IBAN prefix for its customer accounts:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="CH 33 44955">
+  <p>CH = ISO Country Code Switzerland, 33 = IBAN Check Digits, 44955 = Bank Identifier 
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">IBAN account number range:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="100000000;9999999999">
+  <p>CH = ISO Country Code Switzerland, 33 = IBAN Check Digits, 44955 = Bank Identifier 
+</div>
+
+<h4>Memberships & Access</h4>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">SEPA Member:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="False">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">SIC Member:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="True">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">euroSIC Member:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="False">
+</div>
+
+
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">SWIFT InterAct member:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="True">
+</div>
+	
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">esisuisse Member</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="True">
+</div>
+
+<br >
+
+<h4>Sanctions Blacklist</h4>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Blacklisted people:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="Joe Doe, SilkRoad Store Inc., ACME Ltd.">
+<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<SwissID-171>, <SwissID-234>,">
+</div>
+
+<br >
+
+<h4>Key Performance Indicators (KPIs) and other financial figures</h4>
+<ul>
+  <li>Assets under Management (AuM)  </li>
+  <li>Eigenkapital (DE), xxx (EN) </li>
+  <li>Eigenkapitalrendite (DE), xxx (EN) </li>
+  <li>Risikogewichtete Eigenmittelquote</li>
+  <li>Bilanzsumme (DE), xxx (EN)</li>
+  <li>Guthaben auf SNB Girokonto (DE), xxx (EN)</li>
+  <li>xxx (DE), Leverage Ratio (EN)  </li>
+  <li>Cost Income Ratio</li>
+  <li>Aktive (DE), Assets (EN)</li>
+  <li>Passive (DE), liabilities (EN) </li>
+  <li>IFRS 15: True/False</li>
+</ul>
+
+<br >
+
+
+<button onclick="">Save changes</button>
+
+</div>
+
+
+
+
+<div id="right_pane" class="col-sm-6">
+<br >
+<br >
+<br >
+<br >
+<br >
+<h3>Comments for the implementation</h3>
+
+<ol> 
+  <li>In violation of YAGNI: it might be convenient if the config was stored maybe stored as a JSON document and that there was a history of configurations. It's not a must have.</li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+</body>
+</html>
+

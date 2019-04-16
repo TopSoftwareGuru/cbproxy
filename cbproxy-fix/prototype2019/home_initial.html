@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bank XYZ - Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src='./js/demo.js'></script> 
+</head>
+<body>
+
+
+
+<div class="container">
+
+
+<div class="col-sm-6">
+
+<br >
+<div class="text-center">
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./create_account.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./dev.html">Dev</a>
+</div>
+<br>
+
+
+<div id="nav_links" class="text-center">
+	<a href="./home.html">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./create_account.html">New</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./account_owner.html">Profile</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./transfer_in.html">Tx IN</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./transfer_out.html">Tx OUT</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./user_activities.html">Activities</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./landing_page.html">logout</a>
+</div>
+<br >
+
+
+
+<div class="alert alert-success alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  SwissiD Logon successful!<strong> Hello, Joe Doe </strong>(SwissID 23432423)
+</div>
+
+<div class="alert alert-warning">
+  You don't have an account yet. <strong><a href="create_account.html"> Please create an XYZ account</a></strong>
+</div>
+
+
+
+
+<br >
+
+
+
+
+
+
+ </div>
+
+
+
+<div id="right_pane" class="col-sm-6">
+<br >
+<br >
+<br >
+<br >
+<br >
+<h3>Comments for the implementation</h3>
+
+<ol>
+  <li>At the very beginning there exists no XYZ bank account yet. The user needs to create one.</li>
+  <li>Without a XYZ bank account and without any previous transactions a.k.a. transfers, there is no balance..</li>
+  <li><srong>YAGNI!</strong> (initially) do the absolute minimum. Therefore the user can create only one single account</li>
+  <li>If this customer (SwissID user number) is on the sanctions list (see config page), then he cannot create/link an account and cannot do a transfer. Neither inbound (receive) nor outbound (send, withdraw).</li>
+</ol>
+
+
+</div>
+
+
+</div>
+
+</body>
+</html>
+
