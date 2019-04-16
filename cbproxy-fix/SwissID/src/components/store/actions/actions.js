@@ -28,7 +28,6 @@ export const activityLogon = (loginInfo) => {
       logon_time: loginInfo.logon_time,
       event: loginInfo.event,
     }).then(() => {
-      console.log("Log created");
       dispatch({ type: 'LOGON_ACTIVITY' });
     }).catch((err) => {
       dispatch({ type: 'LOGON_ACTIVITY_FAILURE', err });

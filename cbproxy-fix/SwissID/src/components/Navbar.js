@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 class Navbar extends Component {
   constructor(props) {
@@ -12,11 +13,17 @@ class Navbar extends Component {
     return (
       <div className="container-fluid text-center navbar-top">
         <Link to="/home" className="link-color">
-          Home
+          <FormattedMessage
+            id="navtop.home"
+            defaultMessage="Home"
+          />
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="/new" className="link-color">
-          New
+          <FormattedMessage
+            id="navtop.new"
+            defaultMessage="New"
+          />
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="/transfer_in" className="link-color">
@@ -28,11 +35,17 @@ class Navbar extends Component {
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="/activities" className="link-color">
-          Activities
+          <FormattedMessage
+            id="navtop.activities"
+            defaultMessage="activities"
+          />
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="#" className="link-color">
-          Logout
+          <FormattedMessage
+            id="navtop.logout"
+            defaultMessage="Logout"
+          />
         </Link>
       </div>
     );

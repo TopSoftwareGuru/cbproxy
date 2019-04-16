@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 
 import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
@@ -56,12 +57,20 @@ class CreateXYZAccount extends Component {
         </div>
         <div className="row">
           <div className="col-md-6 createxyz">
-            <h3>Create CHF Account</h3>
+            <h3>
+              <FormattedMessage
+                id="new.topic"
+                defaultMessage="Create CHF Account"
+              />
+            </h3>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label>
                   <strong>
-                    BIC (Bank Identifier Code)
+                    <FormattedMessage
+                      id="new.bic"
+                      defaultMessage="BIC (Bank Identifier Code)"
+                    />
                   </strong>
                 </label>
                 <input
@@ -89,7 +98,10 @@ class CreateXYZAccount extends Component {
               <div className="form-group">
                 <label>
                   <strong>
-                  Currency
+                    <FormattedMessage
+                      id="new.currency"
+                      defaultMessage="currency"
+                    />
                   </strong>
                 </label>
                 <input
@@ -103,7 +115,10 @@ class CreateXYZAccount extends Component {
               <div className="form-group">
                 <label>
                   <strong>
-                    Product and cost
+                    <FormattedMessage
+                      id="new.product_cost"
+                      defaultMessage="Product and Cost"
+                    />
                   </strong>
                 </label>
                 <input
@@ -117,7 +132,10 @@ class CreateXYZAccount extends Component {
               <div className="form-group">
                 <label>
                   <strong>
-                    Alias:
+                    <FormattedMessage
+                      id="new.alias"
+                      defaultMessage="Alias"
+                    />
                   </strong>
                 </label>
                 <input
@@ -131,7 +149,10 @@ class CreateXYZAccount extends Component {
               <div className="form-group">
                 <label>
                   <strong>
-                    Your funding account is at:
+                    <FormattedMessage
+                      id="new.funding.account"
+                      defaultMessage="You funding account at:"
+                    />
                   </strong>
                 </label>
                 <select
@@ -149,7 +170,10 @@ class CreateXYZAccount extends Component {
               <div className="form-group">
                 <label>
                   <strong>
-                    IBAN of funding account [CHF] at other bank:
+                    <FormattedMessage
+                      id="new.iban.funding.account"
+                      defaultMessage="IBAN of funding account [CHF] at other bank:"
+                    />
                   </strong>
                 </label>
                 <input
@@ -165,7 +189,10 @@ class CreateXYZAccount extends Component {
                   type="submit"
                   className="btn btn-default createxyz-submit my-4"
                 >
-                  Create XYZ account
+                <FormattedMessage
+                  id="new.createxyzaccount"
+                  defaultMessage="create xyz account"
+                />
               </button>
             </form>
           </div>

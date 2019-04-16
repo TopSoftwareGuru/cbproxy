@@ -5,6 +5,7 @@ import Navbar from '../Navbar';
 import AdminUser from '../alerts/AdminUser';
 import NavbarTop from '../NavbarTop';
 import CHReceive from '../alerts/CHReceive';
+import { FormattedMessage } from 'react-intl';
 
 class Config extends Component {
   constructor(props) {
@@ -24,17 +25,32 @@ class Config extends Component {
             <Navbar />
             <CHReceive mode={1} description={`Logged on as admin user proceed with caution.`} />
             <form className="App-reference">
-              <h3>Application Reference Data</h3>
+              <h3>
+                <FormattedMessage
+                  id="config.topic"
+                  defaultMessage="Application Reference Data"
+                />
+              </h3>
               <div className="form-group">
                 <label>
-                  <strong>Set&nbsp;Set user interface mode::</strong>
+                  <strong>
+                    <FormattedMessage
+                      id="config.user.mode"
+                      defaultMessage="Set user interface mode"
+                    />  
+                  </strong>
                 </label>
                 <select className="form-control">
                   <option value="demomode">demo mode</option>
                   <option value="normalmode">normal mode</option>
                 </select>
                 <label>
-                  <strong>Select content for right-pane::</strong>
+                  <strong>
+                    <FormattedMessage
+                      id="config.content.rightpane"
+                      defaultMessage="Select content for right-pane"
+                    />
+                  </strong>
                 </label>
                 <select className="form-control">
                   <option value="dev_notes">dev_notes</option>
@@ -42,13 +58,21 @@ class Config extends Component {
                 </select>
               </div>
               <div className="form-group">
-                <h3>Our New Fintech or Bank</h3>
+                <h3>
+                  <FormattedMessage
+                    id="config.fintech"
+                    defaultMessage="Our New Fintech or Bank"
+                  />
+                </h3>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
                     <span
                       className="input-group-text"
                     >
-                      Company Name
+                      <FormattedMessage
+                        id="config.company.name"
+                        defaultMessage="company name"
+                      />
                     </span>
                   </div>
                     <input
@@ -63,7 +87,12 @@ class Config extends Component {
                     <span
                       className="input-group-text"
                     >
-                      &nbsp;&nbsp;DNS Domain&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;
+                        <FormattedMessage
+                          id="config.dnsdomain"
+                          defaultMessage="DNS Domain"
+                        />
+                      &nbsp;&nbsp;&nbsp;
                     </span>
                   </div>
                     <input
@@ -78,7 +107,10 @@ class Config extends Component {
                     <span
                       className="input-group-text"
                     >
-                      IID (Institute IDdentification):
+                      <FormattedMessage
+                        id="config.IID"
+                        defaultMessage="IID (Institute IDdentification):"
+                      />
                     </span>
                   </div>
                     <input
@@ -291,31 +323,7 @@ class Config extends Component {
                 </div>
               </div>
             </form>
-            <h5>Key Performance Indicators (KPIs) and other financial figures</h5>
-            {/* <ul>
-              <li>Assets under Management (AuM)  </li>
-              <li>Eigenkapital (DE), xxx (EN) </li>
-              <li>Eigenkapitalrendite (DE), xxx (EN) </li>
-              <li>Risikogewichtete Eigenmittelquote</li>
-              <li>Bilanzsumme (DE), xxx (EN)</li>
-              <li>Guthaben auf SNB Girokonto (DE), xxx (EN)</li>
-              <li>xxx (DE), Leverage Ratio (EN)  </li>
-              <li>Cost Income Ratio</li>
-              <li>Aktive (DE), Assets (EN)</li>
-              <li>Passive (DE), liabilities (EN) </li>
-              <li>IFRS 15: True/False</li>
-            </ul> */}
           </div>
-          {/* <div className="col-md-6 config-comment">
-            <h3>
-              Comments for the implementation
-            </h3>
-            <ol>
-              <li>
-                In violation of YAGNI: it might be convenient if the config was stored maybe stored as a JSON document and that there was a history of configurations. It's not a must have.
-              </li>
-            </ol>
-          </div> */}
         </div>
       </div>
      );

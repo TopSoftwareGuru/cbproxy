@@ -27,7 +27,6 @@ export const transferOut = (transferInfo) => {
       msg_type,
       time_created,
     }).then(() => {
-      console.log("TRANSFER_OUT created");
       dispatch({ type: 'TRANSFER_OUT' });
     }).catch((err) => {
       dispatch({ type: 'TRANSFER_OUT_FAILURE', err });

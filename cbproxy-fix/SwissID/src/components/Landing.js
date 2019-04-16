@@ -2,17 +2,22 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import auth0 from 'auth0-js';
 import { GoogleLogin } from 'react-google-login';
+import { FormattedMessage } from "react-intl";
 
 import { activityLogon } from './store/actions/actions';
+import { internationalization } from './store/actions/intlActions';
 import { connect } from "react-redux";
 
 
 class Landing extends Component {
   constructor(props) {
     super(props);
+    super(props);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
     this.handleGoogleLoginFailure = this.handleGoogleLoginFailure.bind(this);
+    this.handleLocaleSetAsEn = this.handleLocaleSetAsEn.bind(this);
+    this.handleLocaleSetAsDe = this.handleLocaleSetAsDe.bind(this);
   }
 
   handleLogin() {
@@ -35,6 +40,14 @@ class Landing extends Component {
   handleGoogleLoginFailure(res) {
 
   }
+
+  handleLocaleSetAsEn() {
+    this.props.internationalization("en");
+  }
+
+  handleLocaleSetAsDe() {
+    this.props.internationalization("de");
+  }
   render() {
     return (
       <div className="container">
@@ -53,7 +66,12 @@ class Landing extends Component {
             </div>
             <div className="row my-3">
               <div className="col-md-12">
-                <h4>Welcome to the minimalistic XYZ bank</h4>
+                <h4>
+                  <FormattedMessage 
+                    id="land.topic"
+                    default="Welcome to the minimalistic XYZ bank"
+                  />
+                </h4>
               </div>
             </div>
             <div className="row mb-3 my-4">
@@ -85,44 +103,84 @@ class Landing extends Component {
             </div>
             <div className="row my-1">
               <div className="col-md-12">
-                <h4>Why XYZ bank</h4>
-                <p>Here marketing material will be added.</p>
-                <p>Diff vs traditional banks (UBS, CS, KBs, Raiffeisen, ...)</p>
+                <h4>
+                  <FormattedMessage
+                    id="land.whyxyzbank"
+                    defaultMessage="Why XYZ bank"
+                  />
+                </h4>
                 <p>
-                  Diff vs challenger banks (N26, Revolut, Neon, Oyoba, MtPelerin,
-                  ...)
+                  <FormattedMessage
+                    id="land.desc1"
+                    defaultMessage="Here marketing material will be added."
+                  />
                 </p>
-                <h4>Product Offerings</h4>
-                <p>Product Basic for individuals.</p>
-                <p>Product Pro for companies.</p>
+                <p>
+                  <FormattedMessage
+                    id="land.desc2"
+                    defaultMessage="Diff vs traditional banks (UBS, CS, KBs, Raiffeisen, ...)"
+                  />
+                </p>
+                <p>
+                  <FormattedMessage
+                    id="land.desc3"
+                    defaultMessage="Diff vs challenger banks (N26, Revolut, Neon, Oyoba, MtPelerin, ...)"
+                  />
+                </p>
+                <h4>
+                  <FormattedMessage
+                    id="land.prod.offer"
+                    defaultMessage="Product Offerings"
+                  />
+                </h4>
+                <p>
+                  <FormattedMessage
+                    id="land.prod.basic"
+                    defaultMessage="Product Basic for individuals."
+                  />
+                </p>
+                <p>
+                  <FormattedMessage
+                    id="land.prod.company"
+                    defaultMessage="Product Pro for companies."
+                  />
+                </p>
               </div>
             </div>
           </div>
-          {/* <div className="col-md-6 landing-comment">
-            <h3>Comments for the implementation</h3>
-            <ol>
-              <li>
-                The landing page will be a normal landing page website with rather static information.
-              </li>
-              <li>
-                The Swiss Post Website uses such a SwissID Logon.
-              </li>
-              <li>
-                It would be nice if there was an easy editiable simple (bootstrap based?) web page so that I could change its content without having to re-compile some code or so. Nevertheless it should also somehow be part of the initial application.
-              </li>
-            </ol>
-          </div> */}
+          <div className="col-md-6">
+            <button
+              className="btn btn-primary"
+              onClick={this.handleLocaleSetAsEn}
+            >
+              EN
+            </button>
+            <button
+              className="btn btn-default"
+              onClick={this.handleLocaleSetAsDe}
+            >
+              DE
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    locale: state.intl.locale,
+  }
+}
 const mapDispatchToProps = (dispatch) => {
   return {
     activityLogon: (logonInfo) => dispatch(
       activityLogon(logonInfo)
     ),
+    internationalization: (locale) => dispatch(
+      internationalization(locale)
+    ),
   }
 }
-export default connect(null, mapDispatchToProps)(Landing);
+export default connect(mapStateToProps, mapDispatchToProps)(Landing);

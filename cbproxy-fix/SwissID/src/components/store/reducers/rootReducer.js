@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux';
-import transferReducer from './transferReducer';
 import { firestoreReducer } from 'redux-firestore';
+
+import intlReducer from './intlReducer';
+import transferReducer from './transferReducer';
 
 const rootReducer = combineReducers({
   transfer: transferReducer,
+  intl: intlReducer,
   firestore: firestoreReducer
 });
 

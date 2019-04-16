@@ -213,7 +213,7 @@ class UserProfile extends Component {
                   type="submit"
                   className="btn-default account-save-changes"
                 >
-                  Save Changes
+                  De-activate Account
                 </button>
               </div>
             </form>
