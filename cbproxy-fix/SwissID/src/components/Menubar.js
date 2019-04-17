@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { FormattedMessage } from 'react-intl';
 
 class Menubar extends Component {
   constructor(props) {
@@ -13,15 +14,26 @@ class Menubar extends Component {
     return ( 
       <div className="text-center my-4">
         <Link to="/">
-          Start
+          <FormattedMessage
+            id="navtop.start"
+            defaultMessage="Start"
+          />
         </Link>
           &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="/">
-          <strong>Next</strong>
+          <strong>
+            <FormattedMessage
+              id="navtop.next"
+              defaultMessage="Next"
+            />
+          </strong>
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="/config">
-          Config
+          <FormattedMessage
+            id="navtop.config"
+            defaultMessage="Config"
+          />
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="#">

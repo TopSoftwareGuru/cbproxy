@@ -14,24 +14,28 @@ class Activities extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
   } 
-  shouldComponentUpdate(nextProps) {
+
+  shouldComponentUpdate(nextProps, nextState) {
     return (
-      this.props.activities !== null
+      nextProps.users !== this.props.users ||
+      nextState.activities !== this.state.activities
     )
   }
 
   componentDidUpdate(prevProps) {
-    const { activities } = this.props;
-    if (activities !== prevProps.activities) {
+
+    if (prevProps.users !== this.props.users) {
+      const { activities } = this.props.users[0];
       this.setState({
         activities,
-      })
+      });
     }
   }
   handleChange(event) {
 
   }
   render() { 
+    console.log(this.state.activities);
     return ( 
       <div className="container">
         <div className="row">
@@ -93,7 +97,7 @@ class Activities extends Component {
             <div>
               <ul className="list-group">
                 {
-                  this.state.activities!==null && (
+                  this.state.activities && (
                     this.state.activities.map((item, index) => {
                       return (
                         <li className="list-group-item" key={ index }>
@@ -119,7 +123,8 @@ class Activities extends Component {
  
 const mapStateToProps = (state) => {
   return {
-    activities: state.firestore.ordered.activities,
+    users: state.firestore.ordered.users,
+    userInfo: state.user.userInfo,
   }
 }
 
@@ -130,7 +135,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([
-    { collection: 'activities'}
-  ])
+  firestoreConnect(props => {
+    return (
+      [
+        { collection: 'users', doc: props.userInfo.email },
+      ]
+    )
+  })
 )(Activities);

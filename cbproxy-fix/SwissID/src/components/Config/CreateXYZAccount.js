@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { compose } from 'redux';
+import { firebaseConnect } from 'react-redux-firebase';
 
 import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
@@ -24,6 +26,11 @@ class CreateXYZAccount extends Component {
       iban_funding_account,
       funding_account
     } = this.state;
+    const {
+      email,
+      name
+    } = this.props.user;
+    
     const time_created = new Date();
     this.props.createAccount({
       bic: "XYZCH89",
@@ -33,6 +40,8 @@ class CreateXYZAccount extends Component {
       alias,
       iban_funding_account,
       funding_account,
+      email,
+      name,
       time_created,
     });
     this.props.activityLogon({
@@ -204,7 +213,7 @@ class CreateXYZAccount extends Component {
  
 const mapStateToProps = (state) => {
   return {
-
+    user: state.user.userInfo,
   }
 }
 
@@ -214,4 +223,4 @@ const mapDispatchToProps = (dispatch) => {
     activityLogon: (logonInfo) => dispatch(activityLogon(logonInfo)),
   }
 }
-export default connect(null, mapDispatchToProps)(CreateXYZAccount);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateXYZAccount);

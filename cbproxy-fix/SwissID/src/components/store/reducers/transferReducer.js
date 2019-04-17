@@ -10,6 +10,12 @@ const transferReducer = (state = initState, action) => {
     case 'CREATE_PROJECT_ERROR':
       console.log('error');
       return state;
+    case 'ACTIVITY_UPDATED':
+      console.log("Acitivity Updated");
+      return state;
+    case 'ACTIVITY_UPDATED_ERROR':
+      console.log("Acitivity Updated ERROR");
+      return state;
     default:
       return state;
   }

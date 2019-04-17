@@ -24,13 +24,27 @@ export const transOut = (transOutInfo) => {
 export const activityLogon = (loginInfo) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
-    firestore.collection("activities").add({
-      logon_time: loginInfo.logon_time,
-      event: loginInfo.event,
-    }).then(() => {
-      dispatch({ type: 'LOGON_ACTIVITY' });
-    }).catch((err) => {
-      dispatch({ type: 'LOGON_ACTIVITY_FAILURE', err });
-    })
+    const state = getState();
+
+    const db = firestore.collection('users').doc(state.user.userInfo.email)
+    db.get()
+      .then((doc) => {
+        let { activities } = doc.data();
+        activities.push({
+          logon_time: loginInfo.logon_time,
+          event: loginInfo.event,
+        });
+        db.update({
+          activities
+        })
+          .then(() => { dispatch({ type: 'ACTIVITY_UPDATED' }) })
+          .catch(err => dispatch({ type: 'ACTIVITY_UPDATED_ERROR', err }));
+      });
   }
 };
+
+export const setUserInfo = (userInfo) => {
+  return dispatch => {
+    dispatch({ type: 'SET_USER_ACCOUNT', payload: userInfo })
+  };
+}

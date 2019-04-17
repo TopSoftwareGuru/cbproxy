@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import auth0 from 'auth0-js';
+import { connect } from "react-redux";
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 import { GoogleLogin } from 'react-google-login';
 import { FormattedMessage } from "react-intl";
 
 import { activityLogon } from './store/actions/actions';
 import { internationalization } from './store/actions/intlActions';
-import { connect } from "react-redux";
+import { userAccount } from './store/actions/accountActions';
+import { setUserInfo } from './store/actions/actions';
 
 
 class Landing extends Component {
@@ -31,11 +35,28 @@ class Landing extends Component {
     webAuth.authorize();
   } 
   handleGoogleLogin(res) {
-    this.props.activityLogon({
-      logon_time: new Date(),
-      event: "--logon from 123.123.123.123",
+    const {
+      email,
+      name,
+    } = res.profileObj;
+    this.props.setUserInfo({
+      email,
+      name,
     });
-    this.props.history.push("/new");
+    const { users } = this.props;
+    let dup = false;
+    users.forEach(item => {
+      if (item.email === email) return (dup = true);
+    });
+    if (dup === true) {
+      this.props.activityLogon({
+        logon_time: new Date(),
+        event: "--logon from 123.123.123.123",
+      });
+      this.props.history.push("/transfer_out");
+    } else {
+      this.props.history.push("/new");
+    }
   }
   handleGoogleLoginFailure(res) {
 
@@ -79,18 +100,18 @@ class Landing extends Component {
                 {/* <Link to="/openid_connect" className="top-bar">
                   Logon with SwissID
                 </Link> */}
-                {/* <a
-                  href="https://dev-ul1d4kde.auth0.com/authorize/?response_type=code&scope=openid%20profile&client_id=pXbXo_0BPEjWEoExpCZ5Wv82MwViCijy&connection=SwissID&redirect_uri=https://manage.auth0.com/tester/callback?connection=SwissID"
+                <a
+                  href="https://login.int.swissid.ch/idp/oauth2/authorize?response_type=code&client_id=2d19f-1580c-8f5a2-954c8&scope=openid%20profile&redirect_uri=https%3A%2F%2Fswissid-c228f.firebaseapp.com%2F&nonce=n-0S6_WzA2Mj&state=Q4OrwqgbnR&acr_values=loa-1&ui_locales=de"
                   className="link-color"
                 >
                   Logon with SwissID
-                </a> */}
-                <button
+                </a>
+                {/* <button
                   type="button"
                   onClick={this.handleLogin}
                 >
                 Logon with SwissID
-                </button>
+                </button> */}
                 <GoogleLogin
                   clientId="1092212372305-nph9r306vn0dfv10h8ttcrclttgn8hjg.apps.googleusercontent.com"
                   buttonText="Login with Google"
@@ -171,16 +192,20 @@ class Landing extends Component {
 const mapStateToProps = (state) => {
   return {
     locale: state.intl.locale,
+    users: state.firestore.ordered.users,
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    activityLogon: (logonInfo) => dispatch(
-      activityLogon(logonInfo)
-    ),
-    internationalization: (locale) => dispatch(
-      internationalization(locale)
-    ),
+    activityLogon:        (logonInfo) => dispatch(activityLogon(logonInfo)),
+    internationalization: (locale)    => dispatch(internationalization(locale)),
+    userAccount:          (userInfo)  => dispatch(userAccount(userInfo)),
+    setUserInfo:          (userInfo)  => dispatch(setUserInfo(userInfo)),
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Landing);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([
+    { collection: 'users' }
+  ])
+)(Landing);
