@@ -215,12 +215,12 @@ const mapStateToProps = (state) => {
   return {
     user: state.user.userInfo,
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createAccount: (accountInfo) => dispatch(createAccount(accountInfo)),
     activityLogon: (logonInfo) => dispatch(activityLogon(logonInfo)),
   }
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(CreateXYZAccount);

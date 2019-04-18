@@ -58,6 +58,10 @@ class Landing extends Component {
       this.props.history.push("/new");
     }
   }
+
+  componentWillMount() {
+    console.log(window.location.href);
+  }
   handleGoogleLoginFailure(res) {
 
   }
