@@ -2,6 +2,7 @@ import http from "http";
 import createError from "http-errors";
 import express from "express";
 import path from "path";
+import route from './routes/index';
 
 var app = express();
 
@@ -16,12 +17,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/api", (req, res) => {
-  res.status(200).send();
-});
-
+app.use("/api", route);
 app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
 app.use((req, res, next) => {

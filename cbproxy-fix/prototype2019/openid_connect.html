@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>XYZ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src='./js/demo.js'></script> 
+</head>
+<body>
+
+<div class="container">
+
+
+<div class="col-sm-6">
+
+<br >
+<div class="text-center">
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./home_initial.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./dev.html">Dev</a>
+</div>
+<br>
+
+
+
+
+<img src="./img/OpenID_connect_logon.png">
+
+
+
+</div>
+
+
+<div id="right_pane" class="col-sm-6">
+<br >
+<br >
+<br >
+<br >
+<br >
+<h3>Comments for the implementation</h3>
+
+
+<ol>
+  <li><a href="https://www.swissid.ch/en/">SwissID</a> is a single-sign-on (SSO) solution based on the <a href="https://openid.net/connect/">OpenID connect</a> protocol, similar to Google OpenID and Facebook OpenID </li>
+
+  <li> XYZ needs to be a so called 'Relying Party' to SwissID</li>
+  <li> SwissID is quite new. Business connections are needed to obtain credentials to their test environment.</li>
+  <li> Maybe <strong>HTTPS</strong> is mandatory for SwissID. Probably you cannot use SwissID with a non-HTTPS web application.</li>
+</ol>
+
+
+</div>
+
+</div>
+</body>
+</html>
+

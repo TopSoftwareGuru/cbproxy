@@ -14,7 +14,7 @@ import Withdraw from './pages/Withdraw';
 class App extends Component {
   render() { 
     return ( 
-      <Router>
+      <Route>
         <Switch>
           <Route path="/" exact component={ Landing } />
           <Route path="/config" exact component={ Config } />
@@ -26,7 +26,7 @@ class App extends Component {
           <Route path="/profile" exact component={ UserProfile } />
           <Route path="/withdraw" exact component={ Withdraw } />
         </Switch>
-      </Router>
+      </Route>
      );
   }
 }

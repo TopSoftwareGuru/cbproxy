@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>XYZ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src='./js/demo.js'></script> 
+  
+</head>
+<body>
+
+
+
+<div class="container">
+
+
+<div class="col-sm-6">
+
+<br >
+<div class="text-center">
+	<a href="./landing_page.html">Start</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<strong><a href="./home.html">Next</a></strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./config.html">Config</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./dev.html">Dev</a>
+</div>
+<br>
+
+
+<div id="nav_links" class="text-center">
+	<a href="./home.html">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./create_account.html">New</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./account_owner.html">Profile</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./transfer_in.html">Tx IN</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./transfer_out.html">Tx OUT</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./user_activities.html">Activities</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./landing_page.html">logout</a>
+</div>
+<br >
+
+
+<br >
+
+<h3> Activities</h3> 
+<br >
+
+<h4> Data Export</h4>
+<div>
+  <p>You can always export your data in either <a href="">Microsoft Excel (.xlsx)</a> format, or in <a href=""> PDF/A format</a>.
+</div>
+<br >
+
+<h4> Recent Activities</h4> 
+<div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="" checked>Logon / Logoff&nbsp;
+  </label>
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="" checked>Transfers &nbsp;
+  </label>
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="" checked>Notifications&nbsp;
+  </label>
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="" checked>Problems&nbsp;
+  </label>
+</div>
+
+
+<br >
+
+ <ul class="list-group">
+  <li class="list-group-item">dd.mm.yyy hh:mm:ss -- Logon from 12.123.23.123 <a href="">details</a></li>
+  <li class="list-group-item">dd.mm.yyy hh:mm:ss -- Account IBAN CH99 2222 4415 5036 7150 5 created&nbsp;<a href="">details</a></li>
+  <li class="list-group-item">dd.mm.yyy hh:mm:ss -- Inbound credit transfer received (pacs.008)&nbsp;<a href="">details</a></li>
+  <li class="list-group-item">dd.mm.yyy hh:mm:ss -- Notification failed - EMail address rejected&nbsp;<a href="">details</a></li>
+</ul> 
+
+<br >
+ </div>
+
+
+
+<div id="right_pane" class="col-sm-6" color="grey" >
+<br >
+<br >
+<br >
+<br >
+<br >
+<h3>Comments for the implementation</h3>
+
+
+<ol>
+  <li>This is a bit like a logfile or an audit log. It shows all events that are somehow relevant for this user.</li>
+</ol>
+
+
+</div>
+
+</div>
+
+</body>
+</html>
+
