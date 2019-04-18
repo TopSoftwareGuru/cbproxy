@@ -6,6 +6,7 @@ import { compose } from 'redux';
 import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
 import QRBill from '../../assets/image/qrbill.png';
+import { FormattedMessage } from "react-intl";
 
 
 /**
@@ -38,10 +39,20 @@ class TransferIn extends Component {
         </div>
         <div className="row">
           <div className="col-md-6 transfer-in my-4">
-            <h3>Send from Bank ABC To Bank XYZ</h3>
+            <h3>
+              <FormattedMessage
+                id="transin.title"
+                defaultMessage="Send from Bank ABC To Bank XYZ"
+              />
+            </h3>
             <form>
               <div className="form-group">
-                <label>Amount [CHF]</label>
+                <label>
+                  <FormattedMessage
+                    id="transin.amount"
+                    defaultMessage="Amount [CHF]"
+                  />
+                </label>
                 <input
                   type="number"
                   className="form-control"
@@ -51,7 +62,12 @@ class TransferIn extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Additional Info (max. 140 characters):</label>
+                <label>
+                  <FormattedMessage
+                    id="transin.additional.info"
+                    defaultMessage="Additional Info (max. 140 characters):"
+                  />
+                </label>
                 <textarea
                   className="form-control"
                   rows="2"
@@ -60,7 +76,12 @@ class TransferIn extends Component {
                 </textarea>
               </div>
               <div className="form-group">
-                <label>Transfer from this bank account;</label>
+                <label>
+                  <FormattedMessage
+                    id="transin.transfer.from"
+                    defaultMessage="Transfer from this bank account"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -70,7 +91,12 @@ class TransferIn extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Transfer to this bank account</label>
+                <label>
+                  <FormattedMessage
+                    id="transin.transfer.to"
+                    defaultMessage="Transfer to this bank account"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -80,7 +106,12 @@ class TransferIn extends Component {
                 />
               </div>
               <div className="form-group mb-5">
-                <label>Transfer funds</label>
+                <label>
+                  <FormattedMessage
+                    id="transin.transfer.funds"
+                    defaultMessage="Transfer funds"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -99,10 +130,18 @@ class TransferIn extends Component {
                 </div>
               </div>
               <div>
-                <p>Scan this QR Code with your bank's mobile app</p>
+                <p>
+                  <FormattedMessage
+                    id="transin.qr.code"
+                    defaultMessage="Scan this QR Code with your bank\'s mobile app"
+                  />
+                </p>
                 <strong>
                   <a href="#" className="link-color">
-                    I've used Bank ABC's user interface to do this
+                    <FormattedMessage
+                      id="transin.user.interface"
+                      defaultMessage="I\'ve used Bank ABC\'s user interface to do this"
+                    />
                   </a>
                 </strong>
               </div>
@@ -110,22 +149,13 @@ class TransferIn extends Component {
                   type="submit"
                   className="btn btn-default transin-submit my-4"
                 >
-                  Done
+                <FormattedMessage
+                  id="transout.done"
+                  defaultMessage="Done"
+                />
               </button>
             </form>
           </div>
-          {/* <div className="col-md-6">
-            <h3>Comments for the implementation</h3>
-            <ol>
-              <li>
-                AFAIK, It should finally result in a&nbsp;
-                <a href="https://www.iso20022.org/sites/default/files/documents/messages/pain/schemas/pain.001.001.09.zip">
-                  ISO pain.001.001.09
-                </a>
-                &nbsp;message
-              </li>
-            </ol>
-          </div> */}
         </div>
       </div>
     );

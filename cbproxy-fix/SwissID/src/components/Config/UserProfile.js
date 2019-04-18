@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
 import CHReceive from '../alerts/CHReceive';
+import { FormattedMessage } from 'react-intl';
 
 class UserProfile extends Component {
   constructor(props) {
@@ -28,7 +29,12 @@ class UserProfile extends Component {
             <NavbarTop />
             <Navbar />
             <CHReceive
-              description="XYZ Account with IBAN CH99 2222 4415 5036 7150 5 created."
+              description={
+                <FormattedMessage
+                  id="alert.profile.created"
+                  defaultMessage="XYZ Account with IBAN CH99 2222 4415 5036 7150 5 created."
+                />
+              }
               mode={0}
             />
           </div>

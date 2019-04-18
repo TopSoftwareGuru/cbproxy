@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 import Navbar from '../Navbar';
 import NavbarTop from '../NavbarTop';
@@ -18,7 +19,12 @@ class Home extends Component {
             <NavbarTop />
             <Navbar />
             <CHReceive
-              description="Transfer CHF +7'800.00 from your ABC account CH received."
+              description={
+                <FormattedMessage
+                  id="alert.transfer.from"
+                  defaultMessage="Transfer CHF +7\'800.00 from your ABC account CH received."
+                />
+              }
               mode={0}
             />
           </div>

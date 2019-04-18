@@ -72,17 +72,17 @@ class Landing extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row">
+        <div className="row my-5">
           <div className="col-md-6">
             <div className="col-md-12 my-4">
               <div className="text-center">
-                <Link to="/" className="top-bar">
+                {/* <Link to="/" className="top-bar">
                   Start
                 </Link>
                 &nbsp;&nbsp;|&nbsp;&nbsp;
-                <Link to="/openid_connect" className="top-bar">
+                <Link to="/" className="top-bar">
                   <strong>Next</strong>
-                </Link>
+                </Link> */}
               </div>
             </div>
             <div className="row my-3">
@@ -104,7 +104,10 @@ class Landing extends Component {
                   href="https://login.int.swissid.ch/idp/oauth2/authorize?response_type=code&client_id=2d19f-1580c-8f5a2-954c8&scope=openid%20profile&redirect_uri=https%3A%2F%2Fswissid-c228f.firebaseapp.com%2F&nonce=n-0S6_WzA2Mj&state=Q4OrwqgbnR&acr_values=loa-1&ui_locales=de"
                   className="link-color"
                 >
-                  Logon with SwissID
+                  <FormattedMessage
+                    id="land.logon.swissID"
+                    defaultMessage="Login with SwissID"
+                  />
                 </a>
                 {/* <button
                   type="button"
@@ -114,7 +117,12 @@ class Landing extends Component {
                 </button> */}
                 <GoogleLogin
                   clientId="1092212372305-nph9r306vn0dfv10h8ttcrclttgn8hjg.apps.googleusercontent.com"
-                  buttonText="Login with Google"
+                  buttonText={
+                    <FormattedMessage
+                      id="land.login.google"
+                      defaultMessage="Login with Google"
+                    />
+                  }
                   onSuccess={ this.handleGoogleLogin }
                   onFailure={ this.handleGoogleLoginFailure }
                   cookiePolicy={ "single_host_origin" }

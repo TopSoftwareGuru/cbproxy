@@ -155,7 +155,10 @@ class Config extends Component {
                     <span
                       className="input-group-text"
                     >
-                      SNB Giro Account:
+                      <FormattedMessage
+                        id="config.snb.giro.account"
+                        defaultMessage="SNB Giro Account"
+                      />
                     </span>
                   </div>
                     <input
@@ -167,7 +170,10 @@ class Config extends Component {
                 </div>
                 <p>
                   <a href="https://www.xe.com/ibancalculator/sample/?ibancountry=switzerland" className="link-color">
-                      Explaination
+                    <FormattedMessage
+                      id="config.explaination"
+                      defaultMessage="Explaination"
+                    />
                   </a>
                 </p>
                 <div className="input-group mb-3">
@@ -176,7 +182,10 @@ class Config extends Component {
                     <span
                       className="input-group-text"
                     >
-                      SNB Giro Account initial balane:
+                      <FormattedMessage
+                        id="config.snb.inital"
+                        defaultMessage="SNB Giro Account initial balane:"
+                      />
                     </span>
                   </div>
                     <input
@@ -191,7 +200,10 @@ class Config extends Component {
                     <span
                       className="input-group-text"
                     >
-                      IBAN prefix for its customer accounts:
+                      <FormattedMessage
+                        id="config.iban.prefix.accounts"
+                        defaultMessage="IBAN prefix for its customer accounts:"
+                      />
                     </span>
                   </div>
                   <input
@@ -201,7 +213,10 @@ class Config extends Component {
                     onChange={this.handleChange}
                   />
                   <label>
-                    CH = ISO Country Code Switzerland, 33 = IBAN Check Digits, 44955 = Bank Identifier
+                    <FormattedMessage
+                      id="config.desc1"
+                      defaultMessage="CH = ISO Country Code Switzerland, 33 = IBAN Check Digits, 44955 = Bank Identifier"
+                    />
                   </label>
                 </div>
                 <div className="input-group mb-3">
@@ -209,7 +224,10 @@ class Config extends Component {
                     <span
                       className="input-group-text"
                     >
-                      IBAN account number range:
+                      <FormattedMessage
+                        id="config.iban.number.range"
+                        defaultMessage="IBAN account number range:"
+                      />
                     </span>
                   </div>
                   <input
@@ -219,17 +237,29 @@ class Config extends Component {
                     onChange={this.handleChange}
                   />
                   <label>
-                  CH = ISO Country Code Switzerland, 33 = IBAN Check Digits, 44955 = Bank Identifier
+                    <FormattedMessage
+                      id="config.desc1"
+                      defaultMessage="CH = ISO Country Code Switzerland, 33 = IBAN Check Digits, 44955 = Bank Identifier"
+                    />
                   </label>
                 </div>
                 
-                <h3>Memberships & Access</h3>
+                <h3>
+                  <FormattedMessage
+                    id="config.memberships"
+                    defaultMessage="Memberships & Access"
+                  />
+                </h3>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
                     <span
                       className="input-group-text"
                     >
-                      SEPA Member:
+                      SEPA
+                      <FormattedMessage
+                        id="config.member"
+                        defaultMessage="member"
+                      />:
                     </span>
                   </div>
                   <input
@@ -244,7 +274,11 @@ class Config extends Component {
                     <span
                       className="input-group-text"
                     >
-                      SIC Member:
+                      SIC
+                      <FormattedMessage
+                        id="config.member"
+                        defaultMessage="member"
+                      />:
                     </span>
                   </div>
                   <input
@@ -259,7 +293,11 @@ class Config extends Component {
                     <span
                       className="input-group-text"
                     >
-                      euroSIC Member:
+                      euroSIC 
+                      <FormattedMessage
+                        id="config.member"
+                        defaultMessage="member"
+                      />:
                     </span>
                   </div>
                   <input
@@ -289,7 +327,11 @@ class Config extends Component {
                     <span
                       className="input-group-text"
                     >
-                      esisuisse Member
+                      esisuisse
+                      <FormattedMessage
+                        id="config.member"
+                        defaultMessage="member"
+                      />
                     </span>
                   </div>
                   <input
@@ -299,13 +341,21 @@ class Config extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <h5>Sanctions Blacklist</h5>
+                <h5>
+                  <FormattedMessage
+                    id="config.sanctions.blacklist"
+                    defaultMessage="Sanctions Blacklist"
+                  />
+                </h5>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
                     <span
                       className="input-group-text"
                     >
-                      Blacklisted people:
+                      <FormattedMessage
+                        id="config.blacklist.people"
+                        defaultMessage="Blacklisted people:"
+                      />
                     </span>
                   </div>
                   <input

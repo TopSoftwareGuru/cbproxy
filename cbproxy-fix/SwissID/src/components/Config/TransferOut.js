@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { FormattedMessage } from 'react-intl';
+
 import Modal from 'react-modal';
 import Navbar from '../Navbar';
 import NavbarTop from '../NavbarTop';
@@ -97,10 +99,20 @@ class TransferOut extends Component {
         </div>
         <div className="row">
           <div className="col-md-6 transfer-out my-4">
-            <h3>Send from Bank XYZ To Bank ABC</h3>
+            <h3>
+              <FormattedMessage
+                id="transout.title"
+                defaultMessage="Send from Bank XYZ To Bank ABC"
+              />
+            </h3>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label>Amount [CHF]</label>
+                <label>
+                  <FormattedMessage
+                    id="transout.amount"
+                    defaultMessage="Amount [CHF]"
+                  />
+                </label>
                 <input
                   type="number"
                   className="form-control"
@@ -110,7 +122,12 @@ class TransferOut extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Additional Info (max. 140 characters):</label>
+                <label>
+                  <FormattedMessage
+                    id="transout.add.info"
+                    defaultMessage="Additional Info (max. 140 characters):"
+                  />
+                </label>
                 <textarea
                   className="form-control"
                   rows="2"
@@ -120,7 +137,12 @@ class TransferOut extends Component {
                 </textarea>
               </div>
               <div className="form-group">
-                <label>Transfer from this bank account;</label>
+                <label>
+                  <FormattedMessage
+                    id="transout.transfer.from"
+                    defaultMessage="Transfer from this bank account:"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -131,7 +153,12 @@ class TransferOut extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Transfer to this bank account</label>
+                <label>
+                  <FormattedMessage
+                    id="transout.transfer.to"
+                    defaultMessage="Transfer to this bank account"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -142,7 +169,12 @@ class TransferOut extends Component {
                 />
               </div>
               <div className="form-group mb-5">
-                <label>Transfer funds</label>
+                <label>
+                  <FormattedMessage
+                    id="transout.transfer.funds"
+                    defaultMessage="Transfer funds"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -158,7 +190,10 @@ class TransferOut extends Component {
                   className="btn btn-default transout-submit"
                   id="transfermodal"
                 >
-                  Submit Transfer
+                  <FormattedMessage 
+                    id="transout.submit"
+                    defaultMessage="Submit Transfer"
+                  />
                 </button>
               </strong>
               <Modal
@@ -170,10 +205,18 @@ class TransferOut extends Component {
                 ariaHideApp={false}
               >
                 <div>
-                  <h2 ref={subtitle => this.subtitle = subtitle}>Warning</h2>
+                  <h2 ref={ subtitle => this.subtitle = subtitle }>
+                    <FormattedMessage
+                      id="transout.warning"
+                      defaultMessage="Warning"
+                    />
+                  </h2>
                 </div>
                 <div className="text-center my-4">
-                  TransferOut is larger than Balance
+                  <FormattedMessage
+                    id="transout.modal"
+                    defaultMessage="TransferOut is larger than Balance"
+                  />
                 </div>
                 <div className="text-right">
                   <button
@@ -181,7 +224,10 @@ class TransferOut extends Component {
                     className="btn btn-primary"
                     onClick={ this.closeModal }
                   >
-                    Done
+                    <FormattedMessage
+                      id="transout.done"
+                      defaultMessage="Done"
+                    />
                   </button>
                 </div>
               </Modal>
