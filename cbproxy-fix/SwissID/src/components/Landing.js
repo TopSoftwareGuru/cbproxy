@@ -16,12 +16,24 @@ import { setUserInfo } from './store/actions/actions';
 class Landing extends Component {
   constructor(props) {
     super(props);
-    super(props);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
     this.handleGoogleLoginFailure = this.handleGoogleLoginFailure.bind(this);
     this.handleLocaleSetAsEn = this.handleLocaleSetAsEn.bind(this);
     this.handleLocaleSetAsDe = this.handleLocaleSetAsDe.bind(this);
+    this.state = {
+      code: null,
+    }
+  };
+
+  componentWillMount() {
+    const url = new URL(window.location.href);
+    const code = url.searchParams.get("code");
+    if (code) {
+      console.log(code);
+      this.setState({ code });
+      this.props.history.push("/home");
+    };
   }
 
   handleLogin() {
@@ -59,8 +71,8 @@ class Landing extends Component {
     }
   }
 
-  componentWillMount() {
-    console.log(window.location.href);
+  componentDidMount() {
+    
   }
   handleGoogleLoginFailure(res) {
 
