@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { compose } from 'redux';
 import { firebaseConnect } from 'react-redux-firebase';
+import PropTypes from 'prop-types';
 
 import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
 import { createAccount } from '../store/actions/accountActions';
 import { activityLogon } from '../store/actions/actions';
+
 class CreateXYZAccount extends Component {
   constructor(props) {
     super(props);
@@ -223,4 +225,10 @@ const mapDispatchToProps = (dispatch) => {
     activityLogon: (logonInfo) => dispatch(activityLogon(logonInfo)),
   }
 };
+
+CreateXYZAccount.propTypes = {
+  user: PropTypes.string,
+  createAccount: PropTypes.func,
+  activityLogon: PropTypes.func,
+}
 export default connect(mapStateToProps, mapDispatchToProps)(CreateXYZAccount);

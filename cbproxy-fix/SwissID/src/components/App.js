@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import Landing from "./Landing";
-import Login from "./Login";
 import Crypto from "./Crypto";
 import Config from './Config/Config';
 import Home from './Config/Home';
@@ -16,15 +17,40 @@ import Withdraw from './Withdraw';
 import messages from './messages';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      locale: "en",
+    };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.locale !== this.props.locale ||
+      nextState.locale !== this.state.locale 
+    )
+  };
+  componentDidUpdate(prevProps) {
+    if (prevProps.locale !== this.props.locale) {
+      const { locale } = this.props;
+      this.setState({ locale });
+    }
+  };
+  componentWillMount() {
+    if (localStorage.getItem("locale")) {
+      this.setState({
+        locale: localStorage.getItem("locale"),
+      });
+    }
+  };
   render() {
-    const { locale } = this.props;
+    const { locale } = this.state;
     return (
       <IntlProvider
         locale={locale} messages={messages[locale]}>
         <Router>
           <Switch>
             <Route path="/" exact component={Landing} />
-            <Route path="/openid_connect" exact component={Login} />
             <Route path="/crypto" exact component={ Crypto } />
             <Route path="/config" exact component={ Config } />
             <Route path="/home" exact component={ Home } />
@@ -46,5 +72,9 @@ const mapStateToProps = (state) => {
   return {
     locale: state.intl.locale,
   }
+}
+
+App.propTypes = {
+  locale: PropTypes.string,
 }
 export default connect(mapStateToProps)(App);

@@ -33,6 +33,7 @@ class Landing extends Component {
       console.log(code);
       this.setState({ code });
       this.props.history.push("/home");
+      
     };
   }
 
@@ -65,9 +66,9 @@ class Landing extends Component {
         logon_time: new Date(),
         event: "--logon from 123.123.123.123",
       });
-      this.props.history.push("/transfer_out");
+      this.props.history.push("/home");
     } else {
-      this.props.history.push("/new");
+      this.props.history.push("/home");
     }
   }
 

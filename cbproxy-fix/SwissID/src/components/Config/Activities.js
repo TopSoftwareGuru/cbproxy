@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import NavbarTop from '../NavbarTop';
-import Navbar from '../Navbar';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+
+import NavbarTop from '../NavbarTop';
+import Navbar from '../Navbar';
 
 class Activities extends Component {
   constructor(props) {
@@ -35,7 +37,6 @@ class Activities extends Component {
 
   }
   render() { 
-    console.log(this.state.activities);
     return ( 
       <div className="container">
         <div className="row">
@@ -106,7 +107,7 @@ class Activities extends Component {
                           {
                             item.event
                           }
-                        <a href="#" className="link-color">details</a>
+                          <a href="#" className="link-color">details</a>
                         </li>
                       )
                     })
@@ -133,6 +134,12 @@ const mapDispatchToProps = (dispatch) => {
     
   }
 }
+
+Activities.propTypes = {
+  users: PropTypes.array,
+  userInfo: PropTypes.object,
+}
+
 export default compose(
   connect(mapStateToProps),
   firestoreConnect(props => {

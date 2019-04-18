@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import Navbar from '../Navbar';
-import AdminUser from '../alerts/AdminUser';
 import NavbarTop from '../NavbarTop';
 import CHReceive from '../alerts/CHReceive';
 import { FormattedMessage } from 'react-intl';

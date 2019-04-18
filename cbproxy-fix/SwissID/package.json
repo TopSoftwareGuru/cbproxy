@@ -1,5 +1,5 @@
 {
-  "name": "reactexpress",
+  "name": "swissid",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -22,6 +22,7 @@
     "http-errors": "^1.7.2",
     "moment": "^2.24.0",
     "path": "^0.12.7",
+    "prop-types": "^15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-google-login": "^5.0.4",

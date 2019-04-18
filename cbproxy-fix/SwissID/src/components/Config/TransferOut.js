@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { FormattedMessage } from 'react-intl';
-
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
+
 import Navbar from '../Navbar';
 import NavbarTop from '../NavbarTop';
 import { activityLogon } from '../store/actions/actions';
@@ -20,7 +21,6 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 }
-// Modal.setAppElement("button");
 class TransferOut extends Component {
   constructor(props) {
     super(props);
@@ -252,9 +252,14 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
  
+TransferOut.propTypes = {
+  transOutInfo: PropTypes.object,
+  transferOut: PropTypes.func,
+  activityLogon: PropTypes.func,
+}
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
     { collection: 'TransferOut' }
   ])
-) (TransferOut);
+)(TransferOut);
