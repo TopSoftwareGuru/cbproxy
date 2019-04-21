@@ -33,7 +33,7 @@ class Landing extends Component {
       console.log(code);
       this.setState({ code });
       this.props.history.push("/home");
-      
+
     };
   }
 
@@ -52,10 +52,12 @@ class Landing extends Component {
       email,
       name,
     } = res.profileObj;
+
     this.props.setUserInfo({
       email,
       name,
     });
+    
     const { users } = this.props;
     let dup = false;
     users.forEach(item => {
@@ -68,7 +70,7 @@ class Landing extends Component {
       });
       this.props.history.push("/home");
     } else {
-      this.props.history.push("/home");
+      this.props.history.push("/new");
     }
   }
 
@@ -123,7 +125,7 @@ class Landing extends Component {
                 >
                   <FormattedMessage
                     id="land.logon.swissID"
-                    defaultMessage="Login with SwissID"
+                    defaultMessage="Logon with SwissID"
                   />
                 </a>
                 {/* <button

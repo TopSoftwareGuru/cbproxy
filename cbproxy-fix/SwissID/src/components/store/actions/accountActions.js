@@ -60,3 +60,9 @@ export const userAccount = (userInfo) => {
     })
   }
 }
+
+export const verifyActions = (verifyInfo) => {
+  return ((dispatch, getState, { getFirebase, getFirestore }) => {
+    
+  })
+}

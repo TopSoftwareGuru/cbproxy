@@ -31,18 +31,32 @@ class Home extends Component {
         </div>
         <div className="row">
           <div className="col-md-6 my-4">
-            <h4>Your Balance at Bank XYZ:</h4>
+            <h4>
+              <FormattedMessage
+                id="home.balance"
+                defaultMessage="Your Balance at Bank XYZ:"
+              />
+            </h4>
             <h3>CHF 7'800.00</h3>
             <Link to="#" className="link-color">
-              Transfer History
+              <FormattedMessage
+                id="home.transfer.history"
+                defaultMessage="Transfer History"
+              />
             </Link>
             &nbsp;|&nbsp;&nbsp;
             <Link to="#" className="link-color">
-              Balance History
+              <FormattedMessage
+                id="home.balance.history"
+                defaultMessage="Balance History"
+              />
             </Link>
             &nbsp;|&nbsp;&nbsp;
             <Link to="#" className="link-color">
-              Fees
+              <FormattedMessage
+                id="home.fees"
+                defaultMessage="Fees"
+              />
             </Link>
           </div>
         </div>

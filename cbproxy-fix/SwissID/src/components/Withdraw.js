@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavbarTop from './NavbarTop';
 import Navbar from './Navbar';
 import CHReceive from '../components/alerts/CHReceive';
+import { FormattedMessage } from 'react-intl';
 
 class Withdraw extends Component {
   constructor(props) {
@@ -20,7 +21,12 @@ class Withdraw extends Component {
         </div>
         <div className="row">
           <div className="col-md-6">
-            <p>Your balance at XYZ</p>
+            <p>
+              <FormattedMessage
+                id="withdraw.balance"
+                defaultMessage="Your balance at XYZ"
+              />
+            </p>
             <h3>CHF 5'8000</h3>
           </div>
         </div>

@@ -37,11 +37,17 @@ class Menubar extends Component {
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="#">
-          RFQ style
+          <FormattedMessage
+            id="navtop.rfq.style"
+            defaultMessage="RFQ Style"
+          />
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="#">
-          Crypto Dev
+          <FormattedMessage
+            id="navtop.crypto.dev"
+            defaultMessage="Crypto Dev"
+          />
         </Link>
       </div>
      );

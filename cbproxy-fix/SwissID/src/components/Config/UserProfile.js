@@ -41,10 +41,20 @@ class UserProfile extends Component {
         </div>
         <div className="row profile">
           <div className="col-md-6 account-details">
-            <h3>Account Details</h3>
+            <h3>
+              <FormattedMessage
+                id="profile.account.details"
+                defaultMessage="Account Details"
+              />
+            </h3>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label>CHF Account at XYZ</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.chf.account"
+                    defaultMessage="CHF Account at XYZ"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -53,7 +63,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Account Status</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.account.status"
+                    defaultMessage="Account Status"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -62,7 +77,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>XYZ Product:</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.xyz.product"
+                    defaultMessage="XYZ Product:"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -71,7 +91,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Whitelisted bank account for in/out transfers</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.whitelisted.bank"
+                    defaultMessage="Whitelisted bank account for in/out transfers"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -80,7 +105,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Name</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.name"
+                    defaultMessage="Name"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -107,7 +137,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Address</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.address"
+                    defaultMessage="Address"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -116,7 +151,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Language given by SwissID</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.language"
+                    defaultMessage="Language given by SwissID"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -125,7 +165,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Choose a language for this user interface:</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.choose.lang"
+                    defaultMessage="Choose a language for this user interface:"
+                  />
+                </label>
                 <select className="form-control">
                   <option>German</option>
                   <option>English</option>
@@ -133,7 +178,12 @@ class UserProfile extends Component {
                 </select>
               </div>
               <div className="form-group">
-                <label>Gender</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.gender"
+                    defaultMessage="Gender"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -142,7 +192,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Age</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.age"
+                    defaultMessage="Age"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -151,7 +206,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Nationality</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.nation"
+                    defaultMessage="Nationality"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -160,7 +220,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>EMail Address</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.email"
+                    defaultMessage="Email Address"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -169,7 +234,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Mobile Phone Number</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.mobile.number"
+                    defaultMessage="Mobile Phone Number"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -178,7 +248,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Whitelisted bank account for in/out transfers</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.whitelisted.bank"
+                    defaultMessage="Whitelisted bank account for in/out transfers"
+                  />
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -187,7 +262,12 @@ class UserProfile extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Send transfer notification</label>
+                <label>
+                  <FormattedMessage
+                    id="profile.transfer.notification"
+                    defaultMessage="Send transfer notification"
+                  />
+                </label>
                 <div>
                   <label className="checkbox-inline">
                     <input
@@ -195,7 +275,10 @@ class UserProfile extends Component {
                       onChange={this.handleChange}
                       checked
                     />
-                    send E-Mail (no fees apply)
+                    <FormattedMessage
+                      id="profile.send.email"
+                      defaultMessage="send E-Mail (no fees apply)"
+                    />
                   </label>
                   <label className="checkbox-inline">
                     <input
@@ -203,7 +286,10 @@ class UserProfile extends Component {
                       onChange={this.handleChange}
                       checked
                     />
-                    send SMS (fee 0.20 CHF per SMS)
+                    <FormattedMessage
+                      id="profile.send.sms"
+                      defaultMessage="send SMS (fee 0.20 CHF per SMS)"
+                    />
                   </label>
                 </div>
               </div>
@@ -212,23 +298,40 @@ class UserProfile extends Component {
                   type="button"
                   className="btn-default account-cancel"
                 >
-                  Cancel
+                  <FormattedMessage
+                    id="profile.cancel"
+                    defaultMessage="Canel"
+                  />
                 </button>
                   &nbsp;&nbsp;
                 <button
                   type="submit"
                   className="btn-default account-save-changes"
                 >
-                  De-activate Account
+                  <FormattedMessage
+                    id="profile.deactivate"
+                    defaultMessage="De-activate Account"
+                  />
                 </button>
               </div>
             </form>
-            <p className="close-account">Want to suspend or terminate this account?&nbsp;
+            <p className="close-account">
+              <FormattedMessage
+                id="profile.terminate"
+                defaultMessage="Want to suspend or terminate this account?"
+              />
+            &nbsp;
               <a href="#"  className="link-color">
-                Click here
+                <FormattedMessage
+                  id="profile.click"
+                  defaultMessage="Click here"
+                />
               </a>
               &nbsp;
-              (not implemented yet)
+              <FormattedMessage
+                id="profile.not.implement"
+                defaultMessage="(not implemented yet)"
+              />
             </p>
           </div>
         </div>

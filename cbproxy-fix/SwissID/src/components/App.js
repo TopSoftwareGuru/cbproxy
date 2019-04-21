@@ -15,6 +15,7 @@ import Activities from "./Config/Activities";
 import UserProfile from './Config/UserProfile';
 import Withdraw from './Withdraw';
 import messages from './messages';
+import Verify from './Config/Verify';
 
 class App extends Component {
   constructor(props) {
@@ -59,7 +60,8 @@ class App extends Component {
             <Route path="/transfer_out" exact component={ TransferOut } />
             <Route path="/activities" exact component={ Activities } />
             <Route path="/profile" exact component={ UserProfile } />
-            <Route path="/withdraw" exact component={Withdraw} />
+            <Route path="/withdraw" exact component={ Withdraw } />
+            <Route path="/verify" exact component={ Verify } />
           </Switch>
         </Router>
       </IntlProvider>
