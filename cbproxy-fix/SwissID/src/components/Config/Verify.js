@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
+import { createAccount } from '../store/actions/accountActions';
 class Verify extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +19,32 @@ class Verify extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    
+    const { messageId } = this.props;
+    const { verifyCode } = this.state;
+
+    fetch("/api/verify", {
+      method: "post",
+      body: JSON.stringify({ messageId, verifyCode }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(result => result.json())
+      .then(res => {
+        const { vst } = res;
+        if (vst === "verified") {
+          const { accountInfo } = this.props;
+          this.props.createAccount(accountInfo);
+          fetch("/api/createaccount", {
+            method: "post",
+            body: JSON.stringify(accountInfo),
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          }).then(result => {
+            this.props.history.push("/home");
+          })
+        };
+      })
   }
   render() { 
     return ( 
@@ -59,4 +87,21 @@ class Verify extends Component {
   }
 }
  
-export default Verify;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createAccount: accountInfo => dispatch(createAccount(accountInfo)),
+  }
+}
+const mapStateToProps = (state) => {
+  return {
+    messageId: state.user.messageId,
+    accountInfo: state.user.accountInfo,
+  }
+};
+
+Verify.propTypes = {
+  createAccount: PropTypes.func,
+  messageId: PropTypes.string,
+  accountActions: PropTypes.object,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Verify);

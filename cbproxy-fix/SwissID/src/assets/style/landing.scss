@@ -1,11 +1,47 @@
-$color-red:#eb0000;
+$color-red:rgb(228, 50, 43);
 $color_navlink: #337ab7;
-.landing-comment {
-  margin-top: 10%;
-}
-.landing-navbar {
-  margin-top: 40px;
-}
-.top-bar {
-  color: $color_navlink;
+$google-bgcolor: rgb(254, 249,248);
+$google-btn-forecolor: rgb(200, 78, 65);
+
+// @font-face {
+//   font-family: 'SwissSignCircularWeb';
+//   font-weight: bold;
+//   src: url("../fonts/SwissSignCircularWeb-Bold.eot");
+//   src: url("SwissSignCircularWeb-Bold.eot?#iefix") format("embeded-opentype"),
+//        url("../fonts/SwissSignCircularWeb-Bold.woff2") format("woff2"),
+//        url("../fonts/SwissSignCircularWeb-Bold.woff") format("woff");
+// }
+
+.landing {
+  .swissid-btn {
+    background-color: $color-red;
+    border-radius: 2px;
+    background-image: url("../image/avatar.png");
+    background-repeat: no-repeat;
+    .swissid-link {
+      font-family: 'SwissSignCircularWeb', sans-serif;
+      text-decoration: none;
+      color: rgb(254, 249,248);
+      font-size: 18px;
+      font-weight: 700;
+      outline: none !important;
+      padding-left: 30px;
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
+  }
+  .google-login {
+    background-image: url("../image/google.png");
+    background-repeat: no-repeat;
+    background-color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    outline: none !important;
+    border: 1px rgb(184, 194, 203) solid;
+    color: $google-btn-forecolor;
+    padding-left: 50px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 10px;
+  }
 }

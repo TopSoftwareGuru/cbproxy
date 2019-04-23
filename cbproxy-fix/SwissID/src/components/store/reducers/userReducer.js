@@ -19,6 +19,13 @@ const userReducer = (state = initialState, action) => {
       return state;
     case 'ACCOUNT_CREATED_ERROR':
       return state;
+    case 'SET_VERIFY_INFO':
+      console.log("set verify info", action.payload);
+      return state;
+    case 'SET_USER_ACCOUNT_INFO':
+      return Object.assign({}, state, { accountInfo: action.payload });
+    case 'SET_USER_MESSAGEID':
+      return Object.assign({}, state, { messageId: action.payload.messageId });
     default:
       return state;
   }

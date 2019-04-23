@@ -32,7 +32,16 @@ module.exports = {
             name: 'images/[hash]-[name].[ext]'
           }
         }]
-      }
+      },
+      // {
+      //   test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
+      //   use: {
+      //     loader: 'file-loader',
+      //     options: {
+      //       name: "fonts/[name].[ext]",
+      //     }
+      //   }
+      // }
     ]
   },
   plugins: [

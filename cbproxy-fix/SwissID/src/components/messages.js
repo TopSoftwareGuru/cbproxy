@@ -118,7 +118,7 @@ export default {
     'land.prod.basic': 'Produkt Basic für Einzelpersonen.',
     'land.prod.company': 'Produktprofi für Unternehmen.',
     'land.login.google': 'Mit Google anmelden',
-    'land.logon.swissID': 'Loggen Sie sich mit SwissID ein',
+    'land.logon.swissID': 'Einloggen mit swissID',
 
     'new.topic': 'Erstellung eines CHF-Kontos',
     'new.bic': '(BIC)Code für Banks IDISE',

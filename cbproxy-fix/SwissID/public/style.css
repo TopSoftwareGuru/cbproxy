@@ -1,11 +1,32 @@
-.landing-comment {
-  margin-top: 10%; }
+.landing .swissid-btn {
+  background-color: #e4322b;
+  border-radius: 2px;
+  background-image: url(images/e6cb7ea1983a2e4cc4652d73b06a9827-avatar.png);
+  background-repeat: no-repeat; }
+  .landing .swissid-btn .swissid-link {
+    font-family: 'SwissSignCircularWeb', sans-serif;
+    text-decoration: none;
+    color: #fef9f8;
+    font-size: 18px;
+    font-weight: 700;
+    outline: none !important;
+    padding-left: 30px;
+    padding-top: 3px;
+    padding-bottom: 3px; }
 
-.landing-navbar {
-  margin-top: 40px; }
-
-.top-bar {
-  color: #337ab7; }
+.landing .google-login {
+  background-image: url(images/2e104b3e5cf9ef904e5da0afcf014ef4-google.png);
+  background-repeat: no-repeat;
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  outline: none !important;
+  border: 1px #b8c2cb solid;
+  color: #c84e41;
+  padding-left: 50px;
+  padding-right: 10px;
+  padding-top: 4px;
+  padding-bottom: 10px; }
 
 .login-comment {
   margin-top: 10%; }

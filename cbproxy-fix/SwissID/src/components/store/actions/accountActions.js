@@ -61,8 +61,14 @@ export const userAccount = (userInfo) => {
   }
 }
 
-export const verifyActions = (verifyInfo) => {
-  return ((dispatch, getState, { getFirebase, getFirestore }) => {
-    
+export const saveVerifyInfo = (verifyInfo) => {
+  return (dispatch => {
+    dispatch({ type: 'SET_USER_MESSAGEID', payload: verifyInfo });
   })
+};
+
+export const VerifiedInfo = (verifiedInfo) => {
+  return (dispatch => {
+    dispatch({ type: 'SAVE_VERIFIED_STATE', payload: verifiedInfo });
+  });
 }

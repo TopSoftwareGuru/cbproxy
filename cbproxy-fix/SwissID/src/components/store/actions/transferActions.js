@@ -33,3 +33,17 @@ export const transferOut = (transferInfo) => {
     })
   }
 };
+export const transIn = (transferInInfo) => {
+  return (dispatch, getState, { getFirestore, getFirebase }) => {
+    const firestore = getFirestore();
+    const state = getState();
+    console.log("state", state);
+
+    const db = firestore.collection("users").doc(state.user.userInfo.email)
+    db.get()
+      .then(doc => {
+        let { transin } = doc.data();
+        
+      })
+  }
+};

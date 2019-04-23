@@ -1,12 +1,15 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 const Firestore = require('@google-cloud/firestore');
 const express = require('express');
 const path = require('path');
 const http = require('http');
 const nodemailer = require('nodemailer');
 const uuidv1 = require('uuid/v1');
+const cors = require('cors');
 
 const app = express();
+app.use(cors({ origin: true }));
 const firestore = new Firestore({
   projectId: 'swissid-c228f',
   keyFilename: './swissid-c228f-firebase-adminsdk-gnl8m-7c9c7b994f.json'
@@ -50,7 +53,9 @@ app.post("/api/send", (req, res) => {
           document.set({
               id,
           }).then(() => {
-            res.status(200).send({ messageId: info.messageId });
+            console.log(info.messageId);
+            const messageId = { messageId: info.messageId };
+            res.status(200).send(messageId);
           })
       }
     });
@@ -64,14 +69,48 @@ app.post("/api/verify", (req, res) => {
   firestore.collection('verify').doc(`${messageId}`).get()
     .then(doc => {
       if (doc.exists) {
-        doc.data().id === verifyCode ? (
-          res.status(404).send("verified")  
+        // console.log(doc.data().id, verifyCode);
+        doc.data().id.localeCompare(verifyCode) ? (
+          res.status(200).send({ vst: "verified" })
         ): (
-          res.status(404).send("not_verified")
+          res.status(200).send({ vst: "not_verified" })
         )
       } else {
-        res.status(404).send("not_verified");
+        res.status(404).send({ vst: "not_verified" });
       }
+  })
+});
+
+app.post("/api/createaccount", (req, res) => {
+  const {
+      alias,
+      bic,
+      currency,
+      funding_account,
+      iban_funding_account,
+      iban,
+      product_cost,
+      email,
+      name,
+  } = req.body;
+  created_at = new Date();
+  firestore.collection("users").doc(email).set({
+    alias,
+    bic,
+    currency,
+    funding_account,
+    iban_funding_account,
+    iban,
+    product_cost,
+    email,
+    name,
+    created_at,
+    activities: [],
+    transout: [],
+    transin: [],
+    balance: 0,
+  }).then(() => {
+    res.status(200).send("success");
   })
 });
 

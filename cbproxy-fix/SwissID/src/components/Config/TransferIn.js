@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { FormattedMessage } from "react-intl";
 
 import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
+import { transIn } from '../store/actions/transferActions';
 import QRBill from '../../assets/image/qrbill.png';
-import { FormattedMessage } from "react-intl";
-
 
 /**
  * @see https://medium.com/a-beginners-guide-for-webpack-2/handling-images-e1a2a2c28f8d
@@ -19,14 +19,20 @@ class TransferIn extends Component {
     super(props);
     this.state = {
       amount: 0,
+      addinfo: null,
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   };
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     })
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.transIn(this.state);
   }
   render() {
     return (
@@ -45,7 +51,7 @@ class TransferIn extends Component {
                 defaultMessage="Send from Bank ABC To Bank XYZ"
               />
             </h3>
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label>
                   <FormattedMessage
@@ -71,6 +77,7 @@ class TransferIn extends Component {
                 <textarea
                   className="form-control"
                   rows="2"
+                  name="addinfo"
                   onChange={this.handleChange}
                 >
                 </textarea>
@@ -164,18 +171,28 @@ class TransferIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    transOutInfo: state.firestore.ordered.TransferOut,
+    transOutInfo: state.firestore.ordered.users,
+    userInfo: state.user.userInfo,
   }
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    transIn: (transferInInfo) => dispatch(transIn(transferInInfo)),
+  }
+}
 /**
  * @see https://stackoverflow.com/questions/53656082/react-redux-firebase-error-using-firestoreconnect-typeerror-undefined-is-not-a
  * firestoreConnect is not compatible with react-redux 6.0.1
  * 
  */
 export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([
-    { collection: 'TransferOut' }
-  ])
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect(props => {
+    return (
+      [
+        { collection: 'users', doc: props.userInfo.email }
+      ]
+    )
+  })
 )(TransferIn);

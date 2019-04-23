@@ -48,3 +48,9 @@ export const setUserInfo = (userInfo) => {
     dispatch({ type: 'SET_USER_ACCOUNT', payload: userInfo })
   };
 }
+
+export const setUserAccountInfo = (accountInfo) => {
+  return dispatch => {
+    dispatch({ type: 'SET_USER_ACCOUNT_INFO', payload: accountInfo });
+  };
+};

@@ -89,9 +89,10 @@ class Landing extends Component {
     this.props.internationalization("de");
   }
   render() {
+    const { locale } = this.props;
     return (
       <div className="container">
-        <div className="row my-5">
+        <div className="row my-5 landing">
           <div className="col-md-6">
             <div className="col-md-12 my-4">
               <div className="text-center">
@@ -116,37 +117,49 @@ class Landing extends Component {
             </div>
             <div className="row mb-3 my-4">
               <div className="col-md-12">
-                {/* <Link to="/openid_connect" className="top-bar">
-                  Logon with SwissID
-                </Link> */}
-                <a
-                  href="https://login.int.swissid.ch/idp/oauth2/authorize?response_type=code&client_id=2d19f-1580c-8f5a2-954c8&scope=openid%20profile&redirect_uri=https%3A%2F%2Fswissid-c228f.firebaseapp.com%2F&nonce=n-0S6_WzA2Mj&state=Q4OrwqgbnR&acr_values=loa-1&ui_locales=de"
-                  className="link-color"
-                >
-                  <FormattedMessage
-                    id="land.logon.swissID"
-                    defaultMessage="Logon with SwissID"
-                  />
-                </a>
-                {/* <button
-                  type="button"
-                  onClick={this.handleLogin}
-                >
-                Logon with SwissID
-                </button> */}
-                <GoogleLogin
-                  clientId="1092212372305-nph9r306vn0dfv10h8ttcrclttgn8hjg.apps.googleusercontent.com"
-                  buttonText={
-                    <FormattedMessage
-                      id="land.login.google"
-                      defaultMessage="Login with Google"
+                <div className="row">
+                  <div className="col-md-6">
+                    <button
+                      type="button"
+                      className="btn btn-default swissid-btn"
+                    >
+                      <a
+                      href="https://login.int.swissid.ch/idp/oauth2/authorize?response_type=code&client_id=2d19f-1580c-8f5a2-954c8&scope=openid%20profile&redirect_uri=https%3A%2F%2Fswissid-c228f.firebaseapp.com%2F&nonce=n-0S6_WzA2Mj&state=Q4OrwqgbnR&acr_values=loa-1&ui_locales=de"
+                      className="swissid-link"
+                      >
+                        <FormattedMessage
+                          id="land.logon.swissID"
+                          defaultMessage="Logon with SwissID"
+                        />
+                      </a>
+                    </button>
+                  </div>
+                  <div className="col-md-6">
+                    <GoogleLogin
+                      clientId="1092212372305-nph9r306vn0dfv10h8ttcrclttgn8hjg.apps.googleusercontent.com"
+                      render={
+                        renderProps => (
+                          <button
+                            onClick={ renderProps.onClick }
+                            disabled={ renderProps.disabled }
+                            className="google-login"
+                          >
+                            <FormattedMessage
+                              id="land.login.google"
+                              defaultMessage="Login with Google"
+                            />
+                          </button>
+                        )
+                      }
+                      onSuccess={ this.handleGoogleLogin }
+                      onFailure={ this.handleGoogleLoginFailure }
+                      cookiePolicy={ "single_host_origin" }
+                      scope="profile openid email"
                     />
-                  }
-                  onSuccess={ this.handleGoogleLogin }
-                  onFailure={ this.handleGoogleLoginFailure }
-                  cookiePolicy={ "single_host_origin" }
-                  scope="profile openid email"
-                />
+                  </div>
+                </div>
+                
+                
               </div>
             </div>
             <div className="row my-1">
@@ -198,13 +211,13 @@ class Landing extends Component {
           </div>
           <div className="col-md-6">
             <button
-              className="btn btn-primary"
+              className={locale === "en" ? "btn btn-primary": "btn btn-default"}
               onClick={this.handleLocaleSetAsEn}
             >
               EN
             </button>
             <button
-              className="btn btn-default"
+              className={locale === "de" ? "btn btn-primary": "btn btn-default"}
               onClick={this.handleLocaleSetAsDe}
             >
               DE
