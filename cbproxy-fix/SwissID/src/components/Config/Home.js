@@ -68,7 +68,7 @@ class Home extends Component {
           <div className="col-md-6 text-center my-4">
             <NavbarTop />
             <Navbar />
-            <CHReceive
+            {/* <CHReceive
               description={
                 <FormattedMessage
                   id="alert.transfer.from"
@@ -76,7 +76,7 @@ class Home extends Component {
                 />
               }
               mode={0}
-            />
+            /> */}
           </div>
         </div>
         <div className="row">
