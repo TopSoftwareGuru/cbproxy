@@ -34,15 +34,7 @@ class Verify extends Component {
         if (vst === "verified") {
           const { accountInfo } = this.props;
           this.props.createAccount(accountInfo);
-          fetch("/api/createaccount", {
-            method: "post",
-            body: JSON.stringify(accountInfo),
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          }).then(result => {
-            this.props.history.push("/home");
-          })
+          this.props.history.push("/home");
         };
       })
   }

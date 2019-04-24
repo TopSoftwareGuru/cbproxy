@@ -9,7 +9,7 @@ import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
 import Verity from './Verify';
 import { LoadingModal } from '../alerts/LoadingModal';
-import { createAccount, verifyActions, saveVerifyInfo } from '../store/actions/accountActions';
+import { saveVerifyInfo } from '../store/actions/accountActions';
 import { activityLogon, setUserAccountInfo } from '../store/actions/actions';
 
 
@@ -17,7 +17,7 @@ class CreateXYZAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      alias: "my ABC account",
+      abc_account: "my ABC account",
       iban_funding_account: "CH33 0078 1015 5036 7150 3",
       funding_account: "Bank ABC",
       loadingmode: false,
@@ -28,7 +28,7 @@ class CreateXYZAccount extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const {
-      alias,
+      abc_account,
       iban_funding_account,
       funding_account
     } = this.state;
@@ -64,7 +64,7 @@ class CreateXYZAccount extends Component {
           iban: "CH33 0078 1015 5036 7150 3",
           currency: "CHF",
           product_cost: "XYZ basic account | CHF 10 per month + additional fee per CHF stored",
-          alias,
+          abc_account,
           iban_funding_account,
           funding_account,
           email,
@@ -180,8 +180,8 @@ class CreateXYZAccount extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    value={ this.state.alias }
-                    name="alias"
+                    value={ this.state.abc_account }
+                    name="abc_account"
                     onChange={this.handleChange}
                   />
                 </div>
@@ -250,7 +250,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createAccount: (accountInfo) => dispatch(createAccount(accountInfo)),
     activityLogon: (logonInfo) => dispatch(activityLogon(logonInfo)),
     saveVerifyInfo: (verifyInfo) => dispatch(saveVerifyInfo(verifyInfo)),
     setUserAccountInfo: (userAccountInfo) => dispatch(setUserAccountInfo(userAccountInfo)),
@@ -260,7 +259,6 @@ const mapDispatchToProps = (dispatch) => {
 
 CreateXYZAccount.propTypes = {
   user: PropTypes.object,
-  createAccount: PropTypes.func,
   activityLogon: PropTypes.func,
   setUserAccountInfo: PropTypes.func,
   saveVerifyInfo: PropTypes.func,

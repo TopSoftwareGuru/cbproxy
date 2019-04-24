@@ -83,7 +83,7 @@ app.post("/api/verify", (req, res) => {
 
 app.post("/api/createaccount", (req, res) => {
   const {
-      alias,
+      abc_account,
       bic,
       currency,
       funding_account,
@@ -94,8 +94,9 @@ app.post("/api/createaccount", (req, res) => {
       name,
   } = req.body;
   created_at = new Date();
+  console.log(abc_account);
   firestore.collection("users").doc(email).set({
-    alias,
+    abc_account,
     bic,
     currency,
     funding_account,

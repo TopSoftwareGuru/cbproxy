@@ -6,7 +6,7 @@ import { FormattedMessage } from "react-intl";
 
 import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
-import { transIn } from '../store/actions/transferActions';
+import { transOut } from '../store/actions/transferActions';
 import QRBill from '../../assets/image/qrbill.png';
 
 /**
@@ -20,11 +20,48 @@ class TransferIn extends Component {
     this.state = {
       amount: 0,
       addinfo: null,
+      abc_acc: null,
+      xyz_acc: null,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
+  componentWillMount() {
+    if (this.props.userEntity) {
+      const {
+        balance,
+        abc_account,
+        iban,
+      } = this.props.userEntity[0];
+      this.setState({
+        abc_acc: abc_account,
+        xyz_acc: iban,
+        balance,
+      });
+    }
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.userEntity !== this.props.userEntity ||
+      nextState.abc_acc !== this.state.abc_acc ||
+      nextState.xyz_acc !== this.state.xyz_acc
+    )
+  }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.userEntity !== this.props.userEntity) {
+      const {
+        balance,
+        abc_account,
+        iban,
+      } = this.props.userEntity[0];
+      this.setState({
+        abc_acc: abc_account,
+        xyz_acc: iban,
+        balance,
+      });
+    }
+  }
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -32,9 +69,12 @@ class TransferIn extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.props.transIn(this.state);
+    const { amount, addinfo } = this.state;
+    this.props.transOut({ amount, addinfo, event: "TI" });
+    this.props.history.push("/home");
   }
   render() {
+    const { abc_acc, xyz_acc } = this.state;
     return (
       <div className="container">
         <div className="row">
@@ -92,7 +132,7 @@ class TransferIn extends Component {
                 <input
                   type="text"
                   className="form-control"
-                  value="Bank ABC&nbsp;|&nbsp;IBAN = CH54 7823 2329 2323 099"
+                  value={`Bank ABC | IBAN = ${abc_acc}`}
                   onChange={this.handleChange}
                   readOnly
                 />
@@ -107,7 +147,7 @@ class TransferIn extends Component {
                 <input
                   type="text"
                   className="form-control"
-                  value="Bank XYZ&nbsp;|&nbsp;IBAN  = CH99 2222 4415 5036 7150 5"
+                  value={`Bank XYZ | IBAN = ${xyz_acc}`}
                   onChange={ this.handleChange }
                   readOnly
                 />
@@ -171,14 +211,14 @@ class TransferIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    transOutInfo: state.firestore.ordered.users,
+    userEntity: state.firestore.ordered.users,
     userInfo: state.user.userInfo,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    transIn: (transferInInfo) => dispatch(transIn(transferInInfo)),
+    transOut: (transInfo) => dispatch(transOut(transInfo)),
   }
 }
 /**

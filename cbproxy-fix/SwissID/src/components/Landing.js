@@ -9,7 +9,6 @@ import { FormattedMessage } from "react-intl";
 
 import { activityLogon } from './store/actions/actions';
 import { internationalization } from './store/actions/intlActions';
-import { userAccount } from './store/actions/accountActions';
 import { setUserInfo } from './store/actions/actions';
 
 
@@ -64,10 +63,10 @@ class Landing extends Component {
       if (item.email === email) return (dup = true);
     });
     if (dup === true) {
-      this.props.activityLogon({
-        logon_time: new Date(),
-        event: "--logon from 123.123.123.123",
-      });
+      // this.props.activityLogon({
+      //   logon_time: new Date(),
+      //   event: "--logon from 123.123.123.123",
+      // });
       this.props.history.push("/home");
     } else {
       this.props.history.push("/new");
@@ -239,7 +238,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     activityLogon:        (logonInfo) => dispatch(activityLogon(logonInfo)),
     internationalization: (locale)    => dispatch(internationalization(locale)),
-    userAccount:          (userInfo)  => dispatch(userAccount(userInfo)),
     setUserInfo:          (userInfo)  => dispatch(setUserInfo(userInfo)),
   }
 }

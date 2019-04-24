@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import Navbar from '../Navbar';
 import NavbarTop from '../NavbarTop';
 import { activityLogon } from '../store/actions/actions';
-import { transferOut } from '../store/actions/transferActions';
+import { transOut } from '../store/actions/transferActions';
 
 const customStyles = {
   content : {
@@ -26,11 +26,13 @@ class TransferOut extends Component {
     super(props);
     this.state = {
       amount: 2000,
-      add_info: "",
-      abc_acc: "CH99 2222 4415 5036 7150 5",
-      xyz_acc: "CH54 7823 2329 2323 099", 
+      addinfo: "",
+      abc_acc: null,
+      xyz_acc: null, 
       transfer_funds: "as soon as possible",
       modalIsOpen: false,
+      balance: null,
+      iban: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,6 +40,46 @@ class TransferOut extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
   };
+  componentWillMount() {
+    if (this.props.userEntity) {
+      const {
+        balance,
+        abc_account,
+        iban,
+      } = this.props.userEntity[0];
+      this.setState({
+        abc_acc: abc_account,
+        xyz_acc: iban,
+        balance,
+      });
+    }
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.userEntity !== this.props.userEntity ||
+      nextState.abc_acc !== this.state.abc_acc ||
+      nextState.xyz_acc !== this.state.xyz_acc ||
+      nextState.modalIsOpen !== this.state.modalIsOpen ||
+      nextState.balance !== this.state.balance ||
+      nextState.iban !== this.state.iban
+    )
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.userEntity !== this.props.userEntity) {
+      const {
+        balance,
+        abc_account,
+        iban,
+        transferout,
+      } = this.props.userEntity[0];
+      this.setState({
+        abc_acc: abc_account,
+        xyz_acc: iban,
+        balance,
+      });
+    }
+  }
   afterOpenModal() {
     this.subtitle.style.color = '#f00';
   }
@@ -57,38 +99,31 @@ class TransferOut extends Component {
     event.preventDefault();
     const {
       amount,
-      add_info,
+      addinfo,
       abc_acc,
       xyz_acc,
       transfer_funds,
+      balance,
     } = this.state;
     const logon_time = new Date();
     
-    if (amount >= 4000) { 
+    if (parseInt(amount, 10) >= balance) { 
       this.setState({ modalIsOpen: true });
     } else {
-      this.props.transferOut({
+      const {
         amount,
-        add_info,
-        transfer_funds,
-        creditor_account: "CH99 2222 4415 5036 7150 5",
-        creditor_agent_bic: "Bank abc",
-        currency: "CHF",
-        debtor_account: "Bank xyz",
-        endtoend_id: "",
-        msg_id: "",
-        msg_type: "pain.001.01",
-        time_created: logon_time,
-      });
-  
-      this.props.activityLogon({
-        event: " -- inbound credit transfer received (pacs.008)",
-        logon_time,
-      })
-      this.props.history.push("/withdraw");
+        addinfo,
+        event
+      } = this.state;
+      this.props.transOut({ amount, addinfo, event: "TO" });
+      this.props.history.push("/home");
     }
   };
-  render() { 
+  render() {
+    const {
+      abc_acc,
+      xyz_acc,
+    } = this.state;
     return ( 
       <div className="container">
         <div className="row">
@@ -131,7 +166,7 @@ class TransferOut extends Component {
                 <textarea
                   className="form-control"
                   rows="2"
-                  name="add_info"
+                  name="addinfo"
                   onChange={this.handleChange}
                 >
                 </textarea>
@@ -146,7 +181,7 @@ class TransferOut extends Component {
                 <input
                   type="text"
                   className="form-control"
-                  value="Bank ABC | IBAN = CH99 2222 4415 5036 7150 5 "
+                  value={`Bank ABC | IBAN = ${abc_acc}`}
                   name="recbank_acc"
                   onChange={this.handleChange}
                   readOnly
@@ -162,7 +197,7 @@ class TransferOut extends Component {
                 <input
                   type="text"
                   className="form-control"
-                  value="Bank XYZ | IBAN = CH54 7823 2329 2323 099"
+                  value={`Bank XYZ | IBAN = ${xyz_acc}`}
                   name="toback_acc"
                   onChange={ this.handleChange }
                   readOnly
@@ -241,25 +276,31 @@ class TransferOut extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    transOutInfo: state.firestore.data,
+    userEntity: state.firestore.ordered.users,
+    userInfo: state.user.userInfo,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    transferOut: (transoutInfo) => dispatch(transferOut(transoutInfo)),
+    transOut: (transInfo) => dispatch(transOut(transInfo)),
     activityLogon: (logonInfo) => dispatch(activityLogon(logonInfo)),
   }
 }
  
 TransferOut.propTypes = {
-  transOutInfo: PropTypes.object,
-  transferOut: PropTypes.func,
+  userEntity: PropTypes.array,
+  userInfo: PropTypes.object,
+  transOut: PropTypes.func,
   activityLogon: PropTypes.func,
 }
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([
-    { collection: 'TransferOut' }
-  ])
+  firestoreConnect(props => {
+    return (
+      [
+        { collection: 'users', doc: props.userInfo.email }
+      ]
+    )
+  })
 )(TransferOut);
