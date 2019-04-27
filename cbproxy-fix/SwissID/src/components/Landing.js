@@ -27,36 +27,25 @@ class Landing extends Component {
 
   componentWillMount() {
     const url = new URL(window.location.href);
+    if (localStorage.getItem("locale") === "en") {
+      this.props.internationalization("en");
+    } else {
+      this.props.internationalization("de"); 
+    }
     const code = url.searchParams.get("code");
     if (code) {
       console.log(code);
       this.setState({ code });
       this.props.history.push("/home");
-
     };
   }
 
   handleLogin() {
-    const webAuth = new auth0.WebAuth({
-      domain: 'dev-ul1d4kde.auth0.com',
-      clientID: 'PZ7AdJ1vLuVhqqtJ6Jy2wSosor75rPeA',
-      redirectUri: 'https://swissid-c228f.firebaseapp.com',
-      responseType: 'code',
-      scope: 'openid email profil phone',
-    });
-    webAuth.authorize();
+
   } 
   handleGoogleLogin(res) {
-    const {
-      email,
-      name,
-    } = res.profileObj;
-
-    this.props.setUserInfo({
-      email,
-      name,
-    });
-    
+    const { email, name } = res.profileObj;
+    this.props.setUserInfo({ email, name });
     const { users } = this.props;
     let dup = false;
     users.forEach(item => {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { FormattedMessage } from "react-intl";
+import CurrencyFormat from 'react-currency-format';
 
 import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
@@ -19,6 +20,7 @@ class TransferIn extends Component {
     super(props);
     this.state = {
       amount: 0,
+      format_amount: null,
       addinfo: null,
       abc_acc: null,
       xyz_acc: null,
@@ -28,11 +30,7 @@ class TransferIn extends Component {
   };
   componentWillMount() {
     if (this.props.userEntity) {
-      const {
-        balance,
-        abc_account,
-        iban,
-      } = this.props.userEntity[0];
+      const { balance, abc_account, iban } = this.props.userEntity[0];
       this.setState({
         abc_acc: abc_account,
         xyz_acc: iban,
@@ -50,11 +48,7 @@ class TransferIn extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.userEntity !== this.props.userEntity) {
-      const {
-        balance,
-        abc_account,
-        iban,
-      } = this.props.userEntity[0];
+      const { balance, abc_account, iban } = this.props.userEntity[0];
       this.setState({
         abc_acc: abc_account,
         xyz_acc: iban,
@@ -65,7 +59,7 @@ class TransferIn extends Component {
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
-    })
+    });
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -99,12 +93,14 @@ class TransferIn extends Component {
                     defaultMessage="Amount [CHF]"
                   />
                 </label>
-                <input
-                  type="number"
+                <CurrencyFormat
                   className="form-control"
-                  pattern='[0-9]{0, 5}'
+                  thousandSeparator={ true }
                   name="amount"
-                  onChange={this.handleChange}
+                  step="0.01"
+                  decimalScale={2}
+                  onValueChange={ valObj => this.setState({amount: parseFloat(valObj.value)}) }
+                  required
                 />
               </div>
               <div className="form-group">

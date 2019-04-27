@@ -12,13 +12,13 @@ class NavbarTop extends Component {
   render() { 
     return ( 
       <div className="container text-center mb-3 navbar-top">
-        <Link to="/" className="link-color">
+        {/* <Link to="/" className="link-color">
           <FormattedMessage
             id="navtop.start"
             defaultMessage="Start"
           />
         </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        &nbsp;&nbsp;|&nbsp;&nbsp; */}
         <Link to="#" className="link-color">
           <strong>
             <FormattedMessage

@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { FormattedMessage } from 'react-intl';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
+import CurrencyFormat from 'react-currency-format';
 
 import Navbar from '../Navbar';
 import NavbarTop from '../NavbarTop';
@@ -42,16 +43,8 @@ class TransferOut extends Component {
   };
   componentWillMount() {
     if (this.props.userEntity) {
-      const {
-        balance,
-        abc_account,
-        iban,
-      } = this.props.userEntity[0];
-      this.setState({
-        abc_acc: abc_account,
-        xyz_acc: iban,
-        balance,
-      });
+      const { balance, abc_account, iban } = this.props.userEntity[0];
+      this.setState({ abc_acc: abc_account, xyz_acc: iban, balance });
     }
   }
   shouldComponentUpdate(nextProps, nextState) {
@@ -73,11 +66,7 @@ class TransferOut extends Component {
         iban,
         transferout,
       } = this.props.userEntity[0];
-      this.setState({
-        abc_acc: abc_account,
-        xyz_acc: iban,
-        balance,
-      });
+      this.setState({ abc_acc: abc_account, xyz_acc: iban, balance });
     }
   }
   afterOpenModal() {
@@ -107,13 +96,12 @@ class TransferOut extends Component {
     } = this.state;
     const logon_time = new Date();
     
-    if (parseInt(amount, 10) >= balance) { 
+    if (parseFloat(amount, 10.00) > balance) { 
       this.setState({ modalIsOpen: true });
     } else {
       const {
         amount,
         addinfo,
-        event
       } = this.state;
       this.props.transOut({ amount, addinfo, event: "TO" });
       this.props.history.push("/home");
@@ -148,12 +136,14 @@ class TransferOut extends Component {
                     defaultMessage="Amount [CHF]"
                   />
                 </label>
-                <input
-                  type="number"
+                <CurrencyFormat
                   className="form-control"
-                  pattern='[0-9]{0, 5}'
+                  thousandSeparator={ true }
                   name="amount"
-                  onChange={this.handleChange}
+                  step="0.01"
+                  decimalScale={2}
+                  onValueChange={ valObj => this.setState({amount: parseFloat(valObj.value)}) }
+                  required
                 />
               </div>
               <div className="form-group">

@@ -41,7 +41,7 @@ class Navbar extends Component {
           />
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="#" className="link-color">
+        <Link to="/" className="link-color" onClick={()=>localStorage.removeItem("accessToken")}>
           <FormattedMessage
             id="navtop.logout"
             defaultMessage="Logout"

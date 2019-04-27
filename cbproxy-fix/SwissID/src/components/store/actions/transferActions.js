@@ -28,15 +28,12 @@ export const transOut = (transferInfo) => {
         let { activities, balance } = doc.data();
         if (event === "TI" ) {
           activities.push({ event: "TI", time: eventTime, amount, addinfo });
-          balance += parseInt(amount);
+          balance += parseFloat(amount, 10.00);
         } else {
           activities.push({ event: "TO", time: eventTime, amount, addinfo });
-          balance -= parseInt(amount);
+          balance -= parseFloat(amount);
         }
-        db.update({
-          activities,
-          balance,
-        })
+        db.update({ activities, balance });
       });
   }
 };

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Landing from "./Landing";
-import Crypto from "./Crypto";
 import Config from './Config/Config';
 import Home from './Config/Home';
 import CreateXYZAccount from './Config/CreateXYZAccount';
@@ -52,7 +51,6 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/" exact component={Landing} />
-            <Route path="/crypto" exact component={ Crypto } />
             <Route path="/config" exact component={ Config } />
             <Route path="/home" exact component={ Home } />
             <Route path="/new" exact component={ CreateXYZAccount } />
