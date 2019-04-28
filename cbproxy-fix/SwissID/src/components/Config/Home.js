@@ -17,22 +17,13 @@ class Home extends Component {
       name: null,
       abc_account: null,
       xyz_account: null,
+      account_status: null,
     }
   }
   componentWillMount() {
     if (this.props.userEntity) {
-      const {
-        balance,
-        name,
-        abc_account,
-        iban,
-      } = this.props.userEntity[0];
-      this.setState({
-        balance,
-        name,
-        abc_account,
-        xyz_account: iban,
-      })
+      const { balance, name, abc_account, iban } = this.props.userEntity[0];
+      this.setState({ balance, name, abc_account, xyz_account: iban });
     }
   }
   shouldComponentUpdate(nextProps, nextState) {
@@ -41,7 +32,8 @@ class Home extends Component {
       nextState.balance !== this.state.balance ||
       nextState.name !== this.state.name ||
       nextState.abc_account !== this.state.abc_account ||
-      nextState.xyz_account !== this.state.xyz_account
+      nextState.xyz_account !== this.state.xyz_account ||
+      nextState.account_status !== this.state.account_status
     )
   }
   componentDidUpdate(prevProps) {
@@ -51,17 +43,17 @@ class Home extends Component {
         name,
         abc_account,
         iban,
-      } = this.props.userEntity[0];
+        account_status } = this.props.userEntity[0];
       this.setState({
         balance,
-        name,
-        abc_account,
+        name, abc_account,
         xyz_account: iban,
-      })
+        account_status
+      });
     }
   }
   render() { 
-    const { balance, name, abc_account, xyz_account } = this.state;
+    const { balance, name, abc_account, xyz_account, account_status } = this.state;
     return ( 
       <div className="container">
         <div className="row">
@@ -85,6 +77,7 @@ class Home extends Component {
             <p>Bank&nbsp;ABC&nbsp;|&nbsp;IBAN&nbsp;{ abc_account }</p>
             <p>Bank&nbsp;ABC&nbsp;|&nbsp;IBAN&nbsp;{ xyz_account }</p>
             <p>name:&nbsp;{ name }</p>
+            <p>Account Statement&nbsp;{ account_status }</p>
             <h4>
               <FormattedMessage
                 id="home.balance"

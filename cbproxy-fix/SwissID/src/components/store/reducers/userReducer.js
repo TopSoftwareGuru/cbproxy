@@ -19,6 +19,8 @@ const userReducer = (state = initialState, action) => {
       return state;
     case 'ACCOUNT_CREATED_ERROR':
       return state;
+    case 'ACCOUNT_INACTIVE':
+      return Object.assign({}, state, { account_status: "inactive" });
     case 'SET_VERIFY_INFO':
       console.log("set verify info", action.payload);
       return state;

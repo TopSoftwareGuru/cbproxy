@@ -27,15 +27,8 @@ class CreateXYZAccount extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const {
-      abc_account,
-      iban_funding_account,
-      funding_account
-    } = this.state;
-    const {
-      email,
-      name
-    } = this.props.user;
+    const { abc_account, iban_funding_account, funding_account } = this.state;
+    const { email, name } = this.props.user;
     
     const d = new Date();
     const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
@@ -47,9 +40,7 @@ class CreateXYZAccount extends Component {
     // });
     // this.props.history.push("/activities");
     // this.props.history.push("/verify");
-    this.setState({
-      loadingmode: true,
-    })
+    this.setState({ loadingmode: true })
     fetch("https://swissid-c228f.firebaseapp.com/api/send", {
       method: "post",
       body: JSON.stringify({ email }),
@@ -63,6 +54,7 @@ class CreateXYZAccount extends Component {
           bic: "XYZCH89",
           iban: "CH33 0078 1015 5036 7150 3",
           currency: "CHF",
+          account_status: "active",
           product_cost: "XYZ basic account | CHF 10 per month + additional fee per CHF stored",
           abc_account,
           iban_funding_account,
@@ -71,10 +63,8 @@ class CreateXYZAccount extends Component {
           name,
           time_created,
         });
-        this.props.saveVerifyInfo({ messageId, ip });
-        this.setState({
-          loadingmode: false,
-        })
+        this.props.saveVerifyInfo({ messageId });
+        this.setState({ loadingmode: false })
         this.props.history.push("/verify");
       })
   }

@@ -27,8 +27,14 @@ class DeactivateModal extends Component {
             <div className="row btn-row text-center">
               <button
                 type="button"
-                className="btn btn-warning btn-cancel"
+                className="btn btn-primary btn-delete"
                 onClick={ this.props.onClose }>
+                Close
+              </button>
+              <button
+                type="button"
+                className="btn btn-warning btn-cancel"
+                onClick={ this.props.deActive }>
                 I&nbsp;understand
               </button>
             </div>

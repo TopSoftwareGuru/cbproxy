@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
-import Modal from 'react-modal';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
+import { deactivateAccount } from '../store/actions/accountActions';
 import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
 import CHReceive from '../alerts/CHReceive';
@@ -14,17 +16,43 @@ class UserProfile extends Component {
     this.state = {
       isOpen: false,
       isDeactOpen: false,
+      deactiveBtn: false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSuspend = this.handleSuspend.bind(this);
     this.handleDeactivate = this.handleDeactivate.bind(this);
   }
+  componentWillMount() {
+    const { account_status } = this.props.userEntity[0];
+    account_status === "inactive" ?
+      this.setState({ deactiveBtn: true })
+      :
+      this.setState({ deactiveBtn: false });
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.userEntity[0].account_status !== this.props.userEntity[0].account_status ||
+      nextState.account_status !== this.state.account_status ||
+      nextState.isOpen !== this.state.isOpen ||
+      nextState.isDeactOpen !== this.state.isDeactOpen ||
+      nextState.deactiveBtn !== this.state.deactiveBtn
+    )
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.userEntity[0].account_status === "inactive") {
+      this.setState({ deactiveBtn: true });
+    }
+  }
   handleSuspend() {
     this.setState({ isOpen: !this.state.isOpen });
   }
   handleDeactivate() {
-    this.setState({ isDeactOpen: !this.state.isDeactOpen });
+    this.setState({
+      isDeactOpen: !this.state.isDeactOpen,
+      deactiveBtn: true,
+    });
+    this.props.deactivateAccount();
   }
   handleChange(event) {
     this.setState({
@@ -318,16 +346,31 @@ class UserProfile extends Component {
                   />
                 </button>
                   &nbsp;&nbsp;
-                <button
-                  type="button"
-                  className="btn-default account-save-changes"
-                  onClick={this.handleDeactivate}
-                >
-                  <FormattedMessage
-                    id="profile.deactivate"
-                    defaultMessage="De-activate Account"
-                  />
-                </button>
+                  { this.state.deactiveBtn ? (
+                    <button
+                      type="button"
+                      className="btn-default account-save-changes"
+                      onClick={ this.handleDeactivate }
+                      disabled
+                    >
+                      <FormattedMessage
+                        id="profile.deactivate"
+                        defaultMessage="De-activate Account"
+                      />
+                    </button>
+                  ): (
+                    <button
+                      type="button"
+                      className="btn-default account-save-changes"
+                      onClick={ this.handleDeactivate }
+                    >
+                      <FormattedMessage
+                        id="profile.deactivate"
+                        defaultMessage="De-activate Account"
+                      />
+                    </button>
+                    )
+                  }
               </div>
               <CustomModal
                 show={ this.state.isOpen }
@@ -337,7 +380,7 @@ class UserProfile extends Component {
               </CustomModal>
               <DeactivateModal
                 show={ this.state.isDeactOpen }
-                onClose={ this.handleDeactivate }
+                deActive={ this.handleDeactivate }
               >
                  Proceed with caution. If you de-activate your account, it is not possible to re-activate it later on. You will have to create a new account.
               </DeactivateModal>
@@ -366,5 +409,18 @@ class UserProfile extends Component {
      );
   }
 }
- 
-export default UserProfile;
+
+const mapStateToProps = (state) => {
+  return {
+    userEntity: state.firestore.ordered.users,
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deactivateAccount: () => dispatch(deactivateAccount()),
+  }
+}
+UserProfile.propTypes = {
+  deactivateAccount: PropTypes.func.isRequired,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

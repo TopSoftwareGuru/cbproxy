@@ -101,3 +101,31 @@
 .navbar-top .link-color {
   color: #337ab7; }
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-Color: rgba(0, 0, 0, 0.3);
+  padding: 50; }
+  .backdrop .modal-style {
+    display: block;
+    background-color: #fff;
+    border-radius: 5px;
+    max-width: 30%;
+    margin: 20% auto;
+    padding: 30; }
+  .backdrop .delete-title {
+    font-size: 30px;
+    padding-top: 5%; }
+  .backdrop .delete-warning {
+    padding-top: 5%;
+    margin: auto; }
+  .backdrop .btn-row {
+    margin-top: 5%;
+    padding-bottom: 5%; }
+    .backdrop .btn-row .btn-cancel, .backdrop .btn-row .btn-delete {
+      font-weight: bold;
+      margin: auto; }
+

@@ -10,6 +10,7 @@ export const createAccount = (accountInfo) => {
 
     const {
       abc_account,
+      account_status,
       bic,
       currency,
       funding_account,
@@ -20,9 +21,11 @@ export const createAccount = (accountInfo) => {
       name,
       time_created,
     } = accountInfo;
-    
+
     firestore.collection('users').doc(email).set({
       abc_account,
+      activities:[],
+      account_status,
       bic,
       currency,
       funding_account,
@@ -35,9 +38,6 @@ export const createAccount = (accountInfo) => {
       trans_amount_out: 0,
       trans_amount_in: 0,
       time_created,
-      transferout: [],
-      transferin: [],
-      activities: [],
     }).then(() => {
       const db = firestore.collection("users").doc(state.user.userInfo.email)
       db.get()
@@ -50,6 +50,20 @@ export const createAccount = (accountInfo) => {
     }).catch((err) => {
       dispatch({ type: 'ACCOUNT_CREATE_ERROR', err });
     })
+  }
+}
+export const deactivateAccount = () => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    const state = getState();
+    const db = firestore.collection("users").doc(state.user.userInfo.email)
+    db.update({ account_status: "inactive" })
+      .then(() => {
+        dispatch({ type: 'ACCOUNT_INACTIVE' });
+      })
+      .catch(err => {
+        dispatch({ type: 'ACCOUNT_INACTIVE_FAILED', err });
+      });
   }
 }
 export const saveVerifyInfo = (verifyInfo) => {
