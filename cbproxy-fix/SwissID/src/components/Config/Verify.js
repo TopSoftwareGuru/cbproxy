@@ -30,7 +30,7 @@ class Verify extends Component {
       }
     }).then(result => result.json())
       .then(res => {
-        const { vst } = res;
+        const { vst, ip } = res;
         if (vst === "verified") {
           const { accountInfo } = this.props;
           this.props.createAccount(accountInfo);

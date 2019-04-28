@@ -146,8 +146,6 @@ class Landing extends Component {
                     />
                   </div>
                 </div>
-                
-                
               </div>
             </div>
             <div className="row my-1">

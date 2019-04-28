@@ -71,7 +71,7 @@ class CreateXYZAccount extends Component {
           name,
           time_created,
         });
-        this.props.saveVerifyInfo({ messageId });
+        this.props.saveVerifyInfo({ messageId, ip });
         this.setState({
           loadingmode: false,
         })

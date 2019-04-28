@@ -4,6 +4,7 @@ const Firestore = require('@google-cloud/firestore');
 const express = require('express');
 const path = require('path');
 const http = require('http');
+const requestIp = require("request-ip");
 const nodemailer = require('nodemailer');
 const uuidv1 = require('uuid/v1');
 const cors = require('cors');
@@ -53,7 +54,6 @@ app.post("/api/send", (req, res) => {
           document.set({
               id,
           }).then(() => {
-            console.log(info.messageId);
             const messageId = { messageId: info.messageId };
             res.status(200).send(messageId);
           })
@@ -66,6 +66,7 @@ app.post("/api/verify", (req, res) => {
     verifyCode,
     messageId,
   } = req.body;
+
   firestore.collection('verify').doc(`${messageId}`).get()
     .then(doc => {
       if (doc.exists) {
@@ -94,7 +95,6 @@ app.post("/api/createaccount", (req, res) => {
       name,
   } = req.body;
   created_at = new Date();
-  console.log(abc_account);
   firestore.collection("users").doc(email).set({
     abc_account,
     bic,

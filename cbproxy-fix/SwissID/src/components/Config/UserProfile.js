@@ -1,23 +1,36 @@
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
+import Modal from 'react-modal';
+
 import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
 import CHReceive from '../alerts/CHReceive';
-import { FormattedMessage } from 'react-intl';
+import CustomModal from '../alerts/CustomModal';
+import DeactivateModal from '../alerts/DeactivateModal';
 
 class UserProfile extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      isOpen: false,
+      isDeactOpen: false,
+    }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSuspend = this.handleSuspend.bind(this);
+    this.handleDeactivate = this.handleDeactivate.bind(this);
   }
-
+  handleSuspend() {
+    this.setState({ isOpen: !this.state.isOpen });
+  }
+  handleDeactivate() {
+    this.setState({ isDeactOpen: !this.state.isDeactOpen });
+  }
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
   };
-
   handleSubmit(event) {
 
   }
@@ -297,16 +310,18 @@ class UserProfile extends Component {
                 <button
                   type="button"
                   className="btn-default account-cancel"
+                  onClick={this.handleSuspend}
                 >
                   <FormattedMessage
-                    id="profile.cancel"
-                    defaultMessage="Canel"
+                    id="profile.suspend"
+                    defaultMessage="Suspend"
                   />
                 </button>
                   &nbsp;&nbsp;
                 <button
-                  type="submit"
+                  type="button"
                   className="btn-default account-save-changes"
+                  onClick={this.handleDeactivate}
                 >
                   <FormattedMessage
                     id="profile.deactivate"
@@ -314,6 +329,18 @@ class UserProfile extends Component {
                   />
                 </button>
               </div>
+              <CustomModal
+                show={ this.state.isOpen }
+                onClose={ this.handleSuspend }
+              >
+                Not implemented yet
+              </CustomModal>
+              <DeactivateModal
+                show={ this.state.isDeactOpen }
+                onClose={ this.handleDeactivate }
+              >
+                 Proceed with caution. If you de-activate your account, it is not possible to re-activate it later on. You will have to create a new account.
+              </DeactivateModal>
             </form>
             <p className="close-account">
               <FormattedMessage

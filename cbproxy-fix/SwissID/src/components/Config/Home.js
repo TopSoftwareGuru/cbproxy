@@ -91,7 +91,8 @@ class Home extends Component {
                 defaultMessage="Your Balance at Bank XYZ:"
               />
             </h4>
-            <h3>CHF { new Intl.NumberFormat('en-GB').format(balance) }</h3>
+            {/* <h3>CHF { new Intl.NumberFormat('en-GB').format(balance) }</h3> */ }
+            <h3>CHF { parseFloat(balance).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h3>
             <Link to="#" className="link-color">
               <FormattedMessage
                 id="home.transfer.history"

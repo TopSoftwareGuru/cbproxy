@@ -15,28 +15,32 @@ class Activities extends Component {
       activities: null,
     }
     this.handleChange = this.handleChange.bind(this);
+    this.getStyledCurrency = this.getStyledCurrency.bind(this);
   } 
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      nextProps.users !== this.props.users ||
+      nextProps.userEntity !== this.props.userEntity ||
       nextState.activities !== this.state.activities
     )
   }
 
   componentDidUpdate(prevProps) {
-
-    if (prevProps.users !== this.props.users) {
-      const { activities } = this.props.users[0];
-      this.setState({
-        activities,
-      });
+    if (prevProps.userEntity !== this.props.userEntity) {
+      const { activities } = this.props.userEntity[0];
+      this.setState({ activities });
     }
   }
   handleChange(event) {
 
   }
+  getStyledCurrency(event, value) {
+    console.log(typeof (value), value);
+    let fixedVal = parseFloat(value).toFixed(2);
+    return fixedVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
   render() { 
+    const { activities } = this.props.userEntity[0];
     return ( 
       <div className="container">
         <div className="row">
@@ -96,7 +100,7 @@ class Activities extends Component {
               </label>
             </div>
             <div>
-              <ul className="list-group">
+              {/* <ul className="list-group">
                 {
                   this.state.activities && (
                     this.state.activities.map((item, index) => {
@@ -113,7 +117,40 @@ class Activities extends Component {
                     })
                   )
                 }
-              </ul>
+              </ul> */}
+              <table className="table table-gray">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    activities.map((item, key) => {
+                      return (
+                        <tr key={key}>
+                          <th scope="row">{ key+1 }</th>
+                          <td>
+                            { item.event === "TI" && `Inbound credit transfer received: 
+                              ${parseFloat(item.amount).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} CHF`
+                            }
+                            { item.event === "TO" && `Outbound Debtor transfer sent: 
+                              ${parseFloat(item.amount).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} CHF`
+                            }
+                            { item.event === "LOGIN" && `Logon from ${item.ip}` }
+                            { item.event === "ACCOUNT" && `Account created` }
+                          </td>
+                          <td>
+                            { moment(item.time).format("MMM Do YYYY, h:mm:ss a") }
+                          </td>
+                        </tr>
+                      )
+                    })
+                  }
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -121,10 +158,10 @@ class Activities extends Component {
      );
   }
 }
- 
+
 const mapStateToProps = (state) => {
   return {
-    users: state.firestore.ordered.users,
+    userEntity: state.firestore.ordered.users,
     userInfo: state.user.userInfo,
   }
 }
@@ -136,7 +173,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 Activities.propTypes = {
-  users: PropTypes.array,
+  userEntity: PropTypes.array,
   userInfo: PropTypes.object,
 }
 

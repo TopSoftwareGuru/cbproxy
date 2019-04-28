@@ -1,6 +1,13 @@
 export const createAccount = (accountInfo) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
+    const state = getState();
+
+    const d = new Date();
+    const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+    const nd = new Date(utc + (3600000 * '+2'));
+    const eventTime = nd.toLocaleString();
+
     const {
       abc_account,
       bic,
@@ -13,6 +20,7 @@ export const createAccount = (accountInfo) => {
       name,
       time_created,
     } = accountInfo;
+    
     firestore.collection('users').doc(email).set({
       abc_account,
       bic,
@@ -31,6 +39,13 @@ export const createAccount = (accountInfo) => {
       transferin: [],
       activities: [],
     }).then(() => {
+      const db = firestore.collection("users").doc(state.user.userInfo.email)
+      db.get()
+        .then(doc => {
+          let { activities, balance } = doc.data();
+          activities.push({ event: "ACCOUNT", time: eventTime });
+          db.update({ activities, balance });
+        });
       dispatch({ type: 'ACCOUNT_CREATED', accountInfo });
     }).catch((err) => {
       dispatch({ type: 'ACCOUNT_CREATE_ERROR', err });
