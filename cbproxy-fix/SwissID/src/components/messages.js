@@ -78,10 +78,10 @@ export default {
     'transin.qr.code': 'Scan this QR Code with your bank\'s mobile app',
     'transin.user.interface': 'I\'ve used Bank ABC\'s user interface to do this',
 
-    'home.balance': 'Your Balance at Bank XYZ:',
-    'home.transfer.history': 'Transfer History',
-    'home.balance.history': 'Balance History',
-    'home.fees': 'Fees',
+    'home.balance': 'Your Balance at SNB Proxy:',
+    'home.transfer.history': '',
+    'home.balance.history': '',
+    'home.fees': '',
 
     'profile.account.details': 'Account Details',
     'profile.chf.account': 'CHF Account at XYZ',
