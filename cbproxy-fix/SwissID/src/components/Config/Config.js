@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import Navbar from '../Navbar';
-import NavbarTop from '../NavbarTop';
 import CHReceive from '../alerts/CHReceive';
 import { FormattedMessage } from 'react-intl';
 
@@ -20,7 +19,6 @@ class Config extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6 config-leftpane my-4">
-            <NavbarTop />
             <Navbar />
             <CHReceive mode={1} description={`Logged on as admin user proceed with caution.`} />
             <form className="App-reference">

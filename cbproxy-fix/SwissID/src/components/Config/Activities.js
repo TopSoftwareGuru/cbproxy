@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
 
 class Activities extends Component {
@@ -45,7 +44,6 @@ class Activities extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6 my-4">
-            <NavbarTop />
             <Navbar />
           </div>
         </div>
@@ -78,7 +76,7 @@ class Activities extends Component {
                   checked
                   onChange={this.handleChange}
                 />
-                Transfers&nbsp;
+                CHF Received&nbsp;
               </label>
               <label className="form-check-label">
                 <input
@@ -87,38 +85,11 @@ class Activities extends Component {
                   checked
                   onChange={this.handleChange}
                 />
-                Notifications&nbsp;
-              </label>
-              <label className="form-check-label">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  checked
-                  onChange={this.handleChange}
-                />
-                Problems&nbsp;
+                CHF Sent&nbsp;
               </label>
             </div>
             <div>
-              {/* <ul className="list-group">
-                {
-                  this.state.activities && (
-                    this.state.activities.map((item, index) => {
-                      return (
-                        <li className="list-group-item" key={ index }>
-                          { moment.unix(item.logon_time.seconds).format("MMM Do YYYY h:mm:ss") }
-                          &nbsp;
-                          {
-                            item.event
-                          }
-                          <a href="#" className="link-color">details</a>
-                        </li>
-                      )
-                    })
-                  )
-                }
-              </ul> */}
-              <table className="table table-gray">
+              <table className="table table-gray table-activities">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -139,7 +110,8 @@ class Activities extends Component {
                             { item.event === "TO" && `Outbound Debtor transfer sent: 
                               ${parseFloat(item.amount).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} CHF`
                             }
-                            { item.event === "LOGIN" && `Logon from ${item.ip}` }
+                            { item.event === "LOGON" && `Logon from ${item.ip}` }
+                            { item.event === "LOGOUT" && `Logout` }
                             { item.event === "ACCOUNT" && `Account created` }
                           </td>
                           <td>

@@ -5,8 +5,6 @@ import { compose } from 'redux';
 import { firebaseConnect } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 
-import NavbarTop from '../NavbarTop';
-import Navbar from '../Navbar';
 import Verity from './Verify';
 import { LoadingModal } from '../alerts/LoadingModal';
 import { saveVerifyInfo } from '../store/actions/accountActions';
@@ -79,8 +77,6 @@ class CreateXYZAccount extends Component {
       <div className="container">
         <div className="row my-4">
           <div className="col-md-6">
-            {/* <NavbarTop />
-            <Navbar /> */}
           </div>
         </div>
         <div className="row">

@@ -28,6 +28,9 @@ const userReducer = (state = initialState, action) => {
       return Object.assign({}, state, { accountInfo: action.payload });
     case 'SET_USER_MESSAGEID':
       return Object.assign({}, state, { messageId: action.payload.messageId });
+    case 'LOGON':
+      return state;
+    case 'LOGON_ERROR':
     default:
       return state;
   }

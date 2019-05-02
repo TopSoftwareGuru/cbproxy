@@ -24,7 +24,6 @@ class Landing extends Component {
       code: null,
     }
   };
-
   componentWillMount() {
     const url = new URL(window.location.href);
     if (localStorage.getItem("locale") === "en") {
@@ -36,7 +35,17 @@ class Landing extends Component {
     if (code) {
       console.log(code);
       this.setState({ code });
-      this.props.history.push("/home");
+      fetch("/api/accesstoken", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ code }),
+      }).then(result => {
+        console.log("result", result);
+      }).catch(err => {
+        console.log("error", err);
+      })
     };
   }
 
@@ -52,10 +61,7 @@ class Landing extends Component {
       if (item.email === email) return (dup = true);
     });
     if (dup === true) {
-      // this.props.activityLogon({
-      //   logon_time: new Date(),
-      //   event: "--logon from 123.123.123.123",
-      // });
+      this.props.activityLogon();
       this.props.history.push("/home");
     } else {
       this.props.history.push("/new");
@@ -83,15 +89,6 @@ class Landing extends Component {
         <div className="row my-5 landing">
           <div className="col-md-6">
             <div className="col-md-12 my-4">
-              <div className="text-center">
-                {/* <Link to="/" className="top-bar">
-                  Start
-                </Link>
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-                <Link to="/" className="top-bar">
-                  <strong>Next</strong>
-                </Link> */}
-              </div>
             </div>
             <div className="row my-3">
               <div className="col-md-12">

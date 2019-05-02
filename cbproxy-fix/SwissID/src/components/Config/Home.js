@@ -6,7 +6,6 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
 import Navbar from '../Navbar';
-import NavbarTop from '../NavbarTop';
 import CHReceive from '../alerts/CHReceive';
 
 class Home extends Component {
@@ -43,7 +42,8 @@ class Home extends Component {
         name,
         abc_account,
         iban,
-        account_status } = this.props.userEntity[0];
+        account_status
+      } = this.props.userEntity[0];
       this.setState({
         balance,
         name, abc_account,
@@ -58,7 +58,6 @@ class Home extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6 text-center my-4">
-            <NavbarTop />
             <Navbar />
             {/* <CHReceive
               description={
@@ -74,10 +73,11 @@ class Home extends Component {
         <div className="row">
           <div className="col-md-6 my-4">
             <h3>User Information</h3>
-            <p>Bank&nbsp;ABC&nbsp;|&nbsp;IBAN&nbsp;{ abc_account }</p>
-            <p>Bank&nbsp;ABC&nbsp;|&nbsp;IBAN&nbsp;{ xyz_account }</p>
+            <p>
+              B1ank&nbsp;ABC&nbsp;|&nbsp;IBAN&nbsp;{ abc_account }&nbsp;|&nbsp;IBAN&nbsp;{ xyz_account }
+            </p>
             <p>name:&nbsp;{ name }</p>
-            <p>Account Statement&nbsp;{ account_status }</p>
+            {/* <p>Account Statement&nbsp;{ account_status }</p> */}
             <h4>
               <FormattedMessage
                 id="home.balance"
@@ -86,7 +86,7 @@ class Home extends Component {
             </h4>
             {/* <h3>CHF { new Intl.NumberFormat('en-GB').format(balance) }</h3> */ }
             <h3>CHF { parseFloat(balance).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h3>
-            <Link to="#" className="link-color">
+            {/* <Link to="#" className="link-color">
               <FormattedMessage
                 id="home.transfer.history"
                 defaultMessage="Transfer History"
@@ -105,7 +105,7 @@ class Home extends Component {
                 id="home.fees"
                 defaultMessage="Fees"
               />
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

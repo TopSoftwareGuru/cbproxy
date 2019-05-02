@@ -21,25 +21,15 @@ export const transOut = (transOutInfo) => {
   }
 };
 
-export const activityLogon = (loginInfo) => {
+export const activityLogon = () => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firestore = getFirestore();
     const state = getState();
-
-    const db = firestore.collection('users').doc(state.user.userInfo.email)
-    db.get()
-      .then((doc) => {
-        let { activities } = doc.data();
-        activities.push({
-          logon_time: loginInfo.logon_time,
-          event: loginInfo.event,
-        });
-        db.update({
-          activities
-        })
-          .then(() => { dispatch({ type: 'ACTIVITY_UPDATED' }) })
-          .catch(err => dispatch({ type: 'ACTIVITY_UPDATED_ERROR', err }));
-      });
+    fetch("/api/login", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({email: state.user.userInfo.email}),
+    }).then(() => dispatch({ type: 'LOGON' }))
+      .catch(err => dispatch({ type: 'LOGON_ERR', err }))
   }
 };
 

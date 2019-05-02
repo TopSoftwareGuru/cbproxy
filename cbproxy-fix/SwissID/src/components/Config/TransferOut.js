@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import CurrencyFormat from 'react-currency-format';
 
 import Navbar from '../Navbar';
-import NavbarTop from '../NavbarTop';
 import { activityLogon } from '../store/actions/actions';
 import { transOut } from '../store/actions/transferActions';
 
@@ -116,7 +115,6 @@ class TransferOut extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6 my-4">
-            <NavbarTop />
             <Navbar />
           </div>
         </div>

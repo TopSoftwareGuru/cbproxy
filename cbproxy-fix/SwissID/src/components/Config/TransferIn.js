@@ -5,7 +5,6 @@ import { compose } from 'redux';
 import { FormattedMessage } from "react-intl";
 import CurrencyFormat from 'react-currency-format';
 
-import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
 import { transOut } from '../store/actions/transferActions';
 import QRBill from '../../assets/image/qrbill.png';
@@ -73,7 +72,6 @@ class TransferIn extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6 my-4">
-            <NavbarTop />
             <Navbar />
           </div>
         </div>

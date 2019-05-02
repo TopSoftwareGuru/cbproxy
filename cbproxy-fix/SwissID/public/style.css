@@ -129,3 +129,8 @@
       font-weight: bold;
       margin: auto; }
 
+.table-activities {
+  max-height: 400px;
+  position: relative;
+  overflow: auto; }
+

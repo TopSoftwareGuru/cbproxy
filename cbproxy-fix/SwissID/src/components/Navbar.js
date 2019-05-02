@@ -41,7 +41,24 @@ class Navbar extends Component {
           />
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="/" className="link-color" onClick={()=>localStorage.removeItem("accessToken")}>
+        <Link to="/config" className="link-color">
+          <FormattedMessage
+            id="navtop.config"
+            defaultMessage="Config"
+          />
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="/profile" className="link-color">
+          <FormattedMessage
+            id="navtop.profile"
+            defaultMessage="Profile"
+          />
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link
+          to="/"
+          className="link-color"
+          onClick={ () => localStorage.removeItem("accessToken") }>
           <FormattedMessage
             id="navtop.logout"
             defaultMessage="Logout"

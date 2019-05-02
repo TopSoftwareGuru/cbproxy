@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { deactivateAccount } from '../store/actions/accountActions';
-import NavbarTop from '../NavbarTop';
 import Navbar from '../Navbar';
 import CHReceive from '../alerts/CHReceive';
 import CustomModal from '../alerts/CustomModal';
@@ -67,7 +66,6 @@ class UserProfile extends Component {
       <div className="container">
         <div className="row my-4">
           <div className="col-md-6">
-            <NavbarTop />
             <Navbar />
             <CHReceive
               description={
