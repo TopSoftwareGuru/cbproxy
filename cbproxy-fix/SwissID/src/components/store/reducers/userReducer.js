@@ -3,6 +3,7 @@ const initialState = {
   userInfo: {
     email: "",
     name: "",
+    isAuthenticated: false,
   },
 }
 const userReducer = (state = initialState, action) => {
@@ -29,8 +30,13 @@ const userReducer = (state = initialState, action) => {
     case 'SET_USER_MESSAGEID':
       return Object.assign({}, state, { messageId: action.payload.messageId });
     case 'LOGON':
-      return state;
+      return Object.assign({}, state, { isAuthenticated: true });
     case 'LOGON_ERROR':
+      return state;
+    case 'USER_LOGOUT':
+      return state;
+    case 'USER_LOGOUT_ERROR':
+      return state;
     default:
       return state;
   }

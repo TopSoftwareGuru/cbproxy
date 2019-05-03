@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import auth0 from 'auth0-js';
 import { connect } from "react-redux";
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -24,6 +22,16 @@ class Landing extends Component {
       code: null,
     }
   };
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.userInfo.isAuthenticated !== this.props.userInfo.isAuthenticated
+    )
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.userInfo.isAuthenticated === true) {
+      this.props.history.push("/home");
+    }
+  }
   componentWillMount() {
     const url = new URL(window.location.href);
     if (localStorage.getItem("locale") === "en") {
@@ -54,7 +62,8 @@ class Landing extends Component {
   } 
   handleGoogleLogin(res) {
     const { email, name } = res.profileObj;
-    this.props.setUserInfo({ email, name });
+    const isAuthenticated = true;
+    this.props.setUserInfo({ email, name, isAuthenticated });
     const { users } = this.props;
     let dup = false;
     users.forEach(item => {
@@ -62,7 +71,6 @@ class Landing extends Component {
     });
     if (dup === true) {
       this.props.activityLogon();
-      this.props.history.push("/home");
     } else {
       this.props.history.push("/new");
     }
@@ -72,7 +80,7 @@ class Landing extends Component {
     
   }
   handleGoogleLoginFailure(res) {
-
+    
   }
 
   handleLocaleSetAsEn() {
@@ -216,6 +224,7 @@ const mapStateToProps = (state) => {
   return {
     locale: state.intl.locale,
     users: state.firestore.ordered.users,
+    userInfo: state.user.userInfo,
   }
 }
 const mapDispatchToProps = (dispatch) => {

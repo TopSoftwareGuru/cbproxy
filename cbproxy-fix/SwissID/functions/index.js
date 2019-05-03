@@ -7,7 +7,6 @@ const http = require('http');
 const https = require('https');
 const requestIp = require("request-ip");
 const nodemailer = require('nodemailer');
-const uuidv1 = require('uuid/v1');
 const cors = require('cors');
 const axios = require('axios');
 
@@ -72,7 +71,6 @@ app.use("/api/accesstoken", (req, res) => {
   // }));
 
   // rq.end();
-  
 });
 
 app.post("/api/login", (req, res) => {

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+
+import { activityLogout } from './store/actions/actions';
 
 class Navbar extends Component {
   constructor(props) {
@@ -8,6 +12,12 @@ class Navbar extends Component {
     this.state = {
       mode: 0
     };
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogout() {
+    localStorage.removeItem("accessToken");
+    this.props.activityLogout();
   }
   render() {
     return (
@@ -58,15 +68,30 @@ class Navbar extends Component {
         <Link
           to="/"
           className="link-color"
-          onClick={ () => localStorage.removeItem("accessToken") }>
-          <FormattedMessage
-            id="navtop.logout"
-            defaultMessage="Logout"
-          />
+        >
+          <button
+            type="button"
+            className="btn btn-default"
+            onClick={this.handleLogout}
+          >
+            <FormattedMessage
+              id="navtop.logout"
+              defaultMessage="Logout"
+            />
+          </button>
         </Link>
       </div>
     );
-    }
   }
-  
-  export default Navbar;
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    activityLogout: () => dispatch(activityLogout()),
+  }
+}
+
+Navbar.propTypes = {
+    activityLogout: PropTypes.func.isRequired,
+}
+export default connect(null, mapDispatchToProps)(Navbar);
