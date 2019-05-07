@@ -9,6 +9,7 @@ const requestIp = require("request-ip");
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const axios = require('axios');
+const CircularJSON = require('circular-json');
 
 const app = express();
 app.use(cors({ origin: true }));
@@ -17,60 +18,21 @@ const firestore = new Firestore({
   keyFilename: './swissid-c228f-firebase-adminsdk-gnl8m-7c9c7b994f.json'
 });
 
-app.use("/api/accesstoken", (req, res) => {
-  const { code } = req.body;
-  console.log(code);
-  axios({
-    url: "https://login.int.swissid.ch/idp/oauth2/access_token",
-    method: "post",
-    data: {
-      Authorization: `Basic ${new Buffer('2d19f-1580c-8f5a2-954c8:cHG6iIbJGt8pZ8m9r3xTxGYRDGl9fWLk').toString("base64")}`,
-      responseType: "code",
-      scope: "openid%20profile%20email",
-      grantType: "authorization_code",
-      code,
-      redirectUri: "https%3A%2F%2Fswissid-c228f.firebaseapp.com%2F",
-    },
+app.get("/api/userinfo", (req, res) => {
+  axios.request({
+    method: "get",
+    url: "https://login.int.swissid.ch/idp/oauth2/userinfo",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application.json",
+      "Authorization": "Bearer 506WZzfKa6yOMhekjjtRwq7zsbg"
     }
   }).then(result => {
-    res.status(200).send(result);
+    console.log(CircularJSON(result));
+    res.status(200).send(CircularJSON(result));
   }).catch(err => {
     console.log(err);
     res.status(404).send(err);
-  })
-  // // res.status(200).send(code);
-
-  // const options = {
-  //   host: 'login.int.swissid.ch',
-  //   path: '/idp/oauth2/access_token',
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // }
-
-  // const rq = https.request(options, (result) => {
-  //   console.log("status code", result.statusCode);
-  //   result.on('data', (d) => {
-  //     console.log(d);
-  //     res.send(d);
-  //   })
-  // })
-
-  // rq.on('error', (error) => {
-  //   console.log("error info", error);
-  //   res.status(404).send(error);
-  // });
-
-  // rq.write(JSON.stringify({
-  //   client_id: '2d19f-1580c-8f5a2-954c8',
-  //   client_secret: 'cHG6iIbJGt8pZ8m9r3xTxGYRDGl9fWLk',
-  //   code,
-  // }));
-
-  // rq.end();
+  });
 });
 
 app.post("/api/login", (req, res) => {
@@ -154,39 +116,6 @@ app.post("/api/verify", (req, res) => {
       }
   })
 });
-
-// app.post("/api/createaccount", (req, res) => {
-//   const {
-//       abc_account,
-//       bic,
-//       currency,
-//       funding_account,
-//       iban_funding_account,
-//       iban,
-//       product_cost,
-//       email,
-//       name,
-//   } = req.body;
-//   created_at = new Date();
-//   firestore.collection("users").doc(email).set({
-//     abc_account,
-//     bic,
-//     currency,
-//     funding_account,
-//     iban_funding_account,
-//     iban,
-//     product_cost,
-//     email,
-//     name,
-//     created_at,
-//     activities: [],
-//     transout: [],
-//     transin: [],
-//     balance: 0,
-//   }).then(() => {
-//     res.status(200).send("success");
-//   })
-// });
 
 app.use("**", (req, res) => {
   res.sendFile('index.html', {root: '.'});

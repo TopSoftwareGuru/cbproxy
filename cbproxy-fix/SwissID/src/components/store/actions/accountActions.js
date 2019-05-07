@@ -76,3 +76,8 @@ export const VerifiedInfo = (verifiedInfo) => {
     dispatch({ type: 'SAVE_VERIFIED_STATE', payload: verifiedInfo });
   });
 }
+export const setAccountStatusActive = (status) => {
+  return dispatch => {
+    dispatch({ type: 'SET_USER_ACCOUNT_ACTIVE', payload: status });
+  }
+}

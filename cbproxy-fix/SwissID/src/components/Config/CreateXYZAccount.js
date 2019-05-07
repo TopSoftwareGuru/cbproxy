@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { compose } from 'redux';
-import { firebaseConnect } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 
-import Verity from './Verify';
 import { LoadingModal } from '../alerts/LoadingModal';
 import { saveVerifyInfo } from '../store/actions/accountActions';
 import { activityLogon, setUserAccountInfo } from '../store/actions/actions';

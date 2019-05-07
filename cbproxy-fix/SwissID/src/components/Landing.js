@@ -20,16 +20,23 @@ class Landing extends Component {
     this.handleLocaleSetAsDe = this.handleLocaleSetAsDe.bind(this);
     this.state = {
       code: null,
+      locale: "en",
     }
   };
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      nextProps.userInfo.isAuthenticated !== this.props.userInfo.isAuthenticated
+      nextProps.userInfo.isAuthenticated !== this.props.userInfo.isAuthenticated ||
+      nextProps.locale !== this.props.locale
     )
   }
   componentDidUpdate(prevProps) {
     if (this.props.userInfo.isAuthenticated === true) {
       this.props.history.push("/home");
+    };
+    if (prevProps.locale === "en") {
+      this.setState({ locale: this.props.locale });
+    } else {
+      this.setState({ locale: this.props.locale });
     }
   }
   componentWillMount() {
@@ -80,7 +87,7 @@ class Landing extends Component {
     
   }
   handleGoogleLoginFailure(res) {
-    
+
   }
 
   handleLocaleSetAsEn() {
@@ -158,8 +165,7 @@ class Landing extends Component {
                 <h4>
                   <FormattedMessage
                     id="land.whyxyzbank"
-                    defaultMessage="Why XYZ bank"
-                  />
+                    defaultMessage="Why?" />
                 </h4>
                 <p>
                   <FormattedMessage
@@ -224,7 +230,7 @@ const mapStateToProps = (state) => {
   return {
     locale: state.intl.locale,
     users: state.firestore.ordered.users,
-    userInfo: state.user.userInfo,
+    userInfo: state.user,
   }
 }
 const mapDispatchToProps = (dispatch) => {

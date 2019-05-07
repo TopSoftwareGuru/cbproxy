@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -14,57 +16,119 @@ class Navbar extends Component {
     };
     this.handleLogout = this.handleLogout.bind(this);
   }
-
+  componentWillMount() {
+    const { account_status } = this.props.userEntity[0];
+    account_status === "active" ?
+      this.setState({ mode: 1 })
+      :
+      this.setState({ mode: 0 })
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.userEntity[0] !== this.props.userEntity[0] ||
+      nextState.mode !== this.state.mode
+    )
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.userEntity[0].account_status === "active") {
+      this.setState({ mode: 1 });
+    } else {
+      this.setState({ mode: 0 });
+    }
+  }
   handleLogout() {
     localStorage.removeItem("accessToken");
     this.props.activityLogout();
   }
   render() {
+    const { mode } = this.state;
     return (
       <div className="container-fluid text-center navbar-top">
         <Link to="/home" className="link-color">
+          <button
+            type="button"
+            className="btn btn-default"
+          >
           <FormattedMessage
             id="navtop.home"
             defaultMessage="Home"
           />
+          </button>
         </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        |
         <Link to="/new" className="link-color">
-          <FormattedMessage
-            id="navtop.new"
-            defaultMessage="New"
-          />
+          { mode === 0 && 
+            <button
+              type="button"
+              className="btn btn-default"
+            >  
+              <FormattedMessage
+                id="navtop.new"
+                defaultMessage="New"
+              />
+            </button>
+          }
+          
         </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        |
         <Link to="/transfer_in" className="link-color">
-          TxIN
+          { mode === 1 && 
+            <button
+              type="button"
+              className="btn btn-default"
+            >
+              TxIN
+            </button>
+          }
         </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        |
         <Link to="/transfer_out" className="link-color">
-          TxOut
+          { mode === 1 &&
+            <button
+              type="button"
+              className="btn btn-default"
+            >
+              TxOut
+            </button>
+          }
         </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        |
         <Link to="/activities" className="link-color">
-          <FormattedMessage
-            id="navtop.activities"
-            defaultMessage="activities"
-          />
+          <button
+            type="button"
+            className="btn btn-default"
+          >
+            <FormattedMessage
+              id="navtop.activities"
+              defaultMessage="activities"
+            />
+          </button>
         </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        |
         <Link to="/config" className="link-color">
-          <FormattedMessage
-            id="navtop.config"
-            defaultMessage="Config"
-          />
+          <button
+            type="button"
+            className="btn btn-default"
+          >
+            <FormattedMessage
+              id="navtop.config"
+              defaultMessage="Config"
+            />
+          </button>
         </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        |
         <Link to="/profile" className="link-color">
-          <FormattedMessage
-            id="navtop.profile"
-            defaultMessage="Profile"
-          />
+          <button
+            type="button"
+            className="btn btn-default"
+          >
+            <FormattedMessage
+              id="navtop.profile"
+              defaultMessage="Profile"
+            />
+          </button>
         </Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        |
         <Link
           to="/"
           className="link-color"
@@ -90,8 +154,22 @@ const mapDispatchToProps = dispatch => {
     activityLogout: () => dispatch(activityLogout()),
   }
 }
-
+const mapStateToProps = state => {
+  return {
+    userEntity: state.firestore.ordered.users,
+    userInfo: state.user,
+  }
+}
 Navbar.propTypes = {
     activityLogout: PropTypes.func.isRequired,
 }
-export default connect(null, mapDispatchToProps)(Navbar);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect(props => {
+    return (
+      [
+        { collection: 'users', doc: props.userInfo.email }
+      ]
+    )
+  })
+)(Navbar);

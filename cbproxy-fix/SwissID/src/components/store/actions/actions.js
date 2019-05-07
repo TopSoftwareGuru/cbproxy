@@ -1,3 +1,5 @@
+import { actionTypes } from "redux-firestore";
+
 const getRelativeTime = () => {
   const d = new Date();
   const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
@@ -16,6 +18,18 @@ export const activityLogon = () => {
       .catch(err => dispatch({ type: 'LOGON_ERR', err }))
   }
 };
+export const getUserAccountInfo = (accountInfo) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const state = getState();
+    const firestore = getFirestore();
+    const { email } = accountInfo;
+    const db = firestore.collection("users").doc(email);
+    
+    db.get()
+      .then(doc => dispatch({ type: "GET_USER_ACCOUNT_INFO", doc }))
+      .catch(err => dispatch({ type: "GET_USER_ACCOUNT_INFO_ERROR", err }))
+  }
+}
 export const activityLogout = () => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const state = getState();

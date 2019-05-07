@@ -34,9 +34,8 @@ class Activities extends Component {
   }
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.checked
+      [event.target.name]: event.target.value || event.target.checked
     });
-    console.log([event.target.name], event.target.checked)
   }
   getStyledCurrency(event, value) {
     let fixedVal = parseFloat(value).toFixed(2);
@@ -45,7 +44,6 @@ class Activities extends Component {
   render() { 
     const { activities } = this.props.userEntity[0];
     const { logonoff, chfsent, chfreceived } = this.state;
-    console.log(chfreceived);
     return ( 
       <div className="container">
         <div className="row">
@@ -70,9 +68,9 @@ class Activities extends Component {
                 <input
                   type="checkbox"
                   className="form-check-input"
-                  checked={this.state.logonoff}
                   name="logonoff"
-                  onChange={this.handleChange}
+                  value={this.state.logonoff}
+                  onChange={ () => this.setState({ logonoff: !this.state.logonoff })}
                 />
                 Logon/Logoff&nbsp;
               </label>
@@ -80,9 +78,9 @@ class Activities extends Component {
                 <input
                   type="checkbox"
                   className="form-check-input"
+                  value={this.state.chfreceived}
                   name="chfreceived"
-                  checked={this.state.chfreceived}
-                  onChange={this.handleChange}
+                  onChange={ () => this.setState({ chfreceived: !this.state.chfreceived })}
                 />
                 CHF Received&nbsp;
               </label>
@@ -90,9 +88,9 @@ class Activities extends Component {
                 <input
                   type="checkbox"
                   className="form-check-input"
-                  checked={this.state.chfsent}
+                  value={this.state.chfsent}
                   name="chfsent"
-                  onChange={this.handleChange}
+                  onChange={ () => this.setState({ chfsent: !this.state.chfsent })}
                 />
                 CHF Sent&nbsp;
               </label>
@@ -116,7 +114,7 @@ class Activities extends Component {
                             { item.event === "TI" && chfreceived && `Inbound credit transfer received: 
                               ${parseFloat(item.amount).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} CHF`
                             }
-                            { item.event === "TO" && `Outbound Debtor transfer sent: 
+                            { item.event === "TO" && chfsent && `Outbound Debtor transfer sent: 
                               ${parseFloat(item.amount).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} CHF`
                             }
                             { item.event === "LOGON" && `Logon from ${item.ip}` }

@@ -1,0 +1,175 @@
+.landing .swissid-btn {
+  background-color: #e4322b;
+  border-radius: 2px;
+  background-image: url("../image/avatar.png");
+  background-repeat: no-repeat;
+}
+
+.landing .swissid-btn .swissid-link {
+  font-family: 'SwissSignCircularWeb', sans-serif;
+  text-decoration: none;
+  color: #fef9f8;
+  font-size: 18px;
+  font-weight: 700;
+  outline: none !important;
+  padding-left: 30px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.landing .google-login {
+  background-image: url("../image/google.png");
+  background-repeat: no-repeat;
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  outline: none !important;
+  border: 1px #b8c2cb solid;
+  color: #c84e41;
+  padding-left: 50px;
+  padding-right: 10px;
+  padding-top: 4px;
+  padding-bottom: 10px;
+}
+
+.login-comment {
+  margin-top: 10%;
+}
+
+.login .swissID {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.login .lang {
+  margin-top: 20px;
+}
+
+.login .lang .lang-select {
+  border: 0;
+  background-color: #ffffff;
+}
+
+.login .lang .lang-select:focus {
+  font-weight: bold;
+}
+
+.app-reference {
+  margin-top: 5%;
+}
+
+.transfer-in .media .media-left {
+  width: 100%;
+}
+
+.transfer-in .media .media-left .qrbill {
+  width: 100px;
+  height: 100px;
+}
+
+.transfer-in .transin-submit {
+  border: 1px #333 solid;
+  color: #337ab7;
+  background-color: #e6e6e6;
+  font-weight: bold;
+}
+
+.transfer-in .transin-submit:hover {
+  background-color: #cccccc;
+}
+
+.profile .account-details .close-account {
+  font-size: 14px;
+}
+
+.profile .account-details .account-cancel {
+  border: 1px gray solid;
+}
+
+.profile .account-details .account-save-changes {
+  border: 1px gray solid;
+}
+
+.success-alert {
+  font-size: 14px;
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.warning-alert {
+  font-size: 14px;
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+}
+
+.transfer-out .transout-submit {
+  border: 1px #333 solid;
+  color: #337ab7;
+  background-color: #e6e6e6;
+  font-weight: bold;
+}
+
+.transfer-out .transout-submit:hover {
+  background-color: #cccccc;
+}
+
+.createxyz .createxyz-submit {
+  border: 1px #333 solid;
+  color: #337ab7;
+  background-color: #e6e6e6;
+  font-weight: bold;
+}
+
+.createxyz .createxyz-submit:hover {
+  background-color: #cccccc;
+}
+
+.navbar-top .link-color {
+  color: #337ab7;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-Color: rgba(0, 0, 0, 0.3);
+  padding: 50;
+}
+
+.backdrop .modal-style {
+  display: block;
+  background-color: #fff;
+  border-radius: 5px;
+  max-width: 30%;
+  margin: 20% auto;
+  padding: 30;
+}
+
+.backdrop .delete-title {
+  font-size: 30px;
+  padding-top: 5%;
+}
+
+.backdrop .delete-warning {
+  padding-top: 5%;
+  margin: auto;
+}
+
+.backdrop .btn-row {
+  margin-top: 5%;
+  padding-bottom: 5%;
+}
+
+.backdrop .btn-row .btn-cancel, .backdrop .btn-row .btn-delete {
+  font-weight: bold;
+  margin: auto;
+}
+
+.table-activities {
+  max-height: 400px;
+  position: relative;
+  overflow: auto;
+}
+/*# sourceMappingURL=index.css.map */

@@ -265,7 +265,7 @@ class TransferOut extends Component {
 const mapStateToProps = (state) => {
   return {
     userEntity: state.firestore.ordered.users,
-    userInfo: state.user.userInfo,
+    userInfo: state.user,
   }
 }
 

@@ -1,12 +1,11 @@
 
-const initialState = {
-  userInfo: {
-    email: "",
-    name: "",
-    isAuthenticated: false,
-  },
-}
-const userReducer = (state = initialState, action) => {
+const userInfo = {
+  email: "",
+  name: "",
+  isAuthenticated: false,
+  status: "active",
+};
+const userReducer = (state = userInfo, action) => {
   switch (action.type) {
     case 'USER_CREATED':
       console.log('usercreated');
@@ -34,9 +33,20 @@ const userReducer = (state = initialState, action) => {
     case 'LOGON_ERROR':
       return state;
     case 'USER_LOGOUT':
-      return state;
+      return Object.assign({}, state, {
+          userInfo: {
+          email: "",
+          name: "",
+          isAuthenticated: false,
+        }
+      });
     case 'USER_LOGOUT_ERROR':
       return state;
+    case 'SET_USER_ACCOUNT_ACTIVE':
+      return Object.assign({}, state, { status: action.payload });
+    case "GET_USER_ACCOUNT_INFO":
+      console.log(action.payload);
+      return Object.assign({}, state, { userInfo: action.payload });
     default:
       return state;
   }

@@ -16,18 +16,25 @@ class UserProfile extends Component {
       isOpen: false,
       isDeactOpen: false,
       deactiveBtn: false,
+      deMode: false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSuspend = this.handleSuspend.bind(this);
     this.handleDeactivate = this.handleDeactivate.bind(this);
+    this.handleDeactivateClose = this.handleDeactivateClose.bind(this);
+    this.handleDeactivateModal = this.handleDeactivateModal.bind(this);
   }
   componentWillMount() {
-    const { account_status } = this.props.userEntity[0];
+    const { account_status, balance } = this.props.userEntity[0];
     account_status === "inactive" ?
       this.setState({ deactiveBtn: true })
       :
       this.setState({ deactiveBtn: false });
+    balance === 0 ?
+      this.setState({ deMode: true })
+      :
+      this.setState({ deMode: false });
   }
   shouldComponentUpdate(nextProps, nextState) {
     return (
@@ -46,6 +53,9 @@ class UserProfile extends Component {
   handleSuspend() {
     this.setState({ isOpen: !this.state.isOpen });
   }
+  handleDeactivateClose() {
+    this.setState({ isDeactOpen: !this.state.isDeactOpen });
+  }
   handleDeactivate() {
     this.setState({
       isDeactOpen: !this.state.isDeactOpen,
@@ -58,6 +68,9 @@ class UserProfile extends Component {
       [event.target.name]: event.target.value
     })
   };
+  handleDeactivateModal() {
+    this.setState({ isDeactOpen: !this.state.isDeactOpen });
+  }
   handleSubmit(event) {
 
   }
@@ -348,7 +361,6 @@ class UserProfile extends Component {
                     <button
                       type="button"
                       className="btn-default account-save-changes"
-                      onClick={ this.handleDeactivate }
                       disabled
                     >
                       <FormattedMessage
@@ -356,11 +368,11 @@ class UserProfile extends Component {
                         defaultMessage="De-activate Account"
                       />
                     </button>
-                  ): (
+                  ) : (
                     <button
                       type="button"
                       className="btn-default account-save-changes"
-                      onClick={ this.handleDeactivate }
+                      onClick={ this.handleDeactivateModal }
                     >
                       <FormattedMessage
                         id="profile.deactivate"
@@ -379,8 +391,16 @@ class UserProfile extends Component {
               <DeactivateModal
                 show={ this.state.isDeactOpen }
                 deActive={ this.handleDeactivate }
+                onClose={ this.handleDeactivateClose }
+                deMode={this.state.deMode}
               >
-                 Proceed with caution. If you de-activate your account, it is not possible to re-activate it later on. You will have to create a new account.
+                {
+                  this.state.deMode === true ?
+                    "Proceed with caution. If you de-activate your account, it is not possible to re-activate it later on. You will have to create a new account."
+                    :
+                    "Sorry, Your balance is not 0.00"
+                }
+                 
               </DeactivateModal>
             </form>
             <p className="close-account">

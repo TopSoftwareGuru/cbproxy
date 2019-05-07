@@ -74,38 +74,16 @@ class Home extends Component {
           <div className="col-md-6 my-4">
             <h3>User Information</h3>
             <p>
-              B1ank&nbsp;ABC&nbsp;|&nbsp;IBAN&nbsp;{ abc_account }&nbsp;|&nbsp;IBAN&nbsp;{ xyz_account }
+              Bank&nbsp;ABC&nbsp;|&nbsp;IBAN&nbsp;{ abc_account }&nbsp;|&nbsp;IBAN&nbsp;{ xyz_account }
             </p>
             <p>name:&nbsp;{ name }</p>
-            {/* <p>Account Statement&nbsp;{ account_status }</p> */}
             <h4>
               <FormattedMessage
                 id="home.balance"
                 defaultMessage="Your Balance at Bank XYZ:"
               />
             </h4>
-            {/* <h3>CHF { new Intl.NumberFormat('en-GB').format(balance) }</h3> */ }
             <h3>CHF { parseFloat(balance).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h3>
-            {/* <Link to="#" className="link-color">
-              <FormattedMessage
-                id="home.transfer.history"
-                defaultMessage="Transfer History"
-              />
-            </Link>
-            &nbsp;|&nbsp;&nbsp;
-            <Link to="#" className="link-color">
-              <FormattedMessage
-                id="home.balance.history"
-                defaultMessage="Balance History"
-              />
-            </Link>
-            &nbsp;|&nbsp;&nbsp;
-            <Link to="#" className="link-color">
-              <FormattedMessage
-                id="home.fees"
-                defaultMessage="Fees"
-              />
-            </Link> */}
           </div>
         </div>
       </div>
