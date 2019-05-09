@@ -5,9 +5,9 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { GoogleLogin } from 'react-google-login';
 import { FormattedMessage } from "react-intl";
 
-import { activityLogon } from './store/actions/actions';
+import { activityLogon, setUserInfo } from './store/actions/actions';
 import { internationalization } from './store/actions/intlActions';
-import { setUserInfo } from './store/actions/actions';
+import { setUserAccountInfo } from './store/actions/accountActions';
 
 
 class Landing extends Component {
@@ -39,6 +39,10 @@ class Landing extends Component {
       this.setState({ locale: this.props.locale });
     }
   }
+
+  /**
+   * @see https://stackoverflow.com/questions/36840396/react-fetch-gives-an-empty-response-body
+   */
   componentWillMount() {
     const url = new URL(window.location.href);
     if (localStorage.getItem("locale") === "en") {
@@ -48,19 +52,66 @@ class Landing extends Component {
     }
     const code = url.searchParams.get("code");
     if (code) {
-      console.log(code);
       this.setState({ code });
-      fetch("/api/accesstoken", {
+      fetch("http://localhost:8000/api/userinfo", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ code }),
-      }).then(result => {
-        console.log("result", result);
-      }).catch(err => {
-        console.log("error", err);
-      })
+      }).then(response => response.json())
+        .then(data => {
+          const { email, family_name, given_name } = data;
+          const name = family_name.concat(given_name);
+
+          fetch("http://localhost:8000/api/users", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, name })
+          }).then(response => response.json())
+            .then(result => {
+            const { exist } = result;
+            if (exist === true) {
+              const {
+                accessToken,
+                abc_account,
+                account_status,
+                bic,
+                currency,
+                funding_account,
+                iban_funding_account,
+                iban,
+                product_cost,
+                name,
+                balance,
+                time_created
+              } = result;
+
+              this.props.setUserAccountInfo({
+                accessToken,
+                abc_account,
+                account_status,
+                bic,
+                currency,
+                funding_account,
+                iban_funding_account,
+                iban,
+                product_cost,
+                name,
+                email,
+                balance,
+                time_created
+              });
+              
+              this.props.history.push("/home");
+            } else {
+              this.props.setUserInfo({ email, name });
+              this.props.history.push("/new");
+            }
+          });
+        })
     };
   }
 
@@ -124,7 +175,7 @@ class Landing extends Component {
                       className="btn btn-default swissid-btn"
                     >
                       <a
-                      href="https://login.int.swissid.ch/idp/oauth2/authorize?response_type=code&client_id=2d19f-1580c-8f5a2-954c8&scope=openid%20profile&redirect_uri=https%3A%2F%2Fswissid-c228f.firebaseapp.com%2F&nonce=n-0S6_WzA2Mj&state=Q4OrwqgbnR&acr_values=loa-1&ui_locales=de"
+                      href="https://login.int.swissid.ch/idp/oauth2/authorize?response_type=code&client_id=2d19f-1580c-8f5a2-954c8&scope=openid%20profile%20email&redirect_uri=http%3A%2F%2Flocalhost:8080&nonce=n-0S6_WzA2Mj&state=Q4OrwqgbnR&acr_values=loa-1&ui_locales=de"
                       className="swissid-link"
                       >
                         <FormattedMessage
@@ -237,12 +288,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     activityLogon:        (logonInfo) => dispatch(activityLogon(logonInfo)),
     internationalization: (locale)    => dispatch(internationalization(locale)),
-    setUserInfo:          (userInfo)  => dispatch(setUserInfo(userInfo)),
+    setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
+    setUserAccountInfo: (userAccountInfo) => dispatch(setUserAccountInfo(userAccountInfo)),
   }
 }
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([
-    { collection: 'users' }
-  ])
-)(Landing);
+export default connect(mapStateToProps, mapDispatchToProps)(Landing);

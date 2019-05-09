@@ -66,13 +66,15 @@ app.post("/api/send", (req, res) => {
     email
   } = req.body;
   const transport = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    post: 465,
     auth: {
       user: 'janepress940214@gmail.com',
       pass: '##lni19940214'
     }
   });
   const mailOptions = {
+    from: 'janepress940214@gmail.com',
     to: email,
     subject: 'Account Verification',
     text: "",

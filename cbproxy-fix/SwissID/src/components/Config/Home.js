@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux'
 import { compose } from 'redux';
@@ -20,14 +19,14 @@ class Home extends Component {
     }
   }
   componentWillMount() {
-    if (this.props.userEntity) {
-      const { balance, name, abc_account, iban } = this.props.userEntity[0];
+    if (this.props.users) {
+      const { balance, name, abc_account, iban } = this.props.users;
       this.setState({ balance, name, abc_account, xyz_account: iban });
     }
   }
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      nextProps.userEntity !== this.props.userEntity ||
+      nextProps.users !== this.props.users ||
       nextState.balance !== this.state.balance ||
       nextState.name !== this.state.name ||
       nextState.abc_account !== this.state.abc_account ||
@@ -36,14 +35,14 @@ class Home extends Component {
     )
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.userEntity !== this.props.userEntity) {
+    if (prevProps.users.balance !== this.props.users.balance) {
       const {
         balance,
         name,
         abc_account,
         iban,
         account_status
-      } = this.props.userEntity[0];
+      } = this.props.users;
       this.setState({
         balance,
         name, abc_account,
@@ -93,18 +92,8 @@ class Home extends Component {
  
 const mapStateToProps = (state) => {
   return {
-    userEntity: state.firestore.ordered.users,
-    userInfo: state.user.userInfo,
+    users: state.user,
   }
 }
 
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect(props => {
-    return (
-      [
-        { collection: 'users', doc: props.userInfo.email }
-      ]
-    )
-  })
-)(Home);
+export default connect(mapStateToProps)(Home);

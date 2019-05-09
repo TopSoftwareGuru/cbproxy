@@ -56,7 +56,7 @@ export const deactivateAccount = () => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
     const state = getState();
-    const db = firestore.collection("users").doc(state.user.userInfo.email)
+    const db = firestore.collection("users").doc(state.user.email)
     db.update({ account_status: "inactive" })
       .then(() => {
         dispatch({ type: 'ACCOUNT_INACTIVE' });
@@ -65,6 +65,11 @@ export const deactivateAccount = () => {
         dispatch({ type: 'ACCOUNT_INACTIVE_FAILED', err });
       });
   }
+}
+export const setUserAccountInfo = (accountInfo) => {
+  return (dispatch => {
+    dispatch({ type: "SET_USER_ACCOUNT_INFO", payload: accountInfo });
+  })
 }
 export const saveVerifyInfo = (verifyInfo) => {
   return (dispatch => {

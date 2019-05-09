@@ -1,4 +1,3 @@
-import { actionTypes } from "redux-firestore";
 
 const getRelativeTime = () => {
   const d = new Date();
@@ -36,7 +35,7 @@ export const activityLogout = () => {
     const firestore = getFirestore();
     const eventTime = getRelativeTime();
     
-    const db = firestore.collection('users').doc(state.user.userInfo.email);
+    const db = firestore.collection('users').doc(state.user.email);
     db.get()
       .then(doc => {
         let { activities } = doc.data();

@@ -28,8 +28,8 @@ class TransferIn extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   };
   componentWillMount() {
-    if (this.props.userEntity) {
-      const { balance, abc_account, iban } = this.props.userEntity[0];
+    if (this.props.userInfo) {
+      const { balance, abc_account, iban } = this.props.userInfo;
       this.setState({
         abc_acc: abc_account,
         xyz_acc: iban,
@@ -39,15 +39,15 @@ class TransferIn extends Component {
   }
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      nextProps.userEntity !== this.props.userEntity ||
+      nextProps.userInfo !== this.props.userInfo ||
       nextState.abc_acc !== this.state.abc_acc ||
       nextState.xyz_acc !== this.state.xyz_acc
     )
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.userEntity !== this.props.userEntity) {
-      const { balance, abc_account, iban } = this.props.userEntity[0];
+    if (prevProps.userInfo !== this.props.userInfo) {
+      const { balance, abc_account, iban } = this.props.userInfo;
       this.setState({
         abc_acc: abc_account,
         xyz_acc: iban,
@@ -205,7 +205,6 @@ class TransferIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userEntity: state.firestore.ordered.users,
     userInfo: state.user,
   }
 };
@@ -220,13 +219,4 @@ const mapDispatchToProps = (dispatch) => {
  * firestoreConnect is not compatible with react-redux 6.0.1
  * 
  */
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect(props => {
-    return (
-      [
-        { collection: 'users', doc: props.userInfo.email }
-      ]
-    )
-  })
-)(TransferIn);
+export default connect(mapStateToProps, mapDispatchToProps)(TransferIn);

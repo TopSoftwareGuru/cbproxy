@@ -17,20 +17,20 @@ class Navbar extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
   componentWillMount() {
-    const { account_status } = this.props.userEntity[0];
+    const { account_status } = this.props.userInfo;
     account_status === "active" ?
       this.setState({ mode: 1 })
       :
       this.setState({ mode: 0 })
   }
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState) { 
     return (
-      nextProps.userEntity[0] !== this.props.userEntity[0] ||
+      nextProps.userInfo !== this.props.userInfo ||
       nextState.mode !== this.state.mode
     )
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.userEntity[0].account_status === "active") {
+    if (prevProps.userInfo.account_status === "active") {
       this.setState({ mode: 1 });
     } else {
       this.setState({ mode: 0 });
@@ -42,6 +42,7 @@ class Navbar extends Component {
   }
   render() {
     const { mode } = this.state;
+    const { account_status } = this.props.userInfo;
     return (
       <div className="container-fluid text-center navbar-top">
         <Link to="/home" className="link-color">
@@ -54,25 +55,22 @@ class Navbar extends Component {
             defaultMessage="Home"
           />
           </button>
-        </Link>
-        |
-        <Link to="/new" className="link-color">
-          { mode === 0 && 
-            <button
-              type="button"
-              className="btn btn-default"
-            >  
-              <FormattedMessage
-                id="navtop.new"
-                defaultMessage="New"
-              />
-            </button>
+        </Link>    
+          { account_status === "inactive" && 
+            <Link to="/new" className="link-color">
+              <button
+                type="button"
+                className="btn btn-default"
+              >  
+                <FormattedMessage
+                  id="navtop.new"
+                  defaultMessage="New"
+                />
+              </button>
+            </Link>
           }
-          
-        </Link>
-        |
         <Link to="/transfer_in" className="link-color">
-          { mode === 1 && 
+          { account_status === "active" && 
             <button
               type="button"
               className="btn btn-default"
@@ -81,9 +79,8 @@ class Navbar extends Component {
             </button>
           }
         </Link>
-        |
         <Link to="/transfer_out" className="link-color">
-          { mode === 1 &&
+          { account_status === "active" &&
             <button
               type="button"
               className="btn btn-default"
@@ -92,7 +89,6 @@ class Navbar extends Component {
             </button>
           }
         </Link>
-        |
         <Link to="/activities" className="link-color">
           <button
             type="button"
@@ -104,7 +100,6 @@ class Navbar extends Component {
             />
           </button>
         </Link>
-        |
         <Link to="/config" className="link-color">
           <button
             type="button"
@@ -116,7 +111,6 @@ class Navbar extends Component {
             />
           </button>
         </Link>
-        |
         <Link to="/profile" className="link-color">
           <button
             type="button"
@@ -128,7 +122,6 @@ class Navbar extends Component {
             />
           </button>
         </Link>
-        |
         <Link
           to="/"
           className="link-color"
@@ -156,20 +149,10 @@ const mapDispatchToProps = dispatch => {
 }
 const mapStateToProps = state => {
   return {
-    userEntity: state.firestore.ordered.users,
     userInfo: state.user,
   }
 }
 Navbar.propTypes = {
     activityLogout: PropTypes.func.isRequired,
 }
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect(props => {
-    return (
-      [
-        { collection: 'users', doc: props.userInfo.email }
-      ]
-    )
-  })
-)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

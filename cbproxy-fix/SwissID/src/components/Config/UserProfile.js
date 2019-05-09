@@ -26,7 +26,7 @@ class UserProfile extends Component {
     this.handleDeactivateModal = this.handleDeactivateModal.bind(this);
   }
   componentWillMount() {
-    const { account_status, balance } = this.props.userEntity[0];
+    const { account_status, balance } = this.props.userInfo;
     account_status === "inactive" ?
       this.setState({ deactiveBtn: true })
       :
@@ -38,7 +38,7 @@ class UserProfile extends Component {
   }
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      nextProps.userEntity[0].account_status !== this.props.userEntity[0].account_status ||
+      nextProps.userInfo.account_status !== this.props.userInfo.account_status ||
       nextState.account_status !== this.state.account_status ||
       nextState.isOpen !== this.state.isOpen ||
       nextState.isDeactOpen !== this.state.isDeactOpen ||
@@ -46,7 +46,7 @@ class UserProfile extends Component {
     )
   }
   componentDidUpdate(prevProps) {
-    if (this.props.userEntity[0].account_status === "inactive") {
+    if (this.props.userInfo.account_status === "inactive") {
       this.setState({ deactiveBtn: true });
     }
   }
@@ -430,7 +430,7 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userEntity: state.firestore.ordered.users,
+    userInfo: state.user,
   }
 }
 const mapDispatchToProps = (dispatch) => {
