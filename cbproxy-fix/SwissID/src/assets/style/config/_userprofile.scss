@@ -1,0 +1,15 @@
+$color_close_account: #333;
+$border-button-line: 1px lighten($color_close_account, 30) solid;
+.profile {
+  .account-details {
+    .close-account {
+      font-size: 14px;
+    }
+    .account-cancel {
+      border: $border-button-line;
+    }
+    .account-save-changes {
+      border: $border-button-line;
+    }
+  }
+}

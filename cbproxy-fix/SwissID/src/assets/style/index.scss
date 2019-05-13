@@ -3,18 +3,20 @@
 
 @import 'login';
 
-@import 'config/config.scss';
+@import 'config/config';
 
-@import 'config/transferin.scss';
+@import 'config/transferin';
 
-@import 'config/userprofile.scss';
+@import 'config/userprofile';
 
-@import 'alerts/chreceive.scss';
+@import 'alerts/chreceive';
 
-@import 'config/transferout.scss';
+@import 'config/transferout';
 
-@import 'config/createxyzaccount.scss';
+@import 'config/createxyzaccount';
 
 @import 'navbartop';
 
-@import 'alerts/modal.scss';
+@import 'alerts/modal';
+
+@import 'config/activities';

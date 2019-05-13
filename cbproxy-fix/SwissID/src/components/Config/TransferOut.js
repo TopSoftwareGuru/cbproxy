@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import CurrencyFormat from 'react-currency-format';
 
 import Navbar from '../Navbar';
-import NavbarTop from '../NavbarTop';
 import { activityLogon } from '../store/actions/actions';
 import { transOut } from '../store/actions/transferActions';
 
@@ -42,14 +41,14 @@ class TransferOut extends Component {
     this.afterOpenModal = this.afterOpenModal.bind(this);
   };
   componentWillMount() {
-    if (this.props.userEntity) {
-      const { balance, abc_account, iban } = this.props.userEntity[0];
+    if (this.props.userInfo) {
+      const { balance, abc_account, iban } = this.props.userInfo;
       this.setState({ abc_acc: abc_account, xyz_acc: iban, balance });
     }
   }
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      nextProps.userEntity !== this.props.userEntity ||
+      nextProps.userInfo !== this.props.userInfo ||
       nextState.abc_acc !== this.state.abc_acc ||
       nextState.xyz_acc !== this.state.xyz_acc ||
       nextState.modalIsOpen !== this.state.modalIsOpen ||
@@ -57,15 +56,14 @@ class TransferOut extends Component {
       nextState.iban !== this.state.iban
     )
   }
-
   componentDidUpdate(prevProps) {
-    if (prevProps.userEntity !== this.props.userEntity) {
+    if (prevProps.userInfo !== this.props.userInfo) {
       const {
         balance,
         abc_account,
         iban,
         transferout,
-      } = this.props.userEntity[0];
+      } = this.props.userInfo;
       this.setState({ abc_acc: abc_account, xyz_acc: iban, balance });
     }
   }
@@ -94,15 +92,10 @@ class TransferOut extends Component {
       transfer_funds,
       balance,
     } = this.state;
-    const logon_time = new Date();
     
     if (parseFloat(amount, 10.00) > balance) { 
       this.setState({ modalIsOpen: true });
     } else {
-      const {
-        amount,
-        addinfo,
-      } = this.state;
       this.props.transOut({ amount, addinfo, event: "TO" });
       this.props.history.push("/home");
     }
@@ -116,7 +109,6 @@ class TransferOut extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6 my-4">
-            <NavbarTop />
             <Navbar />
           </div>
         </div>
@@ -266,8 +258,7 @@ class TransferOut extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userEntity: state.firestore.ordered.users,
-    userInfo: state.user.userInfo,
+    userInfo: state.user,
   }
 }
 
@@ -284,13 +275,4 @@ TransferOut.propTypes = {
   transOut: PropTypes.func,
   activityLogon: PropTypes.func,
 }
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect(props => {
-    return (
-      [
-        { collection: 'users', doc: props.userInfo.email }
-      ]
-    )
-  })
-)(TransferOut);
+export default connect(mapStateToProps, mapDispatchToProps)(TransferOut);

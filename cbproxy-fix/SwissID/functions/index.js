@@ -4,10 +4,12 @@ const Firestore = require('@google-cloud/firestore');
 const express = require('express');
 const path = require('path');
 const http = require('http');
+const https = require('https');
 const requestIp = require("request-ip");
 const nodemailer = require('nodemailer');
-const uuidv1 = require('uuid/v1');
 const cors = require('cors');
+const axios = require('axios');
+const CircularJSON = require('circular-json');
 
 const app = express();
 app.use(cors({ origin: true }));
@@ -16,29 +18,63 @@ const firestore = new Firestore({
   keyFilename: './swissid-c228f-firebase-adminsdk-gnl8m-7c9c7b994f.json'
 });
 
-app.use("/api/user", (req, res) => {
-  const document = firestore.doc(`verify/${uuidv1()}`);
-  document.set({
-    id: "123123-123123-123123"
-  }).then(() => {
-    res.status(200).send("successfully saved");
+app.get("/api/userinfo", (req, res) => {
+  axios.request({
+    method: "get",
+    url: "https://login.int.swissid.ch/idp/oauth2/userinfo",
+    headers: {
+      "Content-Type": "application.json",
+      "Authorization": "Bearer 506WZzfKa6yOMhekjjtRwq7zsbg"
+    }
+  }).then(result => {
+    console.log(CircularJSON(result));
+    res.status(200).send(CircularJSON(result));
+  }).catch(err => {
+    console.log(err);
+    res.status(404).send(err);
+  });
+});
+
+app.post("/api/login", (req, res) => {
+  const ip = requestIp.getClientIp(req);
+  const { email } = req.body;
+  const event = "LOGON";
+
+  const d = new Date();
+  const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+  const nd = new Date(utc + (3600000 * '+2'));
+  const eventTime = nd.toLocaleString();
+
+  const db = firestore.collection('users').doc(email);
+  db.get()
+    .then((doc) => {
+      let { activities } = doc.data();
+      activities.push({ event, eventTime, ip });
+      db.update({ activities })
+        .then(() => {
+          res.status(200).send("success");
+        })
+        .catch(err => {
+          res.status(404).send(err);
+        });
   });
 });
 
 app.post("/api/send", (req, res) => {
-  const id = uuidv1();
-  verify_code = id;
+  const id = Math.floor(100000 + Math.random() * 900000).toString();
   const {
     email
   } = req.body;
   const transport = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    post: 465,
     auth: {
       user: 'janepress940214@gmail.com',
       pass: '##lni19940214'
     }
   });
   const mailOptions = {
+    from: 'janepress940214@gmail.com',
     to: email,
     subject: 'Account Verification',
     text: "",
@@ -70,8 +106,9 @@ app.post("/api/verify", (req, res) => {
   firestore.collection('verify').doc(`${messageId}`).get()
     .then(doc => {
       if (doc.exists) {
+        console.log(verifyCode, typeof(verifyCode));
         // console.log(doc.data().id, verifyCode);
-        doc.data().id.localeCompare(verifyCode) ? (
+        doc.data().id === verifyCode ? (
           res.status(200).send({ vst: "verified" })
         ): (
           res.status(200).send({ vst: "not_verified" })
@@ -79,39 +116,6 @@ app.post("/api/verify", (req, res) => {
       } else {
         res.status(404).send({ vst: "not_verified" });
       }
-  })
-});
-
-app.post("/api/createaccount", (req, res) => {
-  const {
-      abc_account,
-      bic,
-      currency,
-      funding_account,
-      iban_funding_account,
-      iban,
-      product_cost,
-      email,
-      name,
-  } = req.body;
-  created_at = new Date();
-  firestore.collection("users").doc(email).set({
-    abc_account,
-    bic,
-    currency,
-    funding_account,
-    iban_funding_account,
-    iban,
-    product_cost,
-    email,
-    name,
-    created_at,
-    activities: [],
-    transout: [],
-    transin: [],
-    balance: 0,
-  }).then(() => {
-    res.status(200).send("success");
   })
 });
 

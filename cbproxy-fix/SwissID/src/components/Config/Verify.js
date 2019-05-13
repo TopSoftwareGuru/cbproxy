@@ -20,7 +20,7 @@ class Verify extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { messageId } = this.props;
-    const { verifyCode } = this.state;
+    const verifyCode = this.state.verifyCode.replace(/\s/g, '');
 
     fetch("/api/verify", {
       method: "post",
@@ -30,7 +30,7 @@ class Verify extends Component {
       }
     }).then(result => result.json())
       .then(res => {
-        const { vst, ip } = res;
+        const { vst } = res;
         if (vst === "verified") {
           const { accountInfo } = this.props;
           this.props.createAccount(accountInfo);

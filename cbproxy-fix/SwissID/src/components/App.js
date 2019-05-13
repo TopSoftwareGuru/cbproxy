@@ -12,7 +12,6 @@ import TransferIn from './Config/TransferIn';
 import TransferOut from './Config/TransferOut';
 import Activities from "./Config/Activities";
 import UserProfile from './Config/UserProfile';
-import Withdraw from './Withdraw';
 import messages from './messages';
 import Verify from './Config/Verify';
 
@@ -58,7 +57,6 @@ class App extends Component {
             <Route path="/transfer_out" exact component={ TransferOut } />
             <Route path="/activities" exact component={ Activities } />
             <Route path="/profile" exact component={ UserProfile } />
-            <Route path="/withdraw" exact component={ Withdraw } />
             <Route path="/verify" exact component={ Verify } />
           </Switch>
         </Router>

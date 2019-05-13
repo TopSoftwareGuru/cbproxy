@@ -1,54 +1,56 @@
-export const transOut = (transOutInfo) => {
+
+const getRelativeTime = () => {
+  const d = new Date();
+  const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+  const nd = new Date(utc + (3600000 * '+2'));
+  
+  return nd.toLocaleString();
+}
+export const activityLogon = () => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firestore = getFirestore();
-    firestore.collection('TransferOut').add({
-      amount: transOutInfo.amount,
-      time_created: new Date(),
-      msg_type: "pain.001.001",
-      msg_id: "",
-      endtoend_id: "",
-      currency: "CHF",
-      debtor_account: transOutInfo.xyz_acc,
-      debtor_agenct_bic: "Bank xyz",
-      creditor_account: transOutInfo.abc_acc,
-      creditor_agent_bic: "Bank abc",
-      additional_info: transOutInfo.add_info,
-    }).then(() => {
-      dispatch({ type: 'CREATE_PROJECT',transOutInfo });
-    }).catch((err) => {
-      dispatch({ type: 'CREATE_PROJECT_ERROR', err });
-    })
+    const state = getState();
+    fetch("/api/login", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({email: state.user.userInfo.email}),
+    }).then(() => dispatch({ type: 'LOGON' }))
+      .catch(err => dispatch({ type: 'LOGON_ERR', err }))
   }
 };
-
-export const activityLogon = (loginInfo) => {
+export const getUserAccountInfo = (accountInfo) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firestore = getFirestore();
     const state = getState();
-
-    const db = firestore.collection('users').doc(state.user.userInfo.email)
+    const firestore = getFirestore();
+    const { email } = accountInfo;
+    const db = firestore.collection("users").doc(email);
+    
     db.get()
-      .then((doc) => {
+      .then(doc => dispatch({ type: "GET_USER_ACCOUNT_INFO", doc }))
+      .catch(err => dispatch({ type: "GET_USER_ACCOUNT_INFO_ERROR", err }))
+  }
+}
+export const activityLogout = () => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const state = getState();
+    const firestore = getFirestore();
+    const eventTime = getRelativeTime();
+    
+    const db = firestore.collection('users').doc(state.user.email);
+    db.get()
+      .then(doc => {
         let { activities } = doc.data();
-        activities.push({
-          logon_time: loginInfo.logon_time,
-          event: loginInfo.event,
-        });
-        db.update({
-          activities
-        })
-          .then(() => { dispatch({ type: 'ACTIVITY_UPDATED' }) })
-          .catch(err => dispatch({ type: 'ACTIVITY_UPDATED_ERROR', err }));
+        activities.push({ event: "LOGOUT", eventTime });
+        db.update({ activities })
+          .then(() => dispatch({ type: "USER_LOGOUT" }))
+          .catch(() => dispatch({ type: "USER_LOGOUT_ERROR", err }))
       });
   }
-};
-
+}
 export const setUserInfo = (userInfo) => {
   return dispatch => {
     dispatch({ type: 'SET_USER_ACCOUNT', payload: userInfo })
   };
 }
-
 export const setUserAccountInfo = (accountInfo) => {
   return dispatch => {
     dispatch({ type: 'SET_USER_ACCOUNT_INFO', payload: accountInfo });

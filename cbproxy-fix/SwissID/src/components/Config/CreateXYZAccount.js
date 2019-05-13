@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { compose } from 'redux';
-import { firebaseConnect } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 
-import NavbarTop from '../NavbarTop';
-import Navbar from '../Navbar';
-import Verity from './Verify';
 import { LoadingModal } from '../alerts/LoadingModal';
 import { saveVerifyInfo } from '../store/actions/accountActions';
-import { activityLogon, setUserAccountInfo } from '../store/actions/actions';
+import { setUserAccountInfo } from '../store/actions/accountActions';
+import { activityLogon } from '../store/actions/actions';
 
 
 class CreateXYZAccount extends Component {
@@ -25,48 +21,73 @@ class CreateXYZAccount extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return (
+  //     nextProps.account.accessToken !== this.props.account.accessToken ||
+  //     nextProps.account_status !== this.props.account.account_status ||
+  //     nextProps.account.bic !== this.props.account.bic ||
+  //     nextProps.account.currency !== this.props.account.currency ||
+  //     nextProps.account.funding_account !== this.props.account.funding_account ||
+  //     nextProps.account.iban_funding_account !== this.props.account.iban_funding_account ||
+  //     nextProps.account.product_cost !== this.props.account.product_cost ||
+  //     nextProps.account.balance !== this.props.account.balance ||
+  //     nextProps.account.name !== this.props.account.name
+  //   )
+  // }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.account.accessToken) this.props.history.push("/home");
+  // }
   handleSubmit(event) {
     event.preventDefault();
     const { abc_account, iban_funding_account, funding_account } = this.state;
-    const { email, name } = this.props.user;
+    const { email, name } = this.props.account;
     
-    const d = new Date();
-    const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-    const nd = new Date(utc + (3600000 * '+2'));
-    const time_created = nd.toLocaleString();
-    // this.props.activityLogon({
-    //   event: ` -- Account IBAN ${iban_funding_account} created`,
-    //   logon_time: time_created,
-    // });
-    // this.props.history.push("/activities");
-    // this.props.history.push("/verify");
-    this.setState({ loadingmode: true })
-    fetch("https://swissid-c228f.firebaseapp.com/api/send", {
+    fetch(`https://swisssign.herokuapp.com/api/createaccount`, {
       method: "post",
-      body: JSON.stringify({ email }),
       headers: {
-        'Content-Type': 'application/json',
-      }
-    }).then(res => res.json())
-      .then((result) => {
-        const { messageId } = result;
-        this.props.setUserAccountInfo({
-          bic: "XYZCH89",
-          iban: "CH33 0078 1015 5036 7150 3",
-          currency: "CHF",
-          account_status: "active",
-          product_cost: "XYZ basic account | CHF 10 per month + additional fee per CHF stored",
-          abc_account,
-          iban_funding_account,
-          funding_account,
-          email,
-          name,
-          time_created,
-        });
-        this.props.saveVerifyInfo({ messageId });
-        this.setState({ loadingmode: false })
-        this.props.history.push("/verify");
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        abc_account,
+        iban_funding_account,
+        funding_account,
+        email,
+        name
       })
+    }).then(res => res.json())
+      .then(result => {
+      const {
+        accessToken,
+        abc_account,
+        account_status,
+        bic,
+        currency,
+        funding_account,
+        iban_funding_account,
+        iban,
+        product_cost,
+        name,
+        balance,
+        time_created
+      } = result;
+      if (accessToken !== undefined) this.props.setUserAccountInfo(
+        {
+          accessToken,
+          abc_account,
+          account_status,
+          bic,
+          currency,
+          funding_account,
+          iban_funding_account,
+          iban,
+          product_cost,
+          name,
+          balance,
+          time_created
+        }
+      );
+      this.props.history.push("/home");
+    })
   }
   handleChange(event) {
     this.setState({
@@ -79,8 +100,6 @@ class CreateXYZAccount extends Component {
       <div className="container">
         <div className="row my-4">
           <div className="col-md-6">
-            {/* <NavbarTop />
-            <Navbar /> */}
           </div>
         </div>
         <div className="row">
@@ -235,22 +254,13 @@ class CreateXYZAccount extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user.userInfo,
+    account: state.user,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    activityLogon: (logonInfo) => dispatch(activityLogon(logonInfo)),
-    saveVerifyInfo: (verifyInfo) => dispatch(saveVerifyInfo(verifyInfo)),
     setUserAccountInfo: (userAccountInfo) => dispatch(setUserAccountInfo(userAccountInfo)),
-    saveVerifyInfo: (messageId) => dispatch(saveVerifyInfo(messageId)),
   }
 };
-
-CreateXYZAccount.propTypes = {
-  user: PropTypes.object,
-  activityLogon: PropTypes.func,
-  setUserAccountInfo: PropTypes.func,
-  saveVerifyInfo: PropTypes.func,
-}
 export default connect(mapStateToProps, mapDispatchToProps)(CreateXYZAccount);
