@@ -6,7 +6,7 @@ export default {
     'land.desc2': 'Central Bank Proxy is just a proxy to the central bank.',
     'land.desc3': 'Your funds are backed 100% with central bank money at the central bank.',
     'land.prod.offer': '',
-    'land.prod.basic': '.',
+    'land.prod.basic': '',
     'land.prod.company': '',
     'land.login.google': 'Login with Google',
     'land.logon.swissID': 'Logon with SwissID',
