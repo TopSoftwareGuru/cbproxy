@@ -9,10 +9,14 @@ import de from 'react-intl/locale-data/de';
 import thunk from 'redux-thunk';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import dotenv from 'dotenv';
+import path from 'path';
 
 import App from "./components/App";
 import './assets/style/index.scss';
 import fbConfig from './components/firebase/config';
+
+dotenv.config({path: path.join(__dirname, '.env')});
 
 addLocaleData(en);
 addLocaleData(de);

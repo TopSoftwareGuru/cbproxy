@@ -10,6 +10,10 @@ module.exports = {
     filename: "bundle.js"
   },
   mode: "development",
+  target: "web",
+  node: {
+    fs: "empty",
+  },
   module: {
     rules: [
       {
@@ -44,12 +48,13 @@ module.exports = {
       // }
     ]
   },
+  
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),
     new MiniCssExtractPlugin({
       filename: "style.css"
-    })
+    }),
   ]
 };

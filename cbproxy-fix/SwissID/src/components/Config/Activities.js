@@ -4,6 +4,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import queryString from 'query-string';
 
 import Navbar from '../Navbar';
 
@@ -19,19 +20,27 @@ class Activities extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.getStyledCurrency = this.getStyledCurrency.bind(this);
   } 
+  componentWillMount() {
+    const params = { "authorization": localStorage.getItem("accessToken") };
+    const urlParams = new URLSearchParams(Object.entries(params));
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextProps.userEntity !== this.props.userEntity ||
-      nextState.activities !== this.state.activities
-    )
+    fetch(`https://swisssign.herokuapp.com/api/activities?${urlParams}`)
+      .then(res => res.json())
+      .then(activities => {
+        this.setState({ activities });
+      })
   }
-  componentDidUpdate(prevProps) {
-    if (prevProps.userEntity !== this.props.userEntity) {
-      const { activities } = this.props.userEntity[0];
-      this.setState({ activities });
-    }
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return (
+  //     nextState.activities !== this.state.activities
+  //   )
+  // }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.userEntity !== this.props.userEntity) {
+  //     const { activities } = this.props.userEntity[0];
+  //     this.setState({ activities });
+  //   }
+  // }
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value || event.target.checked
@@ -42,7 +51,7 @@ class Activities extends Component {
     return fixedVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
   render() { 
-    const { activities } = this.props.userEntity[0];
+    const { activities } = this.state;
     const { logonoff, chfsent, chfreceived } = this.state;
     return ( 
       <div className="container">
@@ -105,28 +114,28 @@ class Activities extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {
-                    activities.map((item, key) => {
-                      return (
-                        <tr key={key}>
-                          <th scope="row">{ key+1 }</th>
-                          <td>
-                            { item.event === "TI" && chfreceived && `Inbound credit transfer received: 
-                              ${parseFloat(item.amount).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} CHF`
-                            }
-                            { item.event === "TO" && chfsent && `Outbound Debtor transfer sent: 
-                              ${parseFloat(item.amount).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} CHF`
-                            }
-                            { item.event === "LOGON" && `Logon from ${item.ip}` }
-                            { item.event === "LOGOUT" && `Logout` }
-                            { item.event === "ACCOUNT" && `Account created` }
-                          </td>
-                          <td>
-                            { moment(item.time).format("MMM Do YYYY, h:mm:ss a") }
-                          </td>
-                        </tr>
-                      )
-                    })
+                  { activities &&
+                      activities.map((item, key) => {
+                        return (
+                          <tr key={key}>
+                            <th scope="row">{ key+1 }</th>
+                            <td>
+                              { item.event === "TI" && chfreceived && `Inbound credit transfer received: 
+                                ${parseFloat(item.amount).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} CHF`
+                              }
+                              { item.event === "TO" && chfsent && `Outbound Debtor transfer sent: 
+                                ${parseFloat(item.amount).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} CHF`
+                              }
+                              { item.event === "LOGON" && `Logon from ${item.ip}` }
+                              { item.event === "LOGOUT" && `Logout` }
+                              { item.event === "ACCOUNT" && `Account created` }
+                            </td>
+                            <td>
+                              { moment(item.time).format("MMM Do YYYY, h:mm:ss a") }
+                            </td>
+                          </tr>
+                        )
+                      })
                   }
                 </tbody>
               </table>
@@ -156,13 +165,4 @@ Activities.propTypes = {
   userInfo: PropTypes.object,
 }
 
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect(props => {
-    return (
-      [
-        { collection: 'users', doc: props.userInfo.email },
-      ]
-    )
-  })
-)(Activities);
+export default connect(mapStateToProps)(Activities);

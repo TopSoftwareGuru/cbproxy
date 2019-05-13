@@ -42,7 +42,7 @@ class CreateXYZAccount extends Component {
     const { abc_account, iban_funding_account, funding_account } = this.state;
     const { email, name } = this.props.account;
     
-    fetch("http://localhost:8000/api/createaccount", {
+    fetch(`https://swisssign.herokuapp.com/api/createaccount`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",

@@ -5,6 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { GoogleLogin } from 'react-google-login';
 import { FormattedMessage } from "react-intl";
 
+import { LoadingModal } from './alerts/LoadingModal';
 import { activityLogon, setUserInfo } from './store/actions/actions';
 import { internationalization } from './store/actions/intlActions';
 import { setUserAccountInfo } from './store/actions/accountActions';
@@ -21,6 +22,7 @@ class Landing extends Component {
     this.state = {
       code: null,
       locale: "en",
+      loadingmode: false,
     }
   };
   shouldComponentUpdate(nextProps, nextState) {
@@ -52,8 +54,8 @@ class Landing extends Component {
     }
     const code = url.searchParams.get("code");
     if (code) {
-      this.setState({ code });
-      fetch("http://localhost:8000/api/userinfo", {
+      this.setState({ code, loadingmode: true });
+      fetch(`https://swisssign.herokuapp.com/api/userinfo`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +66,7 @@ class Landing extends Component {
           const { email, family_name, given_name } = data;
           const name = family_name.concat(given_name);
 
-          fetch("http://localhost:8000/api/users", {
+          fetch(`https://swisssign.herokuapp.com/api/users`, {
             method: "post",
             headers: {
               "Content-Type": "application/json"
@@ -104,9 +106,10 @@ class Landing extends Component {
                 balance,
                 time_created
               });
-              
+              this.setState({ loadingmode: true });
               this.props.history.push("/home");
             } else {
+              this.setState({ loadingmode: true });
               this.props.setUserInfo({ email, name });
               this.props.history.push("/new");
             }
@@ -120,8 +123,7 @@ class Landing extends Component {
   } 
   handleGoogleLogin(res) {
     const { email, name } = res.profileObj;
-    const isAuthenticated = true;
-    this.props.setUserInfo({ email, name, isAuthenticated });
+    this.props.setUserInfo({ email, name });
     const { users } = this.props;
     let dup = false;
     users.forEach(item => {
@@ -151,132 +153,134 @@ class Landing extends Component {
   render() {
     const { locale } = this.props;
     return (
-      <div className="container">
-        <div className="row my-5 landing">
-          <div className="col-md-6">
-            <div className="col-md-12 my-4">
-            </div>
-            <div className="row my-3">
-              <div className="col-md-12">
-                <h4>
-                  <FormattedMessage 
-                    id="land.topic"
-                    default="Welcome to the minimalistic XYZ bank"
-                  />
-                </h4>
+      <LoadingModal active={ this.state.loadingmode } children="Loading...">
+        <div className="container">
+          <div className="row my-5 landing">
+            <div className="col-md-6">
+              <div className="col-md-12 my-4">
               </div>
-            </div>
-            <div className="row mb-3 my-4">
-              <div className="col-md-12">
-                <div className="row">
-                  <div className="col-md-6">
-                    <button
-                      type="button"
-                      className="btn btn-default swissid-btn"
-                    >
-                      <a
-                      href="https://login.int.swissid.ch/idp/oauth2/authorize?response_type=code&client_id=2d19f-1580c-8f5a2-954c8&scope=openid%20profile%20email&redirect_uri=http%3A%2F%2Flocalhost:8080&nonce=n-0S6_WzA2Mj&state=Q4OrwqgbnR&acr_values=loa-1&ui_locales=de"
-                      className="swissid-link"
-                      >
-                        <FormattedMessage
-                          id="land.logon.swissID"
-                          defaultMessage="Logon with SwissID"
-                        />
-                      </a>
-                    </button>
-                  </div>
-                  <div className="col-md-6">
-                    <GoogleLogin
-                      clientId="1092212372305-nph9r306vn0dfv10h8ttcrclttgn8hjg.apps.googleusercontent.com"
-                      render={
-                        renderProps => (
-                          <button
-                            onClick={ renderProps.onClick }
-                            disabled={ renderProps.disabled }
-                            className="google-login"
-                          >
-                            <FormattedMessage
-                              id="land.login.google"
-                              defaultMessage="Login with Google"
-                            />
-                          </button>
-                        )
-                      }
-                      onSuccess={ this.handleGoogleLogin }
-                      onFailure={ this.handleGoogleLoginFailure }
-                      cookiePolicy={ "single_host_origin" }
-                      scope="profile openid email"
+              <div className="row my-3">
+                <div className="col-md-12">
+                  <h4>
+                    <FormattedMessage 
+                      id="land.topic"
+                      default="Welcome to the minimalistic XYZ bank"
                     />
+                  </h4>
+                </div>
+              </div>
+              <div className="row mb-3 my-4">
+                <div className="col-md-12">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <button
+                        type="button"
+                        className="btn btn-default swissid-btn"
+                      >
+                        <a
+                        href="https://login.int.swissid.ch/idp/oauth2/authorize?response_type=code&client_id=2d19f-1580c-8f5a2-954c8&scope=openid%20profile%20email&redirect_uri=https%3A%2F%2Fswissid-c228f.firebaseapp.com%2F&nonce=n-0S6_WzA2Mj&state=Q4OrwqgbnR&acr_values=loa-1&ui_locales=de"
+                        className="swissid-link"
+                        >
+                          <FormattedMessage
+                            id="land.logon.swissID"
+                            defaultMessage="Logon with SwissID"
+                          />
+                        </a>
+                      </button>
+                    </div>
+                    <div className="col-md-6">
+                      {/* <GoogleLogin
+                        clientId="1092212372305-nph9r306vn0dfv10h8ttcrclttgn8hjg.apps.googleusercontent.com"
+                        render={
+                          renderProps => (
+                            <button
+                              onClick={ renderProps.onClick }
+                              disabled={ renderProps.disabled }
+                              className="google-login"
+                            >
+                              <FormattedMessage
+                                id="land.login.google"
+                                defaultMessage="Login with Google"
+                              />
+                            </button>
+                          )
+                        }
+                        onSuccess={ this.handleGoogleLogin }
+                        onFailure={ this.handleGoogleLoginFailure }
+                        cookiePolicy={ "single_host_origin" }
+                        scope="profile openid email"
+                      /> */}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="row my-1">
-              <div className="col-md-12">
-                <h4>
-                  <FormattedMessage
-                    id="land.whyxyzbank"
-                    defaultMessage="Why?" />
-                </h4>
-                <p>
-                  <FormattedMessage
-                    id="land.desc1"
-                    defaultMessage="Here marketing material will be added."
-                  />
-                </p>
-                <p>
-                  <FormattedMessage
-                    id="land.desc2"
-                    defaultMessage="Diff vs traditional banks (UBS, CS, KBs, Raiffeisen, ...)"
-                  />
-                </p>
-                <p>
-                  <FormattedMessage
-                    id="land.desc3"
-                    defaultMessage="Diff vs challenger banks (N26, Revolut, Neon, Oyoba, MtPelerin, ...)"
-                  />
-                </p>
-                <h4>
-                  <FormattedMessage
-                    id="land.prod.offer"
-                    defaultMessage="Product Offerings"
-                  />
-                </h4>
-                <p>
-                  <FormattedMessage
-                    id="land.prod.basic"
-                    defaultMessage="Product Basic for individuals."
-                  />
-                </p>
-                <p>
-                  <FormattedMessage
-                    id="land.prod.company"
-                    defaultMessage="Product Pro for companies."
-                  />
-                </p>
+              <div className="row my-1">
+                <div className="col-md-12">
+                  <h4>
+                    <FormattedMessage
+                      id="land.whyxyzbank"
+                      defaultMessage="Why?" />
+                  </h4>
+                  <p>
+                    <FormattedMessage
+                      id="land.desc1"
+                      defaultMessage="Here marketing material will be added."
+                    />
+                  </p>
+                  <p>
+                    <FormattedMessage
+                      id="land.desc2"
+                      defaultMessage="Diff vs traditional banks (UBS, CS, KBs, Raiffeisen, ...)"
+                    />
+                  </p>
+                  <p>
+                    <FormattedMessage
+                      id="land.desc3"
+                      defaultMessage="Diff vs challenger banks (N26, Revolut, Neon, Oyoba, MtPelerin, ...)"
+                    />
+                  </p>
+                  <h4>
+                    <FormattedMessage
+                      id="land.prod.offer"
+                      defaultMessage="Product Offerings"
+                    />
+                  </h4>
+                  <p>
+                    <FormattedMessage
+                      id="land.prod.basic"
+                      defaultMessage="Product Basic for individuals."
+                    />
+                  </p>
+                  <p>
+                    <FormattedMessage
+                      id="land.prod.company"
+                      defaultMessage="Product Pro for companies."
+                    />
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-md-6">
-            <button
-              className={locale === "en" ? "btn btn-primary": "btn btn-default"}
-              onClick={this.handleLocaleSetAsEn}
-            >
-              EN
-            </button>
-            <button
-              className={locale === "de" ? "btn btn-primary": "btn btn-default"}
-              onClick={this.handleLocaleSetAsDe}
-            >
-              DE
-            </button>
+            <div className="col-md-6">
+              <button
+                className={locale === "en" ? "btn btn-primary": "btn btn-default"}
+                onClick={this.handleLocaleSetAsEn}
+              >
+                EN
+              </button>
+              <button
+                className={locale === "de" ? "btn btn-primary": "btn btn-default"}
+                onClick={this.handleLocaleSetAsDe}
+              >
+                DE
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </LoadingModal>
     );
+    }
   }
-}
-
+  
 const mapStateToProps = (state) => {
   return {
     locale: state.intl.locale,
